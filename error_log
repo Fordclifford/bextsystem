@@ -1,0 +1,426 @@
+[21-Jun-2018 09:16:52 America/New_York] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 12
+[21-Jun-2018 09:16:52 America/New_York] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[21-Jun-2018 09:16:52 America/New_York] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[21-Jun-2018 09:19:00 America/New_York] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 12
+[21-Jun-2018 09:19:00 America/New_York] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[21-Jun-2018 09:19:00 America/New_York] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[21-Jun-2018 09:20:03 America/New_York] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 12
+[21-Jun-2018 09:20:03 America/New_York] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[21-Jun-2018 09:20:03 America/New_York] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[21-Jun-2018 10:05:54 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:05:54 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:05:54 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:05:54 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 50
+[21-Jun-2018 10:06:04 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:06:04 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:06:04 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:06:04 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 50
+[21-Jun-2018 10:06:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:06:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:06:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:06:28 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 50
+[21-Jun-2018 10:08:48 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:08:48 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 48
+[21-Jun-2018 10:08:48 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:08:48 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 50
+[21-Jun-2018 10:11:50 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:11:50 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:11:50 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:11:50 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:11:59 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:11:59 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:11:59 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:11:59 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:12:08 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:12:08 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:12:08 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:12:08 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:12:50 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:12:50 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:12:50 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:12:50 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:15:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:15:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:15:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:15:28 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:17:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:17:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:17:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:17:28 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:18:52 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:18:52 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:18:52 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:18:52 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:21:58 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:21:58 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:21:58 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:21:58 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:23:14 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:23:14 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:23:14 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:23:14 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:23:45 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:23:45 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:23:45 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:23:45 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:25:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:25:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:25:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:25:28 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[21-Jun-2018 10:25:54 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:25:54 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[21-Jun-2018 10:25:54 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[21-Jun-2018 10:25:54 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[22-Jun-2018 00:44:58 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[22-Jun-2018 00:44:58 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 49
+[22-Jun-2018 00:44:58 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 51
+[22-Jun-2018 00:44:58 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 52
+[22-Jun-2018 00:59:47 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 00:59:47 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 00:59:47 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 45
+[22-Jun-2018 00:59:47 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 55
+[22-Jun-2018 00:59:58 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 00:59:58 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 00:59:58 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 45
+[22-Jun-2018 00:59:58 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 55
+[22-Jun-2018 01:02:45 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 01:02:45 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 01:02:45 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 45
+[22-Jun-2018 01:02:45 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 55
+[22-Jun-2018 01:20:45 America/New_York] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 12
+[22-Jun-2018 01:20:45 America/New_York] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[22-Jun-2018 01:20:45 America/New_York] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[22-Jun-2018 01:21:51 America/New_York] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 12
+[22-Jun-2018 01:21:51 America/New_York] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[22-Jun-2018 01:21:51 America/New_York] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 13
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 108
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 136
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 168
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 211
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:27:07 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 273
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:11 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:19 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:22 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:27:28 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 13
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 108
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 136
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 168
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 211
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:28:49 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 273
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:28:51 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 12
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 13
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 16
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 17
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 20
+[22-Jun-2018 01:28:54 America/New_York] PHP Warning:  mysql_error() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/home.php on line 23
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 13
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 108
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 136
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 168
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 211
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:28:56 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 273
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 15
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 112
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 139
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 154
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 197
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:00 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 272
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 13
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 108
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 136
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 168
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 211
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:29:02 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 273
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 15
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 112
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 139
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 154
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 197
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:03 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 272
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 13
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 13
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 16
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 195
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 195
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 199
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 228
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 228
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 229
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 275
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 275
+[22-Jun-2018 01:29:06 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 12
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 12
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 15
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_query() expects parameter 2 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 192
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, null given in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 196
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 313
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 313
+[22-Jun-2018 01:29:09 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/addbill.php on line 314
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 15
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 112
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 139
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 154
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 197
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 272
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 13
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 13
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 16
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 195
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 195
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 199
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 228
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 228
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 229
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 275
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 275
+[22-Jun-2018 01:29:24 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 01:29:25 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:25 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:25 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 15
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 112
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 139
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 154
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:28 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 197
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 272
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 13
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 108
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 136
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 168
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 211
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 273
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 12
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 13
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 104
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 108
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 132
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 136
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 167
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 168
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 209
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 211
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 271
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/income.php on line 273
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 12
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 15
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 108
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 112
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 135
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 139
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 153
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 154
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 195
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 197
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 270
+[22-Jun-2018 01:29:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/expenses.php on line 272
+[22-Jun-2018 01:30:01 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 01:30:01 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 01:30:01 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 45
+[22-Jun-2018 01:30:01 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 55
+[22-Jun-2018 01:30:11 America/New_York] PHP Warning:  mysql_query(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 01:30:11 America/New_York] PHP Warning:  mysql_query(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 43
+[22-Jun-2018 01:30:11 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 45
+[22-Jun-2018 01:30:11 America/New_York] PHP Warning:  mysql_num_rows() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/index.php on line 55
+[22-Jun-2018 01:42:07 America/New_York] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 12
+[22-Jun-2018 01:42:07 America/New_York] PHP Warning:  mysql_select_db(): Access denied for user ''@'localhost' (using password: NO) in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[22-Jun-2018 01:42:07 America/New_York] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/cwebsolutions/bextsystem.c-websolutions.com/dbconnect.php on line 13
+[22-Jun-2018 01:43:13 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 117
+[22-Jun-2018 01:43:14 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 117
+[22-Jun-2018 01:44:56 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:44:56 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:46:06 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:46:06 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:46:17 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:46:17 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:49:49 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:49:49 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:54:33 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 01:54:33 America/New_York] PHP Fatal error:  Call to a member function query() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/printBudgetPdf.php on line 116
+[22-Jun-2018 02:05:49 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 02:06:27 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 02:06:43 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 02:06:50 America/New_York] PHP Fatal error:  Call to a member function prepare() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 22
+[22-Jun-2018 02:06:50 America/New_York] PHP Fatal error:  Call to a member function prepare() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 22
+[22-Jun-2018 02:07:02 America/New_York] PHP Fatal error:  Call to a member function prepare() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 22
+[22-Jun-2018 02:07:02 America/New_York] PHP Fatal error:  Call to a member function prepare() on null in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 22
+[22-Jun-2018 02:11:40 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 02:11:40 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 02:11:52 America/New_York] PHP Warning:  require_once(dbconnect.php): failed to open stream: No such file or directory in /home/cwebsolutions/bextsystem.c-websolutions.com/dateBillsPdf.php on line 4
+[22-Jun-2018 02:11:52 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'dbconnect.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/cwebsolutions/bextsystem.c-websolutions.com/dateBillsPdf.php on line 4
+[22-Jun-2018 02:11:52 America/New_York] PHP Warning:  require_once(dbconnect.php): failed to open stream: No such file or directory in /home/cwebsolutions/bextsystem.c-websolutions.com/dateBillsPdf.php on line 4
+[22-Jun-2018 02:11:52 America/New_York] PHP Fatal error:  require_once(): Failed opening required 'dbconnect.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/cwebsolutions/bextsystem.c-websolutions.com/dateBillsPdf.php on line 4
+[22-Jun-2018 02:15:22 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279
+[22-Jun-2018 02:15:33 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/cwebsolutions/bextsystem.c-websolutions.com/bills.php on line 279

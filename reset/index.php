@@ -41,10 +41,10 @@ $error=false;
         $error_message = 'No User Found';
     }
 }
+include_once './header.php';
 ?>
 <link href="demo-style.css" rel="stylesheet" type="text/css">
-
-<?php require_once './header.php'; ?>
+      
 <div class="login_form_div">
     <form name="frmForgot" id="frmForgot" method="post" onSubmit="return validate_forgot();">
         <h1>Forgot Password?</h1>

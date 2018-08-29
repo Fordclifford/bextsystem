@@ -63,25 +63,9 @@ if (isset($_POST['btn-login'])) {
         }
     }
 }
+include_once"includes/header.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>B&E Tracker</title>
-        <link rel="shortcut icon" href="assets/image/favicon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/style2.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/w3.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css"/>
-    </head>
-    <body>
-        <div>
-            <section>
-                <div style="padding: 30px"></div>
 
 
                 <div class="login_form_div w3-round-large" >
@@ -142,25 +126,7 @@ if (isset($_POST['btn-login'])) {
                     
                 </div>
 
-                <!-- Modal - Add New Record/User -->
 
-            </section>
-        </div>
-        <footer>
-            <div>
-
-                <div >
-                    <p style="margin:0px 0px;font-size: 12px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p>
-
-                </div>
-
-            </div>
-        </footer>
-        <script>
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        </script>
         <script src="assets/js/navigation.js"></script>   
         <script type="text/javascript">
             function displayForm(c) {
@@ -179,7 +145,5 @@ if (isset($_POST['btn-login'])) {
         </script>
         <script type="text/javascript" src="assets/jquery-1.11.3-jquery.min.js"></script>
         <script type="text/javascript">
-         </body>
-         
-         </html>
-            <?php ob_end_flush(); ?>
+        
+           <?php include_once './includes/footer.php';

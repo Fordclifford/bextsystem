@@ -414,3 +414,30 @@ label.error{
         max-width: 400px;
         margin:0 auto;
 }
+
+form {
+    border: 1px solid #f1f1f1;
+    background: #B6E0FF;
+    padding: 20px ;
+	display: inline-block;
+	border-radius: 4px;
+       
+        
+}
+.login_form_div{  
+   padding: 15px;
+    max-width: 400px;
+    margin: auto;
+  
+}
+.register_form_div{      
+      padding: 10px;   
+    margin:0 auto;
+  
+}
+.belowdiv {
+    width:300px; 
+    height:100px; 
+    border-style:solid; 
+    margin:5px;
+}

@@ -8,7 +8,7 @@ define('PROJECT_NAME', 'User Registration with Email Verification with PHP and M
 
 define('DB_DRIVER', 'mysql');
 define('DBHOST', 'localhost');
-define('DBUSER', 'rooot');
+define('DBUSER', 'root');
 define('DBPASS', '');
 define('DBNAME', 'bext_system');
 

@@ -39,7 +39,7 @@ if (isset($_POST["sub"])) {
             $stmt->bindValue(":mobile", $mobile);
             $stmt->bindValue(":conf", $conf);
             $stmt->bindValue(":union", $union);
-            
+
             $stmt->execute();
 
             $result = $stmt->rowCount();
@@ -107,20 +107,26 @@ if (isset($_POST["sub"])) {
     }
 }
 
-include './header.php';
+require_once('header.php');
 ?>
+<body>
+
+        <div id="wrapper">
+
+           <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 style="font-size: 22px;"><i class="glyphicon glyphicon-registration-mark"></i> Register Church</h1>
+        </div>
+    </div>
 
 <div class="register_form_div w3-round-large">
 
 
-    <form style="padding: 30px; width: 100%" class="animate w3-round-large" method="post" name="f" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" onsubmit="return validateForm();">
+    <form style=" width: 100%" class="animate w3-round-large" method="post" name="f" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" onsubmit="return validateForm();">
 
         <fieldset>
-            <div class="form-group">
-                <h style="font-size: 22px;"><i class="glyphicon glyphicon-registration-mark"></i> Register Church</h>
-            </div>
-
-            <div class="form-group">
+                        <div class="form-group">
                 <hr />
             </div>
 <?php if ($msg <> "") { ?>
@@ -128,7 +134,7 @@ include './header.php';
                     <button data-dismiss="alert" class="close" onclick="this.parentElement.style.display = 'none';" type="button">x</button>
                     <p><?php echo $msg; ?></p>
                 </div>
-<?php } ?>                       
+<?php } ?>
 
             <div class="form-group">
                 <label for="union" >Select Union/Mission</label>
@@ -146,7 +152,7 @@ include './header.php';
                     <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $conf ?>" id="conference" name ="conference"></select>
                 </div>
 
-            </div>                    
+            </div>
 
 
             <div class="form-group">
@@ -191,14 +197,27 @@ include './header.php';
                         <div style="height: 10px;clear: both"></div>
 
                         <div class="form-group">
-                            <div class="col-lg-10">
-                                <button class="btn btn-primary" type="submit" name="sub">Submit</button> 
-                            </div>
+                            <div class="col-lg-4">
+                                <button title="Click to Clear Input" type="reset" value="reset" data-toggle="tooltip"  class="btn btn-default" ><span class="glyphicon glyphicon-erase"></span> Clear</button>
+                        
+                              </div>
+                            <div class="col-lg-4">
+                                
+                                                   <button class="btn btn-primary" type="submit" name="sub">Submit</button>
+                              </div>
                         </div>
                         </fieldset>
                         </form>
+     <div>
+                <span >Sign in </span><a href="../index.php" style="color: #0000FF">Here</a>
+            </div>
+    
+                     <hr />
+           
 
                     </div>
+                </div>
+            </div>
+       
 
-<?php include './footer.php'; ?>
-                
+<?php include 'footer.php'; ?>

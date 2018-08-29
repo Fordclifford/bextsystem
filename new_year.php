@@ -24,24 +24,22 @@ if (isset($_POST['btn-year'])) {
     $year = htmlspecialchars($year);
     $church_id = $_SESSION['user'];
 
-
-
     if (empty($year)) {
         $error = true;
         $errTyp = "danger";
         $errMSG = "Error, Check and Try again!";
         $yearError = "Cannot be empty.";
-    } else if (strlen($year) != 4) {
+    }  if (strlen($year) != 4 ) {
         $error = true;
         $errTyp = "danger";
         $errMSG = "Error, Check and Try again!";
         $yearError = "Year must have only four digits.";
-    } else if (($year) <= 0) {
+    }  if ($year <= 0) {
         $error = true;
         $errTyp = "danger";
         $errMSG = "Error, Check and Try again!";
         $yearError = "Year be more than zero.";
-    } else if (($year) > 2999) {
+    }  if ($year > 2999) {
         $error = true;
         $errTyp = "danger";
         $errMSG = "Error, Check and Try again!";
@@ -124,41 +122,98 @@ if (isset($_POST['btn-year'])) {
      AddYear();
     }
 }
+include_once('includes/header.php');
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>B&E Tracker</title>
-        <link rel="shortcut icon" href="assets/image/favicon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/style2.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/w3.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css"/>
-    </head>
-    <body>
-        <div id="wrap">
+<body>
 
-            <section  id="top">
+        <div id="wrapper">
 
-            </section>
-            <section id="page">
-                <header id="pageheader" class="w3-round-xlarge homeheader">
+            <!-- Navigation -->
+            <?php if (isset($_SESSION['user']) && $_SESSION['user'] == true ) : ?>
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="">B&E Tracker</a>
+                    </div>
+                    <!-- /.navbar-header -->
 
-                </header>
-                <div style="padding: 3px"></div>
-                <div class="topnav w3-round-xlarge" id="myTopnav">
-                    <a href="home.php"> <i class="glyphicon glyphicon-home"></i> Home</a>
-                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
-                    <a href="expenses.php"> <i class="glyphicon glyphicon-apple"></i> Expenses</a>
-                    <a href="bills.php"> <i class="glyphicon glyphicon-registration-mark"></i> Bills</a>
-                    <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>                    
+                    <ul class="nav navbar-top-links navbar-right">
+                        <!-- /.dropdown -->
 
-                    <a href="javascript:void(0);" class="icon" onClick="myFunction()">&#9776;</a>
+                        <!-- /.dropdown -->
+						<li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-envelope fa-fw"></i></a>
+			<div id="notification-latest"></div>
+			</li>
 
-                </div> 
-                <div style="margin-top: 20px" class ="row">
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+                   
+                    <div class="navbar-default sidebar" role="navigation">
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                                <li>
+                                    <a href="home.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                </li>
+
+                                <li <?php echo (CURRENT_PAGE =="balance.php" || CURRENT_PAGE=="balance.php") ? 'class="active"' : '' ; ?>>
+                                    <a href="bills.php"><i class="glyphicon glyphicon-registration-mark fa-fw"></i> Bills<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="bills.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                        </li>
+                                    <li>
+                                        <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                   <a href="expenses.php"> <i class="glyphicon glyphicon-apple"></i> Expenses</a>
+                                </li>
+                                 <li>
+                                   <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
+                                </li>
+                                
+                                <li>
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
+            <?php endif; ?>
+
+           <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">New Financial Year</h1>
+        </div>
+    </div>
+             
+                
+                <div style="margin: 20px" class ="row">
                     <div class="col-lg-3"><a href="budget.php" class="btn btn-success w3-round-large " >&laquo; Back  </a></div>
                 </div>
 
@@ -190,33 +245,6 @@ if (isset($_POST['btn-year'])) {
                     </form>
 
                 </div>
-
-                <!-- Modal - Add New Record/User -->
-
-
-
-
-
-            </section>
         </div>
-        <footer id="pagefooter">
-            <div id="f-content">
 
-                <div id="foot_notes">
-                    <p style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p>
-
-                </div>
-                <img src="assets/image/bamboo.png" alt="bamboo" id="footerimg" width="96px" height="125px">
-            </div>
-        </footer>
-
-        <script src="assets/js/navigation.js"></script>   
-        <script>
-                        $(document).ready(function () {
-                            $('[data-toggle="tooltip"]').tooltip();
-                        });
-        </script>
-    </body>
-
-</html>
-<?php ob_end_flush(); ?>
+<?php include_once('includes/footer.php'); ?>

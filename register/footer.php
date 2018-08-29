@@ -1,18 +1,53 @@
-</div>
-<footer id="pagefooter">
-    <div id="f-content">
 
-        <div id="foot_notes">
-            <p style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p>
+    <!-- /#wrapper -->
 
-        </div>
-        <img src="../assets/image/bamboo.png" alt="bamboo" id="footerimg" width="96px" height="125px">
-    </div>
-</footer>
+    <!-- jQuery -->
 
+           <div align='center' style="margin: auto">
+                    <p2 style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p2>
 
+ <script src="../includes/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../includes/js/metisMenu/metisMenu.min.js"></script>
+   
+    <!-- Custom Theme JavaScript -->
+    <script src="../includes/js/sb-admin-2.js"></script>
+             <script src="../includes/js/jquery.validate.min.js"></script>
+
+           <!-- The End of the Header -->
+			<script type="text/javascript">
+
+	function myFunction() {
+		$.ajax({
+			url: "./view_notification.php",
+			type: "POST",
+			processData:false,
+			success: function(data){
+				$("#notification-count").remove();
+				$("#notification-latest").show();$("#notification-latest").html(data);
+			},
+			error: function(){}
+		});
+	 }
+
+	 $(document).ready(function() {
+		$('body').click(function(e){
+			if ( e.target.id != 'notification-icon'){
+				$("#notification-latest").hide();
+			}
+		});
+	});
+
+	</script>
+     <script src="../assets/js/tooltip.js" > </script>
+<script src="../assets/js/tooltip.js" > </script>
+     <script>
+     $(document).ready(function () {
+         $('[data-toggle="tooltip"]').tooltip();
+          });
+        </script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     function validateForm() {
 
@@ -50,7 +85,7 @@
             $("#uname").focus();
             return false;
         }
-        
+
 
         if (!isValidNumber(mobl)) {
             alert("Enter valid Number.");
@@ -103,12 +138,9 @@
         return regex.test(name);
     }
 </script>
-<script src="../assets/js/navigation.js"></script>  
 
 <script type= "text/javascript" src = "../assets/js/conferences.js"></script>
 <script language="javascript">print_union("union_mission");</script>
-<script src="bootstrap/js/jquery-1.9.0.min.js"></script>
-
 
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
-ob_start();
 session_start();
-require_once 'config.php';
+require_once './config.php';
 
 // if session is not set this will redirect to login page
 if (!isset($_SESSION['user'])) {
@@ -47,74 +46,70 @@ if (mysql_num_rows($income) == 0) {
     </script>
     <?php
 }
+include_once('includes/header.php');
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title> Welcome- <?php echo $userRow['name']; ?></title>
-        <link rel="shortcut icon" href="assets/image/favicon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/style2.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/w3.css" type="text/css"/>
-        <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
-               <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css"/>
-    </head>
-    <body>
-        <div id="wrap">
+<body>
 
-            <section  id="top">                
-                <nav    class="navbar  navbar-inverse w3-round-xlarge">
-                    <div class="container-fluid">
-                        <div class="navbar-header " >
-                            <a  class="w3-round-xxlarge navbar-brand" title="B&E Tracker Home" href="home.php"><img src="assets/image/log.png" style="height:48px; width:180px;" class="img-responsive w3-round-xxlarge" ></a>
+        <div id="wrapper">
 
-
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>                        
-                            </button>
-                        </div>
-                            <ul class="nav navbar-nav navbar-right ">
-                                <ul class="nav navbar-top-links navbar-right">
-                            <li class="dropdown">
-                                <a id="logged_in_user" class="dropdown-toggle logged-in-user" data-toggle="dropdown" href="profile.php">
-                                    <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['name']; ?> <i class="fa fa-caret-down"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                                    </li>
-                                   
-                                    <li class="divider"></li>
-                                    <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                                    </li>
-                                </ul>
-                                <!-- /.drop down-user -->
-                            </li>
-                        </ul>
-                    </ul>
-                      
+            <!-- Navigation -->
+            <?php if (isset($_SESSION['user']) && $_SESSION['user'] == true ) : ?>
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="">B&E Tracker</a>
                     </div>
+                    <!-- /.navbar-header -->
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <!-- /.dropdown -->
+
+                        <!-- /.dropdown -->
+						<li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-envelope fa-fw"></i></a>
+			<div id="notification-latest"></div>
+			</li>
+
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+
+                    
                 </nav>
+            <?php endif; ?>
 
-            </section>
-            <section class="page">
-                <header class="w3-round-xlarge"   id="homeheader">
-
-                </header>
-
-
-                <div  class=" animate row">
+           <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+                   <div  class=" animate row">
                     <div class="col-md-9 col-lg-9">
 
-                        <div   class="col-lg-12">
-                            <h3 class="">Dashboard</h3>
-                            <hr style="margin-right: 30px"/>
-                        </div>
-
-                        <div class="row">
-                            <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-3">               
+                          <div class="row">
+                            <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-3">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <div class="row">
@@ -136,7 +131,7 @@ if (mysql_num_rows($income) == 0) {
                                         </div>
                                     </a>
                                 </div>
-                            </div>          
+                            </div>
                             <div data-toggle="tooltip" title="Click the link to go to expenses page" class="col-md-3 col-lg-3">
                                 <div class="panel panel-gold">
                                     <div class="panel-heading">
@@ -206,11 +201,11 @@ if (mysql_num_rows($income) == 0) {
                                         </div>
                                     </a>
                                 </div>
-                            </div> 
+                            </div>
 
 
                         </div>
-                        <div class="row"> 
+                        <div class="row">
                             <div data-toggle="tooltip" title="Click the link to go to income-expense report page" class="col-md-3 col-lg-3">
                                 <div class="panel panel-purple">
                                     <div class="panel-heading">
@@ -242,14 +237,14 @@ if (mysql_num_rows($income) == 0) {
 
                                             <div class="col-xs-3">
                                                 <i class="glyphicon glyphicon-bitcoin fa-5x"></i>
-                                            </div>                            
+                                            </div>
                                             <div class="col-xs-9 text-right">
                                                 <div class="huge"> Balance</div>
                                             </div>
                                             </a>
                                         </div>
                                     </div>
-                                    <a href="balance">
+                                    <a href="balances.php">
                                         <div class="panel-footer">
                                             <span class="pull-left">Go to Balance&nbsp;</span>
                                             <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -258,7 +253,7 @@ if (mysql_num_rows($income) == 0) {
                                         </div>
                                     </a>
                                 </div>
-                            </div> 
+                            </div>
                             <div data-toggle="tooltip" title="Click the link to go to profile page" class="col-md-3 col-lg-3">
                                 <div class="panel panel-bloodRed">
                                     <div class="panel-heading">
@@ -283,7 +278,7 @@ if (mysql_num_rows($income) == 0) {
                                         </div>
                                     </a>
                                 </div>
-                            </div> 
+                            </div>
 
 
 
@@ -293,26 +288,4 @@ if (mysql_num_rows($income) == 0) {
 
                 </div>
 
-            </section>
-        </div>
-
-        <footer id="pagefooter">
-            <div id="f-content">
-
-                <div align='center' style="margin: auto">
-                    <p2 style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p2>
-
-                </div>
-                <img src="assets/image/bamboo.png" alt="bamboo" id="footerimg" width="96px" height="125px">
-            </div>
-
-        </footer>
-    </body>
-    <script src="assets/jquery-1.11.3-jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/navigation.js"></script>
-    <script src="assets/js/tooltip.js" >
-    
-    </script>
-</html>
-<?php ob_end_flush(); ?>
+<?php include_once('includes/footer.php'); ?>

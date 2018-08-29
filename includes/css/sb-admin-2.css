@@ -1,0 +1,416 @@
+
+body {
+  background-color: #f8f8f8;
+}
+#wrapper {
+  width: 100%;
+}
+#page-wrapper {
+  padding: 0 15px;
+  min-height: 568px;
+  background-color: white;
+}
+@media (min-width: 768px) {
+  #page-wrapper {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 0 30px;
+    border-left: 1px solid #e7e7e7;
+  }
+}
+.navbar-top-links {
+  margin-right: 0;
+}
+.navbar-top-links li {
+  display: inline-block;
+}
+.navbar-top-links li:last-child {
+  margin-right: 15px;
+}
+.navbar-top-links li a {
+  padding: 15px;
+  min-height: 50px;
+}
+.navbar-top-links .dropdown-menu li {
+  display: block;
+}
+.navbar-top-links .dropdown-menu li:last-child {
+  margin-right: 0;
+}
+.navbar-top-links .dropdown-menu li a {
+  padding: 3px 20px;
+  min-height: 0;
+}
+.navbar-top-links .dropdown-menu li a div {
+  white-space: normal;
+}
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks,
+.navbar-top-links .dropdown-alerts {
+  width: 310px;
+  min-width: 0;
+}
+.navbar-top-links .dropdown-messages {
+  margin-left: 5px;
+}
+.navbar-top-links .dropdown-tasks {
+  margin-left: -59px;
+}
+.navbar-top-links .dropdown-alerts {
+  margin-left: -123px;
+}
+.navbar-top-links .dropdown-user {
+  right: 0;
+  left: auto;
+}
+
+.page-action-links{
+  margin:40px 0px 20px 0px;
+}
+
+
+.sidebar .sidebar-nav.navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+.sidebar ul li {
+  border-bottom: 1px solid #e7e7e7;
+}
+.sidebar ul li a.active {
+  background-color: #eeeeee;
+}
+.sidebar .arrow {
+  float: right;
+}
+.sidebar .fa.arrow:before {
+  content: "\f104";
+}
+.sidebar .active > a > .fa.arrow:before {
+  content: "\f107";
+}
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+  border-bottom: none !important;
+}
+.sidebar .nav-second-level li a {
+  padding-left: 37px;
+}
+.sidebar .nav-third-level li a {
+  padding-left: 52px;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    margin-top: 51px;
+  }
+  .navbar-top-links .dropdown-messages,
+  .navbar-top-links .dropdown-tasks,
+  .navbar-top-links .dropdown-alerts {
+    margin-left: auto;
+  }
+}
+
+.panel .slidedown .glyphicon,
+.chat .glyphicon {
+  margin-right: 5px;
+}
+
+.login-panel {
+  margin-top: 25%;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 18px;
+  line-height: 1.33;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+}
+.show-grid [class^="col-"] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #ddd;
+  background-color: #eee !important;
+}
+.show-grid {
+  margin: 15px 0;
+}
+.huge {
+  font-size: 40px;
+}
+
+.panel-green > .panel-heading {
+  border-color: #5cb85c;
+  color: white;
+  background-color: #5cb85c;
+}
+.panel-green {
+  border-color: #5cb85c;
+}
+.panel-green > a {
+  color: #5cb85c;
+}
+.panel-green > a:hover {
+  color: #3d8b3d;
+}
+.panel-red {
+  border-color: #d9534f;
+}
+.panel-red > .panel-heading {
+  border-color: #d9534f;
+  color: white;
+  background-color: #d9534f;
+}
+.panel-red > a {
+  color: #d9534f;
+}
+.panel-red > a:hover {
+  color: #b52b27;
+}
+.panel-yellow {
+  border-color: #f0ad4e;
+}
+.panel-yellow > .panel-heading {
+  border-color: #f0ad4e;
+  color: white;
+  background-color: #f0ad4e;
+}
+.panel-yellow > a {
+  color: #f0ad4e;
+}
+.panel-yellow > a:hover {
+  color: #df8a13;
+}
+
+label.error{
+  color: red;
+}
+
+.panel-green {
+  border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+  border-color: #5cb85c;
+  color: white;
+  background-color: #5cb85c;
+}
+.panel-green > a {
+  color: #171193;
+}
+.panel-green > a:hover {
+  color: #0000ff;
+}
+.panel-red {
+  border-color: #d9534f;
+}
+.panel-red > .panel-heading {
+  border-color: #d9534f;
+  color: white;
+  background-color: #d9534f;
+}
+.panel-red > a {
+  color: #000000;
+}
+.panel-red > a:hover {
+  color: #0000ff;
+}
+.panel-yellow {
+  border-color: #999999;
+}
+.panel-yellow > .panel-heading {
+  border-color: #999999;
+  color: white;
+  background-color: #999999;
+}
+.panel-yellow > a {
+  color: #000000;
+}
+.panel-yellow > a:hover {
+  color: #0000ff;
+}
+
+.panel-gold {
+  border-color: #D4AF37;
+}
+.panel-gold > .panel-heading {
+  border-color: #D4AF37;
+  color: white;
+  background-color: #FF0000;
+}
+.panel-gold > a {
+  color: #000000;
+}
+.panel-gold > a:hover {
+  color: #0000ff;
+}
+
+.panel-paleGreen {
+  border-color: #64a50d;
+}
+.panel-paleGreen > .panel-heading {
+  border-color: #64a50d;
+  color: white;
+  background-color: #64a50d;
+}
+.panel-paleGreen > a {
+  color: #000000;
+}
+.panel-paleGreen > a:hover {
+  color: #0000ff;
+}
+
+.panel-purple {
+  border-color: #8812a0;
+}
+.panel-purple > .panel-heading {
+  border-color:  #800080;
+  color: #FFFFFF;
+  background-color:  #800080;
+}
+.panel-purple > a {
+  color: #000000;
+}
+.panel-purple > a:hover {
+  color: #0000ff;
+}
+
+.panel-darkBlue {
+  border-color: #181299;
+}
+.panel-darkBlue > .panel-heading {
+  border-color: #181299;
+  color: white;
+  background-color: #181299;
+}
+.panel-darkBlue > a {
+  color: #000000;
+}
+.panel-darkBlue > a:hover {
+  color: #0000ff;
+}
+
+.panel-bloodRed {
+  border-color: #D4AF37;
+}
+.panel-bloodRed > .panel-heading {
+  border-color:#cc9900;
+  color: white;
+  background-color:#cc9900;
+}
+.panel-bloodRed > a {
+  color: #000000;
+}
+.panel-bloodRed > a:hover {
+  color: #171193;
+}
+.frm {
+    border: 0px ;
+    background: none;   
+	display: inline-block;        
+        margin:0 auto;
+}
+.btn-group *{
+    margin-left: 30px;
+}
+.btn-group button {
+    background-color: #ffffff; /* Green background */
+    border: 4px solid #00\9; /* Green border */
+    color: #0000ff; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+     /* Float the buttons side by side */
+    margin-right: 10px;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #000\9;
+}
+
+.buttoncontainer {
+    overflow:auto;
+}
+.sidebyside {
+    float:left; 
+    width:20%;      
+    padding-right: 100px;
+}
+.sideside {
+    float:left; 
+    width:40%;      
+    
+}
+.side {
+    float:left; 
+    width:60%;      
+    
+}
+.search{
+            padding-bottom:10px;
+   
+    
+}
+.budget{        
+    margin: auto;
+   
+    
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+.frm {
+    border: 0px ;
+    background: none;   
+	display: inline-block;        
+        margin:0 auto;
+}
+#frm {
+    border: 0px ;
+    background: none;   
+	display: inline-block;  
+        max-width: 400px;
+        margin:0 auto;
+}

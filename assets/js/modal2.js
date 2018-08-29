@@ -7,7 +7,7 @@ function addRecord() {
    
 
     // Add record
-    $.post("ajax/expense/addRecord.php", {
+    $.post("./ajax/expense/addRecord.php", {
         expense: expense,
         amount: amount,
         year:year
@@ -42,7 +42,7 @@ function readRecords() {
                 if(year != '')
                 {
                 $.ajax ({
-                url:"ajax/expense/filter_expenses.php",
+                url:"./ajax/expense/filter_expenses.php",
                         method:"POST",
                         data:{
                       
@@ -68,7 +68,7 @@ function readRecords() {
 function DeleteExpense(id) {
     var conf = confirm("Are you sure, do you really want to delete expense?");
     if (conf == true) {
-        $.post("ajax/expense/deleteRecord.php", {
+        $.post("./ajax/expense/deleteRecord.php", {
                 id: id
             },
             function (data, status) {
@@ -82,7 +82,7 @@ function DeleteExpense(id) {
 function GetExpenseDetails(id) {
     // Add Income ID to the hidden field for furture usage
     $("#hidden_user_id").val(id);
-    $.post("ajax/expense/readExpenseDetails.php", {
+    $.post("./ajax/expense/readExpenseDetails.php", {
             id: id
         },
         function (data, status) {
@@ -108,7 +108,7 @@ function UpdateExpenseDetails() {
     var id = $("#hidden_user_id").val();
 
     // Update the details by requesting to the server using ajax
-    $.post("ajax/expense/updateExpenseDetails.php", {
+    $.post("./ajax/expense/updateExpenseDetails.php", {
             id: id,
             expense: expense,
             amount: amount,

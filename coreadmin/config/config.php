@@ -25,5 +25,5 @@ define('DB_NAME', "bext_system");
 */
 function getDbInstance()
 {
-	return new MysqliDb(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME); 
+	return new MysqliDb(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 }

@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['user']) != "") {
     header("Location: home.php");
 }
-include_once 'dbconnect.php';
+include_once 'config.php';
 
 $error = false;
 
@@ -36,7 +36,7 @@ if (isset($_POST['btn-signup'])) {
     $union_mission = trim($_POST['union_mission']);
     $union_mission = strip_tags($union_mission);
     $union_mission = htmlspecialchars($union_mission);
-   
+
 
     // basic name validation
     if (empty($name)) {
@@ -106,7 +106,7 @@ if (isset($_POST['btn-signup'])) {
         $passError = "Password must have atleast 6 characters.";
     }
 
-   
+
     if (empty($conference)) {
         $error = true;
         $errTyp = "danger";
@@ -129,8 +129,8 @@ if (isset($_POST['btn-signup'])) {
         // if there's no error, continue to signup
     if (!$error) {
         //$query = mysql_query("INSERT INTO church(union,name,email,conference,mobile,password)VALUES('$union','$name','$email','$conference','$mobile','$password')");
- $quer= mysql_query("INSERT INTO church (conference,name,email,mobile,union_mission,password)VALUES('$conference','$name','$email','$mobile','$union_mission','$password')");
-        
+ $quer= mysql_query("INSERT INTO church (conference,name,email,mobile,union_mission,pass)VALUES('$conference','$name','$email','$mobile','$union_mission','$password')");
+
         if (!$quer) {
             //die("could not execute query 1");
             exit(mysql_error($conn));
@@ -152,183 +152,132 @@ if (isset($_POST['btn-signup'])) {
         }
     }
 }
+include_once('includes/header.php');
+
 ?>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>B&E Tracker</title>
-        <link rel="shortcut icon" href="assets/image/favicon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/style2.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/w3.css" type="text/css"/>
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css"/>
-    </head>
-    <body>
-        <div id="wrap">
+<body>
 
-            <section  id="top">
+        <div id="wrapper">
 
-            </section>
-            <section id="page">
-                <header id="pageheader" class="w3-round-xlarge homeheader">
-
-                </header>  
-                <div style="padding: 2px"></div>
-                <div class="topnav w3-round-xlarge" id="myTopnav" >
-                    <a href="index.php"><i class="glyphicon glyphicon-home"></i> Home</a>
-                    <a style="margin-left: 25%" href="index.php"><i class="glyphicon glyphicon-log-in"></i> Login</a>
-                    <a class="navbar-right" href="register.php"><i class="glyphicon glyphicon-registration-mark"></i> Register</a>
-                    <a href="javascript:void(0);" class="icon" onClick="myFunction()">&#9776;</a>
-
-                </div>
-
-
-
-                <div class="register_form_div w3-round-large">
-                    <form style="padding: 30px; width: 100%" class="animate w3-round-large" method="post" name="login" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" onSubmit="return validatePassword()">
-
-
-
-                        <div class="form-group">
-                            <h style="font-size: 22px;"><i class="glyphicon glyphicon-registration-mark"></i> Register Church</h>
-                        </div>
-
-                        <div class="form-group">
-                            <hr />
-                        </div>
-                        <?php
-                        if (isset($errMSG)) {
-                            ?>
-                            <div class="form-group">
-                                <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
-                                    <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
-                                </div>
-                            </div>  
-                        <?php } ?>                       
-
-                        <div class="form-group">
-                             <label for="union" >Select Union/Mission</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                              <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union_mission ?>" onchange="print_conf('conference',this.selectedIndex);" id="union_mission" name ="union_mission"></select>
-		               </div>
-                            <span class="text-danger"><?php echo $uniError; ?></span>
-                        </div>
-                        
-                          <div class="form-group">
-                             <label for="conference" >Select Conference</label>
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                              <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $conference ?>" id="conference" name ="conference"></select>
-		             </div>
-                            <span class="text-danger"><?php echo $confError; ?></span>
-                        </div>                    
-                                        
-		
-                        
-                        
-                          <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-cog"></span></span>
-                                <input title="Enter Church Name" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" name="name"  placeholder="Church Name e.g Nairobi Central SDA" class="form-control w3-round-large"  value="<?php echo $name ?>" maxlength="40" />
-                            </div>
-                            <span class="text-danger"><?php echo $nameError; ?></span>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                                <input title="Enter Mobile Number" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" placeholder="Contact Number e.g. 0712345678" name="mobile" class="form-control w3-round-large"  value="<?php echo $mobile ?>" maxlength="40" />
-                            </div>
-                            <span class="text-danger"><?php echo $mobileError; ?></span>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                <input title="Enter Church Mail" data-toggle="tooltip" style="height:40px" type="email" id="email" name="email" class="form-control w3-round-large" placeholder="Your Church Email e.g email@example.com" value="<?php echo $email; ?>" maxlength="40" />
-                            </div>
-                            <span class="text-danger"><?php echo $emailError; ?></span>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                <input title="Enter Password" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="password" id="password" name="password" class="form-control w3-round-large" placeholder="Your Password" value="<?php echo $pass; ?>" maxlength="40" />
-                            </div>
-                            <span class="text-danger"><?php echo $passError; ?></span>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                <input title="Re-enter Password" data-toggle="tooltip" style="height:40px;margin-bottom: 0px;margin-top: 0px" type="password"  name="confirm_password" class="form-control w3-round-large" placeholder="Confirm Password"  maxlength="40" />
-                            </div>
-
-                        </div>
-                        <hr />
-
-
-                        <div class="form-group">
-                            <button title="Click to Clear Input" type="reset" value="reset" data-toggle="tooltip"  class="btn btn-default" ><span class="glyphicon glyphicon-erase"></span> Clear</button>
-                            <button style="margin: auto" title="Click to Save Record" data-toggle="tooltip" type="submit" name="btn-signup" class="btn btn-primary navbar-right" ><span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign Up
-                            </button>
-
-                        </div>
-                        <hr />
-
-
-
-
-                        <div>
-                            <span >Sign in </span><a href="index.php" style="color: #0000FF">Here</a>
-                        </div>                   
-
-                    </form>
-                </div>	
-
-
-
-            </section>
+           <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h style="font-size: 22px;"><i class="glyphicon glyphicon-registration-mark"></i> Register Church</h>
         </div>
-        <footer id="pagefooter">
-            <div id="f-content">
+    </div>
 
-                <div id="foot_notes">
-                    <p style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p>
 
-                </div>
-                <img src="assets/image/bamboo.png" alt="bamboo" id="footerimg" width="96px" height="125px">
+    <div class="register_form_div w3-round-large">
+        <form style="padding: 30px; width: 100%" class="animate w3-round-large" method="post" name="login" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" onSubmit="return validatePassword()">
+
+            <div class="form-group">
+                <hr />
             </div>
-        </footer>
-        <script type="text/javascript">
+            <?php
+            if (isset($errMSG)) {
+                ?>
+                <div class="form-group">
+                    <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
+                        <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
+                    </div>
+                </div>
+            <?php } ?>
 
-            function validatePassword()
-            {
-                if (document.login.password.value !== document.login.confirm_password.value) {
-                    alert("Your passwords did not match!. Please check and register again");
+            <div class="form-group">
+                 <label for="union" >Select Union/Mission</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                  <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union_mission ?>" onchange="print_conf('conference',this.selectedIndex);" id="union_mission" name ="union_mission"></select>
+       </div>
+                <span class="text-danger"><?php echo $uniError; ?></span>
+            </div>
+
+              <div class="form-group">
+                 <label for="conference" >Select Conference</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                  <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $conference ?>" id="conference" name ="conference"></select>
+     </div>
+                <span class="text-danger"><?php echo $confError; ?></span>
+            </div>
 
 
-                    return false;
-                } else {
-                    return true;
-                }
+
+
+              <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-cog"></span></span>
+                    <input title="Enter Church Name" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" name="name"  placeholder="Church Name e.g Nairobi Central SDA" class="form-control w3-round-large"  value="<?php echo $name ?>" maxlength="40" />
+                </div>
+                <span class="text-danger"><?php echo $nameError; ?></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                    <input title="Enter Mobile Number" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" placeholder="Contact Number e.g. 0712345678" name="mobile" class="form-control w3-round-large"  value="<?php echo $mobile ?>" maxlength="40" />
+                </div>
+                <span class="text-danger"><?php echo $mobileError; ?></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                    <input title="Enter Church Mail" data-toggle="tooltip" style="height:40px" type="email" id="email" name="email" class="form-control w3-round-large" placeholder="Your Church Email e.g email@example.com" value="<?php echo $email; ?>" maxlength="40" />
+                </div>
+                <span class="text-danger"><?php echo $emailError; ?></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input title="Enter Password" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="password" id="password" name="password" class="form-control w3-round-large" placeholder="Your Password" value="<?php echo $pass; ?>" maxlength="40" />
+                </div>
+                <span class="text-danger"><?php echo $passError; ?></span>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input title="Re-enter Password" data-toggle="tooltip" style="height:40px;margin-bottom: 0px;margin-top: 0px" type="password"  name="confirm_password" class="form-control w3-round-large" placeholder="Confirm Password"  maxlength="40" />
+                </div>
+
+            </div>
+            <hr />
+
+
+            <div class="form-group">
+                <button title="Click to Clear Input" type="reset" value="reset" data-toggle="tooltip"  class="btn btn-default" ><span class="glyphicon glyphicon-erase"></span> Clear</button>
+                <button style="margin: auto" title="Click to Save Record" data-toggle="tooltip" type="submit" name="btn-signup" class="btn btn-primary navbar-right" ><span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign Up
+                </button>
+
+            </div>
+            <hr />
+            <div>
+                <span >Sign in </span><a href="index.php" style="color: #0000FF">Here</a>
+            </div>
+
+        </form>
+    </div>
+    <script type="text/javascript">
+
+        function validatePassword()
+        {
+            if (document.login.password.value !== document.login.confirm_password.value) {
+                alert("Your passwords did not match!. Please check and register again");
+
+
+                return false;
+            } else {
+                return true;
             }
+        }
 
-        </script>
-        <script src="assets/js/navigation.js"></script>  
-        <script>
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-        </script>
-        <script type= "text/javascript" src = "assets/js/conferences.js"></script>
-        <script language="javascript">print_union("union_mission");</script>
-    </body>
+    </script>
+      <script type= "text/javascript" src = "assets/js/conferences.js"></script>
+    <script language="javascript">print_union("union_mission");</script>
 
-</html>
-<?php ob_end_flush(); ?>
+<?php include_once('includes/footer.php'); ?>

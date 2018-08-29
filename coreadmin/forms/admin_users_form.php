@@ -36,6 +36,12 @@
                     <input type="radio" name="admin_type" value="admin" required="" <?php echo ($edit && $admin_account['admin_type'] =='admin') ? "checked": "" ; ?>/> Admin
                 </label>
             </div>
+            <div class="radio">
+                <label>
+                    <?php //echo $admin_account['admin_type'] ?>
+                    <input type="radio" name="admin_type" value="auditor" required="" <?php echo ($edit && $admin_account['admin_type'] =='auditor') ? "checked": "" ; ?>/> Conference Auditor
+                </label>
+            </div>
         </div>
     </div>
     <!-- Button -->

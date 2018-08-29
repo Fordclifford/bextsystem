@@ -111,113 +111,113 @@ require_once('header.php');
 ?>
 <body>
 
-        <div id="wrapper">
+    <div id="wrapper">
 
-           <div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-8">
-            <h1 style="font-size: 22px;"><i class="glyphicon glyphicon-registration-mark"></i> Register Church</h1>
-        </div>
-    </div>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 style="font-size: 22px;"><i class="glyphicon glyphicon-registration-mark"></i> Register Church</h1>
+                </div>
+            </div>
 
-<div class="register_form_div w3-round-large">
+            <div class="register_form_div w3-round-large">
 
 
-    <form style=" width: 100%" class="animate w3-round-large" method="post" name="f" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" onsubmit="return validateForm();">
+                <form style=" width: 100%" class="animate w3-round-large" method="post" name="f" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" onsubmit="return validateForm();">
 
-        <fieldset>
+                    <fieldset>
                         <div class="form-group">
-                <hr />
-            </div>
-<?php if ($msg <> "") { ?>
-                <div class="alert alert-dismissable alert-<?php echo $msgType; ?>">
-                    <button data-dismiss="alert" class="close" onclick="this.parentElement.style.display = 'none';" type="button">x</button>
-                    <p><?php echo $msg; ?></p>
-                </div>
-<?php } ?>
+                            <hr />
+                        </div>
+                        <?php if ($msg <> "") { ?>
+                            <div class="alert alert-dismissable alert-<?php echo $msgType; ?>">
+                                <button data-dismiss="alert" class="close" onclick="this.parentElement.style.display = 'none';" type="button">x</button>
+                                <p><?php echo $msg; ?></p>
+                            </div>
+                        <?php } ?>
 
-            <div class="form-group">
-                <label for="union" >Select Union/Mission</label>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                    <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union ?>" onchange="print_conf('conference', this.selectedIndex);" id="union_mission" name ="union_mission"></select>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label for="conference" >Select Conference</label>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                    <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $conf ?>" id="conference" name ="conference"></select>
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-                <label for="conference" >Church Name</label>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-btc"></span></span>
-                    <input type="text" placeholder="Church Name" id="uname" style="height:40px;margin-top: 0px" class="form-control" value="<?php echo $name ?>" name="uname">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                    <input title="Enter Mobile Number" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" placeholder="Contact Number e.g. 0712345678" name="mobile" id="mobile" class="form-control w3-round-large"  value="<?php echo $mobile ?>" maxlength="40" />
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label for="conference" > Email</label>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <input type="text" placeholder="Your Email" value="<?php echo $email ?>" id="uemail" style="height:40px;margin-top: 0px" class="form-control" name="uemail">
-
-                </div>
-
-                <div class="form-group">
-                    <label for="pass1" > Password</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                        <input type="password" placeholder="Password" value="<?php echo $pass ?>" style="height:40px;margin-top: 0px" id="pass1" class="form-control" name="pass1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="conference" > Confirm</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="password" placeholder="Password" value="<?php echo $pass ?>" style="height:40px;margin-top: 0px" id="pass2" class="form-control" name="pass2">
+                        <div class="form-group">
+                            <label for="union" >Select Union/Mission</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union ?>" onchange="print_conf('conference', this.selectedIndex);" id="union_mission" name ="union_mission"></select>
+                            </div>
 
                         </div>
 
-                        <div style="height: 10px;clear: both"></div>
+                        <div class="form-group">
+                            <label for="conference" >Select Conference</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
+                                <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $conf ?>" id="conference" name ="conference"></select>
+                            </div>
+
+                        </div>
+
 
                         <div class="form-group">
-                            <div class="col-lg-4">
-                                <button title="Click to Clear Input" type="reset" value="reset" data-toggle="tooltip"  class="btn btn-default" ><span class="glyphicon glyphicon-erase"></span> Clear</button>
-                        
-                              </div>
-                            <div class="col-lg-4">
-                                
-                                                   <button class="btn btn-primary" type="submit" name="sub">Submit</button>
-                              </div>
+                            <label for="conference" >Church Name</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-btc"></span></span>
+                                <input type="text" placeholder="Church Name" id="uname" style="height:40px;margin-top: 0px" class="form-control" value="<?php echo $name ?>" name="uname">
+                            </div>
                         </div>
-                        </fieldset>
-                        </form>
-     <div>
-                <span >Sign in </span><a href="../index.php" style="color: #0000FF">Here</a>
-            </div>
-    
-                     <hr />
-           
 
-                    </div>
-                </div>
-            </div>
-       
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+                                <input title="Enter Mobile Number" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" placeholder="Contact Number e.g. 0712345678" name="mobile" id="mobile" class="form-control w3-round-large"  value="<?php echo $mobile ?>" maxlength="40" />
+                            </div>
 
-<?php include 'footer.php'; ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="conference" > Email</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input type="text" placeholder="Your Email" value="<?php echo $email ?>" id="uemail" style="height:40px;margin-top: 0px" class="form-control" name="uemail">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pass1" > Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                    <input type="password" placeholder="Password" value="<?php echo $pass ?>" style="height:40px;margin-top: 0px" id="pass1" class="form-control" name="pass1">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="conference" > Confirm</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                        <input type="password" placeholder="Password" value="<?php echo $pass ?>" style="height:40px;margin-top: 0px" id="pass2" class="form-control" name="pass2">
+
+                                    </div>
+
+                                    <div style="height: 10px;clear: both"></div>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-4">
+                                            <button title="Click to Clear Input" type="reset" value="reset" data-toggle="tooltip"  class="btn btn-default" ><span class="glyphicon glyphicon-erase"></span> Clear</button>
+
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <button class="btn btn-primary" type="submit" name="sub">Submit</button>
+                                        </div>
+                                    </div>
+                                    </fieldset>
+                                    <hr />
+                                    <div>
+                                        <span >Sign in </span><a href="../index.php" style="color: #0000FF">Here</a>
+                                    </div>
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <?php include 'footer.php'; ?>

@@ -117,7 +117,7 @@ include_once"includes/header.php";
 
 
                             <div style="margin: 5px">
-                                <a  style="color: #0000CC;" href="register.php" data-toggle="tooltip" title="click to register"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</a>
+                                <a  style="color: #0000CC;" href="register" data-toggle="tooltip" title="click to register"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</a>
                                 <div align='right' >  <span>Forgot <a title="click to reset password" data-toggle="tooltip" style="color: #0000CC" href="reset/"> password?</a></span></div>
                             </div>                 
 

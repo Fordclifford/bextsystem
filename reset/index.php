@@ -70,7 +70,11 @@ include_once './header.php';
 
         <div class="field-group">
             <div><input type="submit" name="forgot-password" id="forgot-password" value="Submit" class="form-submit-button"></div>
-        </div>	
+        </div>
+            <div style="margin: 5px">
+                                <a  style="color: #0000CC;" href="../index.php" data-toggle="tooltip" title="click to login"><span class="glyphicon glyphicon-user"></span> Sign In</a>
+                                <div align='right' >  <span>Sign <a title="click to reset password" data-toggle="tooltip" style="color: #0000CC" href="../register/"> Up?</a></span></div>
+                            </div>  
     </form>
 </div>
 

@@ -16,7 +16,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password']))
 	$db->where ("passwd", $passwd);
     $row = $db->get('admin_accounts');
 
-    if ($db->count >= 1) 
+    if ($db->count >= 1)
     {
     	//Allow user to login.
         $_SESSION['user_logged_in'] = TRUE;
@@ -48,11 +48,11 @@ include_once 'includes/header.php';
 			<div class="panel-body">
 				<div class="form-group">
 					<label class="control-label">username</label>
-					<input type="text" name="username" class="form-control" required="required">
+					<input type="text" style="height:30px" name="username" class="form-control" required="required">
 				</div>
 				<div class="form-group">
 					<label class="control-label">password</label>
-					<input type="password" name="passwd" class="form-control" required="required">
+					<input type="password" style="height:30px" name="passwd" class="form-control" required="required">
 				</div>
 				<div class="checkbox">
 					<label>

@@ -2,7 +2,7 @@ var union_arr = new Array("EAST KENYA UNION CONFERENCE","WEST KENYA UNION CONFER
 
 var s_a = new Array();
 s_a[0]="";
-s_a[1]="Central Kenya Conference| Central Rift Valley Conference|Kenya Coast Field|Nyamira Conference| South Kenya Conference";
+s_a[1]="Central Kenya Conference| Central Rift Valley Conference|Kenya Coast Field|Nyamira Conference|South Kenya Conference";
 s_a[2]="Central Nyanza Conference| Greater Rift Valley Conference|Kenya Lake Conference|North West Kenya Conference| Ranen Conference";
 
 function print_union(union_id){

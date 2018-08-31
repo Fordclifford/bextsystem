@@ -5,6 +5,8 @@ s_a[0]="";
 s_a[1]="Central Kenya Conference|Central Rift Valley Conference|Kenya Coast Field|Nyamira Conference|South Kenya Conference";
 s_a[2]="Central Nyanza Conference|Greater Rift Valley Conference|Kenya Lake Conference|North West Kenya Conference|Ranen Conference";
 
+var conference = new Array("Central Kenya Conference","Central Rift Valley Conference","Kenya Coast Field","Nyamira Conference","South Kenya Conference","Central Nyanza Conference","Greater Rift Valley Conference","Kenya Lake Conference","North West Kenya Conference","Ranen Conference");
+
 function print_union(union_id){
 	// given the id of the <select> tag as function argument, it inserts <option> tags
 	var option_str = document.getElementById(union_id);

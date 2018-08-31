@@ -32,7 +32,7 @@ $select = array('id', 'name', 'email', 'union_mission', 'conference', 'mobile', 
 
 //Start building query according to input parameters.
 // If search string
-if ($search_string) 
+if ($search_string)
 {
     $db->where('name', '%' . $search_string . '%', 'like');
     $db->orwhere('conference', '%' . $search_string . '%', 'like');
@@ -85,7 +85,7 @@ include_once 'includes/header.php';
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="input_search">Search</label>
-            <input type="text" class="form-control" title="search by name,email,conference,union" data-toggle="tooltip" id="input_search" name="search_string" value="<?php echo $search_string; ?>">
+            <input type="text" style="height:30px" class="form-control" title="search by name,email,conference,union" data-toggle="tooltip" id="input_search" name="search_string" value="<?php echo $search_string; ?>">
             <label for ="input_order">Order By</label>
             <select name="filter_col"  title="order by name,email,conference,union,status" data-toggle="tooltip" class="form-control">
 
@@ -120,23 +120,25 @@ include_once 'includes/header.php';
     <hr>
 
 
-    <table class="table table-striped table-bordered table-condensed">
+    <table hidden class="table table-striped table-bordered table-condensed ">
         <thead>
             <tr>
+              <th>Test</th>
                 <th class="header">#</th>
                 <th>Name</th>
                 <th>Union</th>
                 <th>Conference</th>
 				 <th>Email</th>
                 <th>Phone</th>
-                <th>Status</th>
+                <th>Phone</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($church as $row) : ?>
                 <tr>
-	                <td><?php echo $row['id'] ?></td>
+                  <td><a href="#" id="username" data-type="text" data-pk="1" data-title="Enter username">superuser</a></td>
+                <td><?php echo $row['id'] ?></td>
 	                <td><?php echo htmlspecialchars($row['name']); ?></td>
 	                <td><?php echo htmlspecialchars($row['union_mission']) ?></td>
 					 <td><?php echo $row['conference'] ?></td>
@@ -150,19 +152,19 @@ include_once 'includes/header.php';
 				</tr>
 
 						<!-- Delete Confirmation Modal-->
-					 <div class="modal fade" id="confirm-delete-<?php echo $row['id'] ?>" role="dialog">
+					 <div  class="modal fade" id="confirm-delete-<?php echo $row['id'] ?>" role="dialog">
 					    <div class="modal-dialog">
 					      <form action="delete_church.php" method="POST">
 					      <!-- Modal content-->
-						      <div class="modal-content">
+						      <div  class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
 						          <h4 class="modal-title">Confirm</h4>
 						        </div>
 						        <div class="modal-body">
-						      
+
 						        		<input type="hidden" name="del_id" id = "del_id" value="<?php echo $row['id'] ?>">
-						        	
+
 						          <p>Are you sure you want to delete this church?</p>
 						        </div>
 						        <div class="modal-footer">
@@ -171,15 +173,174 @@ include_once 'includes/header.php';
 						        </div>
 						      </div>
 					      </form>
-					      
+
 					    </div>
   					</div>
-            <?php endforeach; ?>      
+            <?php endforeach; ?>
         </tbody>
     </table>
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+         <tr> <th class="header">#</th>
+             <th>Name</th>
+             <th>Union</th>
+             <th>Conference</th>
+             <th>Email</th>
+             <th>Phone</th>
+             <th>Status</th>
+             <th>Actions</th>
+         </tr>
+        </thead>
+        <tbody id="church_data">
+        </tbody>
+       </table>
+    <script type="text/javascript" language="javascript" >
+    $(document).ready(function(){
+
+    function fetch_church_data()
+    {
+    $.ajax({
+     url:"fetch.php",
+     method:"POST",
+     dataType:"json",
+     success:function(data)
+     {
+      for(var count=0; count<data.length; count++)
+      {
+       var html_data = '<tr><td>'+data[count].id+'</td>';
+       html_data += '<td data-name="name" class="name" data-type="text" data-pk="'+data[count].id+'">'+data[count].name+'</td>';
+       html_data += '<td data-name="union_mission" class="union" id="union" data-type="select" data-pk="'+data[count].id+'">'+data[count].union_mission+'</td>';
+       html_data += '<td data-name="conference" id="conference" class="conference" data-type="select" data-pk="'+data[count].id+'">'+data[count].conference+'</td>';
+       html_data += '<td data-name="email" class="email" data-type="text" data-pk="'+data[count].id+'">'+data[count].email+'</td>';
+       html_data += '<td data-name="mobile" class="mobile" data-type="text" data-pk="'+data[count].id+'">'+data[count].mobile+'</td>';
+       html_data += '<td data-name="status" class="status" data-type="select" data-pk="'+data[count].id+'">'+data[count].status+'</td>';
+       html_data += '<td <a href="" data-name="status" class="actions btn btn-danger delete_btn" data-toggle="modal" style="margin-left: 20px; " data-target="#confirm-delete-<?php echo $row['id'] ?>"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
+       $('#church_data').append(html_data);
+      }
+     }
+    })
+    }
+
+    fetch_church_data();
+
+    $('#church_data').editable({
+    container: 'body',
+    selector: 'td.name',
+    url: "update.php",
+    title: 'Church Name',
+    type: "POST",
+    //dataType: 'json',
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+    }
+    });
+
+    $('#church_data').editable({
+    container: 'body',
+    selector: 'td.union',
+    url: "update.php",
+    title: 'Union',
+    type: "POST",
+    dataType: 'json',
+    source: [{value: union_arr[1], text: union_arr[1]}, {value:union_arr[0], text: union_arr[0]}],
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+       var regex = /^[a-zA-Z ]+$/;
+       if(! regex.test(value))
+       {
+        return 'Enter Valid Name!';
+       }
+    }
+    });
+
+    $('#church_data').editable({
+    container: 'body',
+    selector: 'td.conference',
+    url: "update.php",
+    title: 'Conference',
+    type: "POST",
+    dataType: 'json',
+    source: [{value: conference[0], text: conference[0]}, {value: conference[1], text: conference[1]},
+    {value: conference[2], text: conference[2]},{value: conference[3], text: conference[3]},
+    {value: conference[4], text: conference[4]},{value: conference[5], text: conference[5]},
+    {value: conference[6], text: conference[6]},{value: conference[7], text: conference[7]},
+    {value: conference[8], text: conference[8]},{value: conference[9], text: conference[9]}],
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+    }
+    });
+
+    $('#church_data').editable({
+   container: 'body',
+   selector: 'td.mobile',
+   url: "update.php",
+   title: 'Mobile',
+   type: "POST",
+   dataType: 'json',
+   validate: function(value){
+    if($.trim(value) == '')
+    {
+     return 'This field is required';
+    }
+    var regex = /^[0-9]+$/;
+    if(! regex.test(value))
+    {
+     return 'Numbers only!';
+    }
+   }
+  });
+
+    $('#church_data').editable({
+    container: 'body',
+    selector: 'td.email',
+    url: "update.php",
+    title: 'Email',
+    type: "POST",
+    dataType: 'json',
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+     var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+     if(! regex.test(value))
+     {
+      return 'Enter Valid Email!';
+     }
+    }
+    });
+
+    $('#church_data').editable({
+    container: 'body',
+    selector: 'td.status',
+    url: "update.php",
+    title: 'Status',
+    type: "POST",
+    dataType: 'json',
+    source: [{value: "Approved", text: "Approved"}, {value:"Pending", text:"Pending"}],
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+    }
+    });
 
 
-   
+
+    });
+    </script>
+
+
 <!--    Pagination links-->
     <div class="text-center">
 
@@ -207,7 +368,7 @@ include_once 'includes/header.php';
 
 </div>
 <!--Main container end-->
+<script type="text/javascript" src="../assets/js/conferences.js"></script>
 
 
 <?php include_once './includes/footer.php'; ?>
-

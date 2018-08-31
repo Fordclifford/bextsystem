@@ -3,26 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/exportincome.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/includes/footer.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/footer.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/header.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/new_year_old.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/index.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/index.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/i_e_report.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/register/index.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/register.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/fpdf.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/profile.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/bills.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/home.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/get-category.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/exportincome.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/register/header.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/register/footer.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/exportexpenses.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/i_e_report.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/income.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/index.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/income_expense_curve.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/dateBillsPdf.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/new_year.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/fpdf.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/profile.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/printBudgetPdf.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/printBudgetPdf_old.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/exportBills.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/bills.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/css/sb-admin-2.css</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/balances.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/get-category.php</file>
         </group>
     </open-files>
 </project-private>

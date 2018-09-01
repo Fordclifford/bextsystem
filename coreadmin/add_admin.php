@@ -4,7 +4,7 @@ require_once './config/config.php';
 require_once 'includes/auth_validate.php';
 
 //Only super admin is allowed to access this page
-if ($_SESSION['admin_type'] !== 'super') {
+if ($_SESSION['user_type'] !== 'super') {
     // show permission denied message
     echo 'Permission Denied';
     exit();
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $db = getDbInstance();
     //Password should be md5 encrypted
     $data_to_store['passwd'] = md5($data_to_store['passwd']);
-    $last_id = $db->insert ('admin_accounts', $data_to_store);
+    $last_id = $db->insert ('users', $data_to_store);
     if($last_id)
     {
     	$_SESSION['success'] = "Admin user added successfully!";

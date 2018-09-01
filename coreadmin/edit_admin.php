@@ -10,7 +10,7 @@ $admin_user_id=  filter_input(INPUT_GET, 'admin_user_id');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     // If non-super user accesses this script via url. Stop the exexution
-    if($_SESSION['admin_type']!=='super')
+    if($_SESSION['user_type']!=='super')
     {
         // show permission denied message
         echo 'Permission Denied';
@@ -24,15 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $data_to_update['passwd']=md5($data_to_update['passwd']);
     
     $db->where('id',$admin_user_id);
-    $stat = $db->update ('admin_accounts', $data_to_update);
+    $stat = $db->update ('users', $data_to_update);
     
     if($stat)
     {
-        $_SESSION['success'] = "Admin user has been updated successfully";
+        $_SESSION['success'] = "User has been updated successfully";
     }
     else
     {
-        $_SESSION['failure'] = "Failed to update Admin user";
+        $_SESSION['failure'] = "Failed to update User";
     }
 
     header('location: admin_users.php');
@@ -45,7 +45,7 @@ $operation = filter_input(INPUT_GET, 'operation',FILTER_SANITIZE_STRING);
 //Select where clause
 $db->where('id', $admin_user_id);
 
-$admin_account = $db->getOne("admin_accounts");
+$admin_account = $db->getOne("users");
 
 
 

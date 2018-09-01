@@ -9,11 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     //Mass Insert Data. Keep "name" attribute in html form same as column name in mysql table.
     $data_to_store = filter_input_array(INPUT_POST);
+  
     //Insert timestamp
     $data_to_store['date'] = date('Y-m-d H:i:s');
     $db = getDbInstance();
     $last_id = $db->insert ('church', $data_to_store);
-    
+  
     if($last_id)
     {
     	$_SESSION['success'] = "Church added successfully!";

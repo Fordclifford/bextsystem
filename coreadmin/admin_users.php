@@ -4,7 +4,7 @@ require_once './config/config.php';
 require_once 'includes/auth_validate.php';
 
 //Only super admin is allowed to access this page
-if ($_SESSION['admin_type'] !== 'super') {
+if ($_SESSION['user_type'] !== 'super') {
     // show permission denied message
     header('HTTP/1.1 401 Unauthorized', true, 401);
     
@@ -31,7 +31,7 @@ if ($order_by == "") {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'user_name', 'admin_type');
+$select = array('id', 'user_name', 'user_type');
 
 // If user searches 
 if ($search_string) {
@@ -44,7 +44,7 @@ if ($order_by) {
 }
 
 $db->pageLimit = $pagelimit;
-$result = $db->arraybuilder()->paginate("admin_accounts", $page, $select);
+$result = $db->arraybuilder()->paginate("users", $page, $select);
 $total_pages = $db->totalPages;
 
 
@@ -84,7 +84,7 @@ include_once 'includes/header.php';
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="input_search" >Search</label>
-            <input type="text" class="form-control" id="input_search"  name="search_string" value="<?php echo $search_string; ?>">
+            <input style="height:32px" type="text" class="form-control" id="input_search"  name="search_string" value="<?php echo $search_string; ?>">
             <label for ="input_order">Order By</label>
             <select name="filter_col" class="form-control">
 
@@ -121,7 +121,7 @@ include_once 'includes/header.php';
             <tr>
                 <th class="header">#</th>
                 <th>Name</th>
-                <th>Admin type</th>
+                <th>User type</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -132,7 +132,7 @@ include_once 'includes/header.php';
             <tr>
                 <td><?php echo $row['id'] ?></td>
                 <td><?php echo htmlspecialchars($row['user_name']) ?></td>
-                <td><?php echo htmlspecialchars($row['admin_type']) ?></td>
+                <td><?php echo htmlspecialchars($row['user_type']) ?></td>
 
                 <td>
                     <a href="edit_admin.php?admin_user_id=<?php echo $row['id']?>&operation=edit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>

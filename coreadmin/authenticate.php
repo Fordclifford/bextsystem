@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     $db->where ("user_name", $username);
     $db->where ("passwd", $passwd);
-    $row = $db->get('admin_accounts');
+    $row = $db->get('users');
      
     if ($db->count >= 1) {
         $_SESSION['user_logged_in'] = TRUE;
-        $_SESSION['admin_type'] = $row[0]['admin_type'];
+        $_SESSION['user_type'] = $row[0]['user_type'];
        	if($remember)
        	{
        		setcookie('username',$username , time() + (86400 * 90), "/");

@@ -28,7 +28,7 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'name', 'email', 'union_mission', 'conference', 'mobile', 'date','status');
+$select = array('id', 'name', 'union_mission', 'conference', 'mobile', 'date');
 
 //Start building query according to input parameters.
 // If search string
@@ -117,78 +117,19 @@ include_once 'includes/header.php';
     </div>
 <!--   Filter section end-->
 
-    <hr>
 
 
-    <table hidden class="table table-striped table-bordered table-condensed ">
-        <thead>
-            <tr>
-              <th>Test</th>
-                <th class="header">#</th>
-                <th>Name</th>
-                <th>Union</th>
-                <th>Conference</th>
-				 <th>Email</th>
-                <th>Phone</th>
-                <th>Phone</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($church as $row) : ?>
-                <tr>
-                  <td><a href="#" id="username" data-type="text" data-pk="1" data-title="Enter username">superuser</a></td>
-                <td><?php echo $row['id'] ?></td>
-	                <td><?php echo htmlspecialchars($row['name']); ?></td>
-	                <td><?php echo htmlspecialchars($row['union_mission']) ?></td>
-					 <td><?php echo $row['conference'] ?></td>
-	                <td><?php echo htmlspecialchars($row['email']); ?></td>
-	                <td><?php echo htmlspecialchars($row['mobile']) ?></td>
-	               <td><?php echo htmlspecialchars($row['status']) ?> </td>
-	                <td>
-					<a href="edit_church.php?church_id=<?php echo $row['id'] ?>&operation=edit" class="btn btn-primary" style="margin-right: 8px;"><span class="glyphicon glyphicon-edit"></span>
 
-					<a href=""  class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
-				</tr>
 
-						<!-- Delete Confirmation Modal-->
-					 <div  class="modal fade" id="confirm-delete-<?php echo $row['id'] ?>" role="dialog">
-					    <div class="modal-dialog">
-					      <form action="delete_church.php" method="POST">
-					      <!-- Modal content-->
-						      <div  class="modal-content">
-						        <div class="modal-header">
-						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">Confirm</h4>
-						        </div>
-						        <div class="modal-body">
-
-						        		<input type="hidden" name="del_id" id = "del_id" value="<?php echo $row['id'] ?>">
-
-						          <p>Are you sure you want to delete this church?</p>
-						        </div>
-						        <div class="modal-footer">
-						        	<button type="submit" class="btn btn-default pull-left">Yes</button>
-						         	<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-						        </div>
-						      </div>
-					      </form>
-
-					    </div>
-  					</div>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
     <table class="table table-bordered table-striped table-condensed">
         <thead>
          <tr> <th class="header">#</th>
              <th>Name</th>
              <th>Union</th>
              <th>Conference</th>
-             <th>Email</th>
-             <th>Phone</th>
-             <th>Status</th>
-             <th>Actions</th>
+              <th>Phone</th>
+               <th>User</th>
+              <th>Actions</th>
          </tr>
         </thead>
         <tbody id="church_data">
@@ -211,14 +152,13 @@ include_once 'includes/header.php';
        html_data += '<td data-name="name" class="name" data-type="text" data-pk="'+data[count].id+'">'+data[count].name+'</td>';
        html_data += '<td data-name="union_mission" class="union" id="union" data-type="select" data-pk="'+data[count].id+'">'+data[count].union_mission+'</td>';
        html_data += '<td data-name="conference" id="conference" class="conference" data-type="select" data-pk="'+data[count].id+'">'+data[count].conference+'</td>';
-       html_data += '<td data-name="email" class="email" data-type="text" data-pk="'+data[count].id+'">'+data[count].email+'</td>';
-       html_data += '<td data-name="mobile" class="mobile" data-type="text" data-pk="'+data[count].id+'">'+data[count].mobile+'</td>';
-       html_data += '<td data-name="status" class="status" data-type="select" data-pk="'+data[count].id+'">'+data[count].status+'</td>';
-       html_data += '<td> <a href="" data-name="status" class="actions btn btn-danger delete_btn" data-toggle="modal" style="margin-left: 20px; " data-target="#confirm-delete-<?php echo $row['id'] ?>"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
+      html_data += '<td data-name="mobile" class="mobile" data-type="text" data-pk="'+data[count].id+'">'+data[count].mobile+'</td>';
+       html_data += '<td data-name="user" class="user" data-type="select" data-pk="'+data[count].id+'">'+data[count].user_id+'</td>';
+          html_data += '<td> <a href="" data-name="delete" class="actions btn btn-danger delete_btn" data-toggle="modal"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
        $('#church_data').append(html_data);
       }
      }
-    })
+    });
     }
 
     fetch_church_data();
@@ -226,7 +166,7 @@ include_once 'includes/header.php';
     $('#church_data').editable({
     container: 'body',
     selector: 'td.name',
-    url: "update.php",
+    url: "update_church.php",
     title: 'Church Name',
     type: "POST",
     //dataType: 'json',
@@ -238,10 +178,12 @@ include_once 'includes/header.php';
     }
     });
 
+ 
+
     $('#church_data').editable({
     container: 'body',
     selector: 'td.union',
-    url: "update.php",
+    url: "update_church.php",
     title: 'Union',
     type: "POST",
     dataType: 'json',
@@ -262,7 +204,7 @@ include_once 'includes/header.php';
     $('#church_data').editable({
     container: 'body',
     selector: 'td.conference',
-    url: "update.php",
+    url: "update_church.php",
     title: 'Conference',
     type: "POST",
     dataType: 'json',
@@ -282,7 +224,7 @@ include_once 'includes/header.php';
     $('#church_data').editable({
    container: 'body',
    selector: 'td.mobile',
-   url: "update.php",
+   url: "update_church.php",
    title: 'Mobile',
    type: "POST",
    dataType: 'json',
@@ -299,45 +241,9 @@ include_once 'includes/header.php';
    }
   });
 
-    $('#church_data').editable({
-    container: 'body',
-    selector: 'td.email',
-    url: "update.php",
-    title: 'Email',
-    type: "POST",
-    dataType: 'json',
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-     var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-     if(! regex.test(value))
-     {
-      return 'Enter Valid Email!';
-     }
-    }
-    });
 
-    $('#church_data').editable({
-    container: 'body',
-    selector: 'td.status',
-    url: "update.php",
-    title: 'Status',
-    type: "POST",
-    dataType: 'json',
-    source: [{value: "Approved", text: "Approved"}, {value:"Pending", text:"Pending"}],
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-    }
-    });
-
-
-
-    });
+});
+    
     </script>
 
 

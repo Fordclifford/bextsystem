@@ -1,5 +1,5 @@
 <?php
-require_once './config/config.php';
+require_once '../config/config.php';
 
 $count=0;
 
@@ -21,22 +21,21 @@ $select = array('id', 'subject','comment','date');
         <title>Administrator</title>
 
         <!-- Bootstrap Core CSS -->
-        <link  href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
-        <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-<!--        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
-        <link  rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-
+        
+          <link  rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
+          <link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
     <!-- <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script> -->
-                <link href="messages/style.css" rel="stylesheet" type="text/css"/>
-
+               
+                <link href="style.css" rel="stylesheet" type="text/css"/>
         <!-- MetisMenu CSS -->
-        <link href="js/metisMenu/metisMenu.min.css" rel="stylesheet">
-
+       
+        <link href="../js/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom CSS -->
-        <link href="css/sb-admin-2.css" rel="stylesheet">
+        
+        <link href="../css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <!-- Custom Fonts -->
-        <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
        

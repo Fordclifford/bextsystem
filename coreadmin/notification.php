@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once './config/config.php';
-require_once 'includes/auth_validate.php';
+require_once './includes/auth_validate.php';
 
 //Get Input data from query string
 $search_string = filter_input(INPUT_GET, 'search_string');
@@ -73,7 +73,7 @@ include_once 'includes/header.php';
         </div>
         <div class="col-lg-6" style="">
             <div class="page-action-links text-right">
-	            <a href="add_church.php?operation=create">
+	            <a href="add_notification.php?operation=create">
 	            	<button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new </button>
 	            </a>
             </div>
@@ -165,7 +165,7 @@ include_once 'includes/header.php';
             echo '<ul class="pagination text-center">';
             for ($i = 1; $i <= $total_pages; $i++) {
                 ($page == $i) ? $li_class = ' class="active"' : $li_class = "";
-                echo '<li' . $li_class . '><a href="churches.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
+                echo '<li' . $li_class . '><a href="notification.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
             }
             echo '</ul></div>';
         }
@@ -177,5 +177,5 @@ include_once 'includes/header.php';
 <!--Main container end-->
 
 
-<?php include_once './includes/footer.php'; ?>
+<?php include_once 'includes/footer.php'; ?>
 

@@ -214,7 +214,7 @@ include_once 'includes/header.php';
        html_data += '<td data-name="email" class="email" data-type="text" data-pk="'+data[count].id+'">'+data[count].email+'</td>';
        html_data += '<td data-name="mobile" class="mobile" data-type="text" data-pk="'+data[count].id+'">'+data[count].mobile+'</td>';
        html_data += '<td data-name="status" class="status" data-type="select" data-pk="'+data[count].id+'">'+data[count].status+'</td>';
-       html_data += '<td <a href="" data-name="status" class="actions btn btn-danger delete_btn" data-toggle="modal" style="margin-left: 20px; " data-target="#confirm-delete-<?php echo $row['id'] ?>"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
+       html_data += '<td> <a href="" data-name="status" class="actions btn btn-danger delete_btn" data-toggle="modal" style="margin-left: 20px; " data-target="#confirm-delete-<?php echo $row['id'] ?>"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
        $('#church_data').append(html_data);
       }
      }
@@ -370,5 +370,8 @@ include_once 'includes/header.php';
 <!--Main container end-->
 <script type="text/javascript" src="../assets/js/conferences.js"></script>
 
+<script>
+    var conference = new Array("Central Kenya Conference","Central Rift Valley Conference","Kenya Coast Field","Nyamira Conference","South Kenya Conference","Central Nyanza Conference","Greater Rift Valley Conference","Kenya Lake Conference","North West Kenya Conference","Ranen Conference");
+</script>
 
 <?php include_once './includes/footer.php'; ?>

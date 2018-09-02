@@ -1,21 +1,20 @@
-<?php 
+<?php
 require_once './config/config.php';
 session_start();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $username = filter_input(INPUT_POST, 'username');
     $passwd = filter_input(INPUT_POST, 'passwd');
     $remember = filter_input(INPUT_POST, 'remember');
     $passwd=  md5($passwd);
-   	
+//$users=array("super","auditor","admin");
     //Get DB instance. function is defined in config.php
     $db = getDbInstance();
-
     $db->where ("user_name", $username);
     $db->where ("passwd", $passwd);
-    $row = $db->get('users');
-     
-    if ($db->count >= 1) {
+    $db->where("user_type", ["super","auditor","admin"], 'IN');
+  $row = $db->get('users');
+      if ($db->count >= 1) {
         $_SESSION['user_logged_in'] = TRUE;
         $_SESSION['user_type'] = $row[0]['user_type'];
        	if($remember)
@@ -30,5 +29,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         header('Location:login.php');
         exit;
     }
-  
+
 }

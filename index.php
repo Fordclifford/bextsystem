@@ -26,21 +26,16 @@ if (isset($_POST['btn-login'])) {
 
     if (empty($email)) {
         $error = true;
-        $errMSG = "Error! Empty mail/password!";
-        $emailError = "Please enter your email";
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = true;
-        $errMSG = "Input Error! Invalid Email";
-        $emailError = "Please enter valid email";
+        $errMSG = "Error! Empty username/email!";
+        $emailError = "Please enter your username or email";
     }
-
     if (empty($pass)) {
         $error = true;
         $errMSG = "Input Error! Empty mail/password";
         $passError = "Please enter your password.";
     }
 
-    $res = mysql_query("SELECT id, status, user_name,user_type, passwd FROM users WHERE email='$email'");
+    $res = mysql_query("SELECT id, status, user_name,user_type, passwd FROM users WHERE email='$email' or  user_name='$email'");
 
     $row = mysql_fetch_array($res);
     $status = "Pending";
@@ -104,7 +99,7 @@ include_once"includes/header.php";
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                    <input style="height:40px" type="email" name="email" class="form-control w3-round-large" title="Enter Login Email" data-toggle="tooltip" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
+                                    <input style="height:40px" type="text" name="email" class="form-control w3-round-large" title="Enter Login Email" data-toggle="tooltip" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
                                 </div>
                                 <span class="text-danger"><?php echo $emailError; ?></span>
                             </div>

@@ -19,7 +19,7 @@ require_once './config/config.php';
         <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
         <!--        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
         <link  rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-
+        
         <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 <!-- <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script> -->
         <link href="messages/style.css" rel="stylesheet" type="text/css"/>

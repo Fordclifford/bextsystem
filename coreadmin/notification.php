@@ -27,9 +27,11 @@ if (!$order_by) {
 }
 
 //Get DB instance. i.e instance of MYSQLiDB Library
+//$select = array('id', 'subject','comment','date','sender');
 $db = getDbInstance();
-$select = array('id', 'subject','comment','date','sender');
-
+$user= $_SESSION['user_logged_in'];
+$db->where("recipient", [$user], 'IN');
+$select = $db->get('comments');
 
 //Start building query according to input parameters.
 // If search string
@@ -51,11 +53,10 @@ if ($order_by)
 $db->pageLimit = $pagelimit;
 
 //Get result of the query.
-$comment = $db->arraybuilder()->paginate("comments", $page, $select);
 $total_pages = $db->totalPages;
 
 // get columns for order filter
-foreach ($comment as $value) {
+foreach ($select as $value) {
     foreach ($value as $col_name => $col_value) {
         $filter_options[$col_name] = $col_name;
     }
@@ -133,7 +134,7 @@ include_once 'includes/header.php';
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($comment as $row) : ?>
+            <?php foreach ($select as $row) : ?>
                 <tr>
 	                <td><?php echo $row['id'] ?></td>
 					<td><?php echo $row['subject'] ?></td>

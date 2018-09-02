@@ -4,7 +4,7 @@ if (isset($_POST["reset-password"])) {
    $error =false;
 if (isset($_GET["token"]) && preg_match('/^[0-9A-F]{40}$/i', $_GET["token"])) {
     $token = $_GET["token"];
-} else {    
+} else {
     $error =true;
     $error_message = "Invalid Link.";
        throw new Exception("Valid token not provided.");
@@ -38,23 +38,23 @@ if ($_SERVER["REQUEST_TIME"] - $tstamp > $delta) {
 // ...
 
 if (!$error){
- $email =$row['username'];
- $conn = mysqli_connect("localhost", "cwebsolu_cliff", "Clifordmasi07", "cwebsolu_bext_system");
- $sql = "UPDATE `church` SET `pass` = '" . md5($_POST["member_password"]) . "' WHERE `church`.`email` = '" . $email . "'";
+ $uname =$row['username'];
+ $conn = mysqli_connect("localhost", "root", "", "bext_system");
+ $sql = "UPDATE `users` SET `passwd` = '" . md5($_POST["member_password"]) . "' WHERE `users`.`user_name` = '" . $uname . "'";
     $result = mysqli_query($conn, $sql);
     $success_message = "Password is reset successfully.";
-    
+
     // delete token so it can't be used again
 $q = $DB->prepare(
 "DELETE FROM reset WHERE username = ? AND token = ? ");
 $q->execute(
         array(
-            $email,
-            $token           
+            $uname,
+            $token
         )
 );
 header("refresh:5;../index.php");
-    
+
 }
 }
 ?>
@@ -87,9 +87,8 @@ header("refresh:5;../index.php");
 
         <div class="field-group">
             <div><input type="submit" name="reset-password" id="reset-password" value="Reset Password" class="form-submit-button"></div>
-        </div>	
+        </div>
     </form>
 </div>
 
 <?php require_once 'footer.php' ?>
-				

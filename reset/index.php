@@ -16,25 +16,25 @@ if (!empty($_POST["forgot-password"])) {
         $condition = " where " . $condition;
     }
 $error=false;
- $conn = mysqli_connect("localhost", "cwebsolu_cliff", "Clifordmasi07", "cwebsolu_bext_system");
-   $sql = "Select * from church " . $condition;
+ $conn = mysqli_connect("localhost", "root", "", "bext_system");
+   $sql = "Select * from users " . $condition;
     $result = mysqli_query($conn, $sql);
     $user = mysqli_fetch_array($result);
 
-   $token = sha1(uniqid($user['email'], true));
-   
-   $email= $user['email'];
+   $token = sha1(uniqid($user['user_name'], true));
+
+   $uname= $user['user_name'];
       $query = $DB->prepare(
            "INSERT INTO reset (username, token, tstamp) VALUES (?, ?, ?)"
     );
     $query->execute(
             array(
-                $user['email'],
+                $user['user_name'],
                 $token,
                 $_SERVER["REQUEST_TIME"]
             )
     );
-     
+
     if (!empty($user)) {
         require_once("forgot-password-recovery-mail.php");
     } else {
@@ -44,7 +44,7 @@ $error=false;
 include_once './header.php';
 ?>
 <link href="demo-style.css" rel="stylesheet" type="text/css">
-      
+
 <div class="login_form_div">
     <form name="frmForgot" id="frmForgot" method="post" onSubmit="return validate_forgot();">
         <h1>Forgot Password?</h1>
@@ -74,7 +74,7 @@ include_once './header.php';
             <div style="margin: 5px">
                                 <a  style="color: #0000CC;" href="../index.php" data-toggle="tooltip" title="click to login"><span class="glyphicon glyphicon-user"></span> Sign In</a>
                                 <div align='right' >  <span>Sign <a title="click to reset password" data-toggle="tooltip" style="color: #0000CC" href="../register/"> Up?</a></span></div>
-                            </div>  
+                            </div>
     </form>
 </div>
 

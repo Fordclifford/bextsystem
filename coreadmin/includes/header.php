@@ -1,11 +1,5 @@
 <?php
 require_once './config/config.php';
-
-$count=0;
-
-$db = getDbInstance();
-$select = array('id', 'subject','comment','date');
-//echo $db->count($row);exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +17,12 @@ $select = array('id', 'subject','comment','date');
         <!-- Bootstrap Core CSS -->
         <link  href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
         <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-<!--        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <!--        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
         <link  rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <!-- <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script> -->
-                <link href="messages/style.css" rel="stylesheet" type="text/css"/>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<!-- <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script> -->
+        <link href="messages/style.css" rel="stylesheet" type="text/css"/>
 
         <!-- MetisMenu CSS -->
         <link href="js/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -39,7 +33,7 @@ $select = array('id', 'subject','comment','date');
         <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-       
+
     </head>
 
     <body>
@@ -47,7 +41,7 @@ $select = array('id', 'subject','comment','date');
         <div id="wrapper">
 
             <!-- Navigation -->
-            <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true ) : ?>
+            <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true) : ?>
                 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -64,9 +58,14 @@ $select = array('id', 'subject','comment','date');
                         <!-- /.dropdown -->
 
                         <!-- /.dropdown -->
-						<li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-envelope fa-fw"></i></a>
-			<div id="notification-latest"></div>
-			</li>
+                        <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php
+                                    include_once 'count.php';
+                                    if ($count > 0) {
+                                        echo $count;
+                                    }
+                                    ?></span><i class="fa fa-envelope fa-fw"></i></a>
+                            <div id="notification-latest"></div>
+                        </li>
 
 
                         <li class="dropdown">
@@ -75,8 +74,6 @@ $select = array('id', 'subject','comment','date');
                             </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -95,27 +92,38 @@ $select = array('id', 'subject','comment','date');
                                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                                 </li>
 
-                                <li <?php echo (CURRENT_PAGE =="churches.php" || CURRENT_PAGE=="add_church.php") ? 'class="active"' : '' ; ?>>
+                                <li <?php echo (CURRENT_PAGE == "churches.php" || CURRENT_PAGE == "add_church.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-user-circle fa-fw"></i> churches<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a href="churches.php"><i class="fa fa-list fa-fw"></i>List all</a>
                                         </li>
-                                    <li>
-                                        <a href="add_church.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
-                                    </li>
+                                        <li>
+                                            <a href="add_church.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="admin_users.php"><i class="fa fa-users"></i> Users</a>
+                                <li <?php echo (CURRENT_PAGE == "admin_users.php" || CURRENT_PAGE == "add_admin.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-user-circle fa-fw"></i> users<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="admin_users.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                        </li>
+                                        <li>
+                                            <a href="add_admin.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        </li>
+                                    </ul>
                                 </li>
+
                             </ul>
                         </div>
                         <!-- /.sidebar-collapse -->
                     </div>
                     <!-- /.navbar-static-side -->
                 </nav>
-            <?php endif; ?>
+            <?php endif;
+            ?>
+
 
 
             <!-- The End of the Header -->

@@ -43,10 +43,10 @@ if (isset($_POST['btn-login'])) {
     $res = mysql_query("SELECT id, status, name, pass FROM church WHERE email='$email'");
 
     $row = mysql_fetch_array($res);
-    $status = "pending";
+    $status = "Pending";
     if ($row['status'] == $status) {
         $error = true;
-        $errMSG = "Your account has not been activated! please check your email";
+        $errMSG = "Account not Active! Contact your System Admin";
     }
 
     // if there's no error, continue to login
@@ -112,22 +112,22 @@ include_once"includes/header.php";
 
                             <div >
                                 <button type="submit" title="click to sign in" data-toggle="tooltip" class="btn btn-block btn-primary" name="btn-login"><span class="glyphicon glyphicon-log-in"> </span> Sign In</button>
-                            </div>                         
+                            </div>
 
 
 
                             <div style="margin: 5px">
                                 <a  style="color: #0000CC;" href="register" data-toggle="tooltip" title="click to register"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</a>
                                 <div align='right' >  <span>Forgot <a title="click to reset password" data-toggle="tooltip" style="color: #0000CC" href="reset/"> password?</a></span></div>
-                            </div>                 
+                            </div>
 
                         </form>
                     </div>
-                    
+
                 </div>
 
 
-        <script src="assets/js/navigation.js"></script>   
+        <script src="assets/js/navigation.js"></script>
         <script type="text/javascript">
             function displayForm(c) {
                 if (c.value == "1") {
@@ -145,5 +145,5 @@ include_once"includes/header.php";
         </script>
         <script type="text/javascript" src="assets/jquery-1.11.3-jquery.min.js"></script>
         <script type="text/javascript">
-        
+
            <?php include_once './includes/footer.php';

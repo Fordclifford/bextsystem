@@ -31,7 +31,7 @@ if ($order_by == "") {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'user_name', 'user_type');
+$select = array('id', 'user_name', 'user_type','email','status');
 
 // If user searches 
 if ($search_string) {
@@ -58,7 +58,7 @@ foreach ($result as $value) {
 }
 
 
-include_once 'includes/header.php';
+include_once './includes/header.php';
 ?>
 
 <div id="page-wrapper">
@@ -122,6 +122,8 @@ include_once 'includes/header.php';
                 <th class="header">#</th>
                 <th>Name</th>
                 <th>User type</th>
+                <th>Email</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -133,6 +135,8 @@ include_once 'includes/header.php';
                 <td><?php echo $row['id'] ?></td>
                 <td><?php echo htmlspecialchars($row['user_name']) ?></td>
                 <td><?php echo htmlspecialchars($row['user_type']) ?></td>
+                <td><?php echo htmlspecialchars($row['email']) ?></td>
+                <td><?php echo htmlspecialchars($row['status']) ?></td>
 
                 <td>
                     <a href="edit_admin.php?admin_user_id=<?php echo $row['id']?>&operation=edit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
@@ -189,4 +193,4 @@ include_once 'includes/header.php';
         ?>
     </div>
 </div>
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once './includes/footer.php'; ?>

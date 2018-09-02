@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+class6
 <head>
     <script src="assets/zingchart/zingchart.min.js"></script>
   <script>
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <div id='myChart'></div>
+    <div class="glyphicon glyphicon-subtitles" id='myChart'></div>
   <script>
     var myConfig = {
       type: "bar",

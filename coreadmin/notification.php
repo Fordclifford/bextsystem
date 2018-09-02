@@ -28,7 +28,8 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'subject','comment','date');
+$select = array('id', 'subject','comment','date','sender');
+
 
 //Start building query according to input parameters.
 // If search string
@@ -73,7 +74,7 @@ include_once 'includes/header.php';
         </div>
         <div class="col-lg-6" style="">
             <div class="page-action-links text-right">
-	            <a href="add_notification.php?operation=create">
+	            <a href="add_notification.php">
 	            	<button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new </button>
 	            </a>
             </div>
@@ -121,11 +122,13 @@ include_once 'includes/header.php';
 
     <table class="table table-striped table-bordered table-condensed">
         <thead>
-            <tr>
-                <th class="header">#</th>
+            <tr><th class="header">#</th>
                 <th>Subject</th>
-				 <th>Message</th>     
+				  
+                                  <th>Message</th> 
+                                  <th>Sender</th> 
 				  <th>Date</th>                 
+			                     
 			   
             </tr>
         </thead>
@@ -135,6 +138,7 @@ include_once 'includes/header.php';
 	                <td><?php echo $row['id'] ?></td>
 					<td><?php echo $row['subject'] ?></td>
 					  <td><?php echo htmlspecialchars($row['comment']); ?></td>
+                                          <td><?php echo htmlspecialchars($row['sender']); ?></td>
 	              <td><?php echo htmlspecialchars($row['date']); ?></td>
 	                  
 	               <td>

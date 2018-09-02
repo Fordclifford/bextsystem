@@ -28,7 +28,7 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'subject','comment','date');
+$select = array('id', 'subject','comment','date','sender');
 
 //Start building query according to input parameters.
 // If search string
@@ -124,8 +124,10 @@ include_once 'includes/header.php';
             <tr>
                 <th class="header">#</th>
                 <th>Subject</th>
-				 <th>Message</th>     
+				 <th>Message</th>  
+                                  <th>Sender</th>     
 				  <th>Date</th>                 
+			    <th>Delete</th>                 
 			   
             </tr>
         </thead>
@@ -135,6 +137,7 @@ include_once 'includes/header.php';
 	                <td><?php echo $row['id'] ?></td>
 					<td><?php echo $row['subject'] ?></td>
 					  <td><?php echo htmlspecialchars($row['comment']); ?></td>
+                                          <td><?php echo htmlspecialchars($row['sender']); ?></td>
 	              <td><?php echo htmlspecialchars($row['date']); ?></td>
 	                  
 	               <td>

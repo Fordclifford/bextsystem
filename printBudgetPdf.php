@@ -7,11 +7,8 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
 
-$userRow = mysql_fetch_array($res);
-
-$church_id = $_SESSION['user'];
+$church_id = $_SESSION['church'];
 $error = false;
 
 if (isset($_POST['submit'])) {
@@ -40,7 +37,7 @@ if (isset($_POST['submit'])) {
         </script>
         <?php
     }
-    
+
     if (empty($year)) {
         $errMSG = "Sorry an Error Occured! Check and Try Again!";
         $error = true;
@@ -57,7 +54,7 @@ if (isset($_POST['submit'])) {
         exit;
     }
     require "dbconfig.php";
-    // connection to database 
+    // connection to database
     require('fpdf.php');
 
     class PDF extends FPDF {
@@ -105,12 +102,12 @@ if(!$error){
     $y_row = mysql_fetch_assoc($fyr);
 
 
-// SQL to get  records 
+// SQL to get  records
 //check if recordes exist
- 
 
 
-    $pdf->Image('assets/image/logo-2x.png', 100, 5, 30, 0, '', '../bextsystem');
+
+    $pdf->Image('assets/image/logo-2x.png', 100, 5, 30, 0, '', 'home.php');
     $pdf->Cell(10, 5);
     $pdf->SetFont('Arial', 'B', 8);
     foreach ($dbo->query($church) as $row) {
@@ -132,18 +129,18 @@ if(!$error){
 
     $width_cell = array(100, 50, 40, 30);
     $pdf->SetFont('Arial', 'B', 15);
-    $pdf->SetFillColor(193, 229, 252); // Background color of header 
-// Header starts /// 
+    $pdf->SetFillColor(193, 229, 252); // Background color of header
+// Header starts ///
 
-    $pdf->Cell($width_cell[0], 10, 'SOURCE NAME', 1, 0, 'C', true); // First header column 
+    $pdf->Cell($width_cell[0], 10, 'SOURCE NAME', 1, 0, 'C', true); // First header column
     $pdf->Cell($width_cell[1], 10, 'AMOUNT', 1, 0, 'C', true); // Second header column
     $pdf->Ln();
 
 //// header ends ///////
 
     $pdf->SetFont('Arial', '', 14);
-    $pdf->SetFillColor(235, 236, 236); // Background color of header 
-    $fill = false; // to give alternate background fill color to rows 
+    $pdf->SetFillColor(235, 236, 236); // Background color of header
+    $fill = false; // to give alternate background fill color to rows
 /// each record is one row  ///
     foreach ($dbo->query($count) as $row) {
         $pdf->Cell($width_cell[0], 10, $row['source_name'], 1, 0, 'C', $fill);
@@ -176,16 +173,16 @@ if(!$error){
     $pdf->Ln();
 
 /// Expenses///
-    $pdf->SetFillColor(193, 229, 252); // Background color of header 
+    $pdf->SetFillColor(193, 229, 252); // Background color of header
     $pdf->SetFont('Arial', 'B', 15);
-// Header starts /// 
-    $pdf->Cell($width_cell[0], 10, 'EXPENSE NAME', 1, 0, 'C', true); // First header column 
+// Header starts ///
+    $pdf->Cell($width_cell[0], 10, 'EXPENSE NAME', 1, 0, 'C', true); // First header column
     $pdf->Cell($width_cell[1], 10, 'AMOUNT', 1, 0, 'C', true); // Second header column
     $pdf->Ln();
 
     $pdf->SetFont('Arial', '', 14);
-    $pdf->SetFillColor(235, 236, 236); // Background color of header 
-    $fill = false; // to give alternate background fill color to rows 
+    $pdf->SetFillColor(235, 236, 236); // Background color of header
+    $fill = false; // to give alternate background fill color to rows
 /// each record is one row  ///
     foreach ($dbo->query($expense) as $row) {
         $pdf->Cell($width_cell[0], 10, $row['expense_name'], 1, 0, 'C', $fill);
@@ -223,9 +220,9 @@ if(!$error){
     $pdf->SetFont('Arial', '', 10);
     $pdf->Ln();
     $pdf->Write(5, '' . $comment . '');
-    
 
-/// end of records /// 
+
+/// end of records ///
 
     $pdf->Output();
 }
@@ -275,7 +272,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -300,9 +297,9 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                                 </li>
                             </ul>
@@ -319,15 +316,15 @@ include_once('includes/header.php');
             <h1 class="page-header">Print to Pdf</h1>
         </div>
     </div>
-             
-                
+
+
                                <div  id="register_form_div">
                     <form  method="post" >
 
-                        <div  class="form-group"> 
+                        <div  class="form-group">
                             <label for="fyear"> Select Year: </label>
                             <?php
-                            $c_id = $_SESSION['user'];
+                            $c_id = $_SESSION['church'];
                             $f_query = mysql_query("Select id, year from financial_year WHERE church_id = $c_id order by year DESC");
 
                             echo "<select title=\" Choose Financial Year\" style=\" data-toggle=\"tooltip\" height: 30px;\" class=\" w3-round-large\" name=\"year\" id=\"fyear\" value='<?php echo $year; ?>'>";
@@ -335,13 +332,13 @@ include_once('includes/header.php');
                             while ($row = mysql_fetch_array($f_query)) {
                                 echo "<option value='" . $row['id'] . "'>" . $row['year'] . "</option>";
                             } echo "</select>";
-                            ?>       
-                        </div> 
+                            ?>
+                        </div>
                         <span class="text-danger"> <?php echo $yrError; ?></span>
                         <div class="form-group">
                             <label for="comment">Comments:</label>
                             <textarea class="form-control" title="enter comments"  data-toggle="tooltip" rows="5" name="comment" id="comment"></textarea>
-                        </div> 
+                        </div>
 
                         <div class="modal-footer">
                             <button title="Click to Print" data-toggle="tooltip" type="submit" name="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-print"></span> &nbsp; Print
@@ -350,7 +347,7 @@ include_once('includes/header.php');
                     </form>
                 </div>
         <
-         <script type="text/javascript" src="assets/js/dateTimePicker.js"></script>  
+         <script type="text/javascript" src="assets/js/dateTimePicker.js"></script>
         <script type="text/javascript" >
 
 

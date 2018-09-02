@@ -8,15 +8,12 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-
-
-$userRow = mysql_fetch_array($res);
-$church_id = $_SESSION['user'];
+if ($_SESSION['user_type'] == 'treasurer') {
+$church_id = $_SESSION['church'];
 
 if (isset($_GET['delete_id'])) {
     // select image from db to delete
-  
+
     $stmt_select = $DB_con->prepare('SELECT image FROM bill WHERE id =:uid');
     $stmt_select->execute(array(':uid' => $_GET['delete_id']));
     $imgRow = $stmt_select->fetch(PDO::FETCH_ASSOC);
@@ -59,7 +56,7 @@ if (isset($_GET['delete_id'])) {
      if (mysql_num_rows($ch) > 0) {
     $update_query = mysql_query("UPDATE financial_year F
     SET total_bills =
-    (SELECT SUM(amount) FROM bill 
+    (SELECT SUM(amount) FROM bill
     WHERE church_id = '$church_id' AND financial_year = $yr_id)
     WHERE church_id = '$church_id' AND id = $yr_id");
     if (!$update_query) {
@@ -78,7 +75,7 @@ if (isset($_GET['delete_id'])) {
         exit(mysql_error($conn));
     }
          }
-        
+
     $sumincome_query = mysql_query("SELECT total_income AS Income from financial_year  WHERE church_id = $church_id AND id =$yr_id ");
     $sumbills_query = mysql_query("SELECT total_bills AS Bills from financial_year  WHERE church_id = $church_id AND id =$yr_id ");
     $incomerow = mysql_fetch_assoc($sumincome_query);
@@ -96,7 +93,7 @@ if (isset($_GET['delete_id'])) {
         $balan = $balance;
     }
 
-    $bal_query = mysql_query("UPDATE financial_year 
+    $bal_query = mysql_query("UPDATE financial_year
     SET balance = '$balan' WHERE church_id = $church_id AND id = $yr_id");
 
     if (!$bal_query) {
@@ -105,6 +102,7 @@ if (isset($_GET['delete_id'])) {
     }
 
     header("Location: bills.php");
+}
 }
 include_once('includes/header.php');
 ?>
@@ -141,7 +139,7 @@ include_once('includes/header.php');
                             </a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                                </li>                               
+                                </li>
                                 <li class="divider"></li>
                                 <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                                 </li>
@@ -151,7 +149,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -176,13 +174,13 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                                 </li>
                                 <li>
-                                <a href="balances.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a> 
+                                <a href="balances.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a>
 
                             </li>
                             </ul>
@@ -200,20 +198,20 @@ include_once('includes/header.php');
         </div>
         <!-- /.col-lg-12 -->
     </div>
-             
+
                     <div style="margin: 0 auto" >
                     <h3 align='center' class="page-header">Manage <?php echo $userRow['name']; ?> Bills</h3>
                 </div>
 
 
 
-                <div style="margin: 20px"class=" search animate ">                   
+                <div style="margin: 20px"class=" search animate ">
                     <form class="frm form-inline">
 
-                        <div  class="form-group "> 
+                        <div  class="form-group ">
                             <label for="year"> &nbsp;&nbsp;Year: </label>
                             <?php
-                            $church_ids = $_SESSION['user'];
+                            $church_ids = $_SESSION['church'];
                             $sqls = "Select id, year from financial_year WHERE church_id = '$church_ids' order by year DESC";
                             $qs = mysql_query($sqls);
 
@@ -222,15 +220,15 @@ include_once('includes/header.php');
                             while ($row = mysql_fetch_array($qs)) {
                                 echo "<option value='" . $row['year'] . "'>" . $row['year'] . "</option>";
                             } echo "</select>";
-                            ?>       
-                        </div> 
+                            ?>
+                        </div>
 
-                        <div class="form-group ">                                            
+                        <div class="form-group ">
                             <button  type="button"  name="filter" id="filter" title="Click to Search" data-toggle="collapse"  data-target="#month" class="btn btn-info  w3-round-xxlarge"><i class="glyphicon glyphicon-search"></i> Search </button>
                         </div>
-                    </form> 
+                    </form>
                 </div>
-                <div class="row">               
+                <div class="row">
 
                     <div class="col-lg-4 "><a title="Click to Add Bill" data-toggle="tooltip"  onclick="return confirm('Are You Sure to Add Bill?')" href="addbill.php" class="btn btn-success w3-round-large glyphicon glyphicon-plus-sign " > Add Bill</a></div>
 
@@ -254,13 +252,13 @@ include_once('includes/header.php');
                     $errTyp = "warning";
                     $errorMSG = "You have not added bills for your church, if you have added refresh this page";
                 }
-// Design initial table header 
+// Design initial table header
                 if (isset($errorMSG)) {
                     ?>
                     <div style="background-color: #ff9900" class="alert">
                         <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
                         <?php echo $errorMSG; ?>
-                    </div> 
+                    </div>
                     <?php
                 }
                 ?>
@@ -287,7 +285,7 @@ include_once('includes/header.php');
                                         <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
                                             <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                                         </div>
-                                    </div>  
+                                    </div>
                                 <?php } ?>
 
                                 <hr />
@@ -323,7 +321,7 @@ include_once('includes/header.php');
                                         <span class="text-danger"><?php echo $amtError; ?></span> </div>
                                 </div>
 
-                                <div class="modal-upld"> 
+                                <div class="modal-upld">
 
                                     <div class="sidebyside">
                                         <input type="file" name="userfile" id="userfile" accept="image/*" /><span class="text-danger"><?php echo $imgError; ?></span>
@@ -346,13 +344,13 @@ include_once('includes/header.php');
                         </div>
                     </div>
                 </div>
-                
-                
+
+
            </div>
 
- 
+
          <script type="text/javascript" src="assets/js/dateTimePicker.js"></script>
         <script type="text/javascript" src="assets/js/modalBills.js"></script>
         <script type="text/javascript" src="assets/js/ajax.js"></script>
-      
+
 <?php include_once('includes/footer.php'); ?>

@@ -8,13 +8,11 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-$userRow = mysql_fetch_array($res);
+if ($_SESSION['user_type'] == 'treasurer') {
 
-
-$f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['user']);
+$f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['church']);
 if (mysql_num_rows($f_year) == 0) {
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
     $year = date("Y");
     $query_insert = mysql_query("INSERT INTO financial_year(year,church_id) VALUES ('$year','$church_id')");
     if (!$query_insert) {
@@ -28,7 +26,7 @@ if (mysql_num_rows($f_year) == 0) {
     </script>
     <?php
 }
-$budget = mysql_query("SELECT expense_name,church_id FROM budget_expenses WHERE church_id=" . $_SESSION['user']);
+$budget = mysql_query("SELECT expense_name,church_id FROM budget_expenses WHERE church_id=" . $_SESSION['church']);
 if (mysql_num_rows($budget) == 0) {
     ?>
     <script>
@@ -37,7 +35,7 @@ if (mysql_num_rows($budget) == 0) {
     </script>
     <?php
 }
-$income = mysql_query("SELECT source_name,church_id FROM income_sources WHERE church_id=" . $_SESSION['user']);
+$income = mysql_query("SELECT source_name,church_id FROM income_sources WHERE church_id=" . $_SESSION['church']);
 if (mysql_num_rows($income) == 0) {
     ?>
     <script>
@@ -45,6 +43,7 @@ if (mysql_num_rows($income) == 0) {
         window.location.href = 'income.php';
     </script>
     <?php
+}
 }
 include_once('includes/header.php');
 ?>
@@ -91,7 +90,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -116,9 +115,9 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                                 </li>
                             </ul>
@@ -135,19 +134,19 @@ include_once('includes/header.php');
             <h1 class="page-header">Budget</h1>
         </div>
     </div>
-             
+
                       <div class="col-lg-4">
                     <div  class=" animate "><a onclick="return confirm('Sure to Add?')" style="margin: 20px" data-toggle="tooltip" title="click to add new financial year" href="new_year.php" class="btn btn-success w3-round-large"  ><span class="glyphicon glyphicon-plus-sign"></span> New Year</a></div>
 
                     <div  class=" animate "><a onclick="return confirm('Sure to Print?')" style="margin-left: 20px" data-toggle="tooltip" title="click to print budget to pdf" href="printBudgetPdf.php" class="btn btn-success w3-round-large"  ><span class="glyphicon glyphicon-print"></span> Print Budget</a></div>
                 </div>
-                <div class=" search">               
-                    <form class="frm">                       
+                <div class=" search">
+                    <form class="frm">
 
-                        <div  class="sidebyside"> 
+                        <div  class="sidebyside">
                             <label> Year: </label>
                             <?php
-                            $c_id = $_SESSION['user'];
+                            $c_id = $_SESSION['church'];
                             $f_query = mysql_query("Select id, year from financial_year WHERE church_id = $c_id order by year DESC");
 
                             echo "<select title=\" Choose Financial Year\" data-toggle=\"tooltip\" style=\" height: 30px;\" class=\" w3-round-large\" name=\"year\" id=\"fyear\" value\"echo $fyear\">";
@@ -155,13 +154,13 @@ include_once('includes/header.php');
                             while ($row = mysql_fetch_array($f_query)) {
                                 echo "<option value='" . $row['id'] . "'>" . $row['year'] . "</option>";
                             } echo "</select>";
-                            ?>       
-                        </div>  
+                            ?>
+                        </div>
 
-                        <div style="padding-top: 20px;"class="sidebyside ">                                            
+                        <div style="padding-top: 20px;"class="sidebyside ">
                             <button  type="button" style="height: 40px;"  name="filter" id="filter" data-toggle="tooltip" title="Click to Search" class="btn btn-info  glyphicon glyphicon-eye-open w3-round-xxlarge"> View </button>
                         </div>
-                    </form> 
+                    </form>
                 </div>
 
 

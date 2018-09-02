@@ -12,7 +12,7 @@ if (isset($_POST["sub"])) {
 
     $token = sha1(uniqid($email, true));
 
-    $sql = "SELECT COUNT(*) AS count from church where email = :email_id";
+    $sql = "SELECT COUNT(*) AS count from users where email = :email_id";
     try {
         $stmt = $DB->prepare($sql);
         $stmt->bindValue(":email_id", $email);
@@ -31,11 +31,20 @@ if (isset($_POST["sub"])) {
                         $_SERVER["REQUEST_TIME"]
                     )
             );
-            $sql = "INSERT INTO `church` (`name`, `pass`, `email`,`conference`,`mobile`,`union_mission`) VALUES " . "( :name, :pass, :email, :conf, :mobile, :union)";
+
+            $sql = "INSERT INTO `users` (`user_name`, `passwd`,`user_type`,`email`) VALUES " . "( :user_name, :passwd, :user_type, :email)";
+            $stmt = $DB->prepare($sql);
+            $stmt->bindValue(":user_name", $name);
+            $stmt->bindValue(":passwd", $mobile);
+            $stmt->bindValue(":user_type", $conf);
+            $stmt->bindValue(":email", $union);
+
+            $stmt->execute();
+
+
+            $sql = "INSERT INTO `church` (`name`, `conference`,`mobile`,`union_mission`,`user_id`) VALUES " . "( :name, :conf, :mobile, :union, :user_id)";
             $stmt = $DB->prepare($sql);
             $stmt->bindValue(":name", $name);
-            $stmt->bindValue(":pass", md5($pass));
-            $stmt->bindValue(":email", $email);
             $stmt->bindValue(":mobile", $mobile);
             $stmt->bindValue(":conf", $conf);
             $stmt->bindValue(":union", $union);

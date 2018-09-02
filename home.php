@@ -3,18 +3,18 @@ session_start();
 require_once './config.php';
 
 // if session is not set this will redirect to login page
+
 if (!isset($_SESSION['user'])) {
     header("Location: index.php");
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-$userRow = mysql_fetch_array($res);
+if ($_SESSION['user_type'] == 'treasurer') {
+    // show permission denied message
 
-
-$f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['user']);
+$f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['church']);
 if (mysql_num_rows($f_year) == 0) {
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
     $year = date("Y");
     $query_insert = mysql_query("INSERT INTO financial_year(year,church_id) VALUES ('$year','$church_id')");
     if (!$query_insert) {
@@ -28,7 +28,7 @@ if (mysql_num_rows($f_year) == 0) {
     </script>
     <?php
 }
-$budget = mysql_query("SELECT expense_name,church_id FROM budget_expenses WHERE church_id=" . $_SESSION['user']);
+$budget = mysql_query("SELECT expense_name,church_id FROM budget_expenses WHERE church_id=" . $_SESSION['church']);
 if (mysql_num_rows($budget) == 0) {
     ?>
     <script>
@@ -37,7 +37,7 @@ if (mysql_num_rows($budget) == 0) {
     </script>
     <?php
 }
-$income = mysql_query("SELECT source_name,church_id FROM income_sources WHERE church_id=" . $_SESSION['user']);
+$income = mysql_query("SELECT source_name,church_id FROM income_sources WHERE church_id=" . $_SESSION['church']);
 if (mysql_num_rows($income) == 0) {
     ?>
     <script>
@@ -45,6 +45,7 @@ if (mysql_num_rows($income) == 0) {
         window.location.href = 'income.php';
     </script>
     <?php
+}
 }
 include_once('includes/header.php');
 ?>
@@ -82,7 +83,7 @@ include_once('includes/header.php');
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                                 </li>
-                                
+
                                 <li class="divider"></li>
                                 <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                                 </li>
@@ -93,7 +94,7 @@ include_once('includes/header.php');
                     </ul>
                     <!-- /.navbar-top-links -->
 
-                    
+
                 </nav>
             <?php endif; ?>
 

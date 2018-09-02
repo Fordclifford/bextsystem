@@ -4,7 +4,7 @@ ob_start();
 session_start();
 // check request
 if (isset($_POST['id']) && isset($_POST['id']) != "") {
-$church_id = $_SESSION['user'];
+$church_id = $_SESSION['church'];
     require_once 'dbconfig.php';
     require_once 'dbconnect.php';
 
@@ -22,7 +22,7 @@ $church_id = $_SESSION['user'];
     $stmt_delete->execute();
     $update_query = mysql_query("UPDATE financial_year F
     SET total_expenses =
-    (SELECT SUM(amount) FROM budget_expenses 
+    (SELECT SUM(amount) FROM budget_expenses
     WHERE church_id = '$church_id' AND financial_year = $yr_id)
     WHERE church_id = '$church_id' AND id = $yr_id");
     if (!$update_query) {
@@ -30,7 +30,7 @@ $church_id = $_SESSION['user'];
         $errMSG = "Sorry Data Could Not Updated !";
         exit(mysql_error($conn));
     }
-   
+
 }
 ob_end_flush();
 ?>

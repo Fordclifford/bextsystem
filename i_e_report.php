@@ -2,14 +2,12 @@
 require_once 'chartdb.php';
 ob_start();
 session_start();
-// include Database connection file 
+// include Database connection file
 if (!isset($_SESSION['user'])) {
     header("Location: index.php");
     exit;
 }
-if (isset($_SESSION['user'])) {
-    $church_id = $_SESSION['user'];
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,12 +26,12 @@ if (isset($_SESSION['user'])) {
         <script>
             zingchart.MODULESDIR = "assets/zingchart/modules/";
             ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
-        </script> 
+        </script>
     </head>
     <body>
         <div id="wrap">
 
-             <section  id="top">                
+             <section  id="top">
                 <nav    class="navbar  navbar-inverse w3-round-xlarge">
                     <div class="container-fluid">
                         <div class="navbar-header " >
@@ -42,7 +40,7 @@ if (isset($_SESSION['user'])) {
 
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>                        
+                                <span class="icon-bar"></span>
                             </button>
                         </div>
                             <ul class="nav navbar-nav navbar-right ">
@@ -54,7 +52,7 @@ if (isset($_SESSION['user'])) {
                                 <ul class="dropdown-menu dropdown-user">
                                     <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                                     </li>
-                                   
+
                                     <li class="divider"></li>
                                     <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                                     </li>
@@ -63,7 +61,7 @@ if (isset($_SESSION['user'])) {
                             </li>
                         </ul>
                     </ul>
-                      
+
                     </div>
                 </nav>
 
@@ -71,13 +69,13 @@ if (isset($_SESSION['user'])) {
             <section id="page">
                 <header id="pageheader" class="w3-round-xlarge homeheader">
 
-                </header>  
+                </header>
                 <div class="topnav w3-round-xlarge" id="myTopnav">
                     <a href="home.php"> <i class="glyphicon glyphicon-home"></i> Home</a>
                     <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                     <a href="expenses.php"> <i class="glyphicon glyphicon-apple"></i> Expenses</a>
                     <a href="bills.php"> <i class="glyphicon glyphicon-registration-mark"></i> Bills</a>
-                    <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>                    
+                    <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                     <a href="javascript:void(0);" class="icon" onClick="myFunction()">&#9776;</a>
 
@@ -85,7 +83,7 @@ if (isset($_SESSION['user'])) {
                  <div style="margin: 0 auto" >
                     <h3 align='center' class="page-header">View  Income-Expense Curve</h3>
                 </div>
-      
+
 
        <div class="row">
            <div class="col-lg-12">
@@ -161,19 +159,17 @@ while ($info = mysqli_fetch_array($data))
 
         <script src="assets/jquery-1.11.3-jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/navigation.js"></script>   
+        <script src="assets/js/navigation.js"></script>
         <script>
                         $(document).ready(function () {
                             $('[data-toggle="tooltip"]').tooltip();
                         });
     </script>
     <script src="assets/js/report.js"></script>
-    
+
 
 
     </body>
 
 </html>
 <?php ob_end_flush(); ?>
- 
-    

@@ -5,7 +5,7 @@ session_start();
 
 // check request
 if (isset($_POST['id']) && isset($_POST['id']) != "") {
-$church_id = $_SESSION['user'];
+$church_id = $_SESSION['church'];
     require_once 'dbconfig.php';
     require_once 'dbconnect.php';
 
@@ -23,7 +23,7 @@ $church_id = $_SESSION['user'];
     $stmt_delete->execute();
     $update_query = mysql_query("UPDATE financial_year F
     SET total_income =
-    (SELECT SUM(amount) FROM income_sources 
+    (SELECT SUM(amount) FROM income_sources
     WHERE church_id = '$church_id' AND financial_year = $yr_id)
     WHERE church_id = '$church_id' AND id = $yr_id");
     if (!$update_query) {
@@ -41,7 +41,7 @@ $church_id = $_SESSION['user'];
     $sum_bill = $expenserow['Bills'];
     $balance = $sum_income - $sum_bill;
 
-    $bal_query = mysql_query("UPDATE financial_year 
+    $bal_query = mysql_query("UPDATE financial_year
     SET balance = '$balance' WHERE church_id = $church_id AND id = $yr_id");
 
     if (!$bal_query) {

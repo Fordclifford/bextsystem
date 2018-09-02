@@ -9,24 +9,21 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
+if ($_SESSION['user_type'] == 'treasurer') {
 
-
-$userRow = mysql_fetch_array($res);
-
-$church_id = $_SESSION['user'];
+$church_id = $_SESSION['church'];
 
 ?>
 <?php
 if (isset($_POST["submit"])) {
 
-    // include Database connection file 
-    // get values 
+    // include Database connection file
+    // get values
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $date = $_POST['date'];
     $desc = $_POST['desc'];
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
     $yr = $_POST['year'];
     $bill = $_POST['bill'];
 
@@ -84,7 +81,7 @@ if (isset($_POST["submit"])) {
         $errMSG = "Sorry an Error Occured! Check and Try Again!";
     }
     if ($category != ''){
-       
+
     $check = mysql_query("SELECT balance AS amount FROM budget_expenses WHERE sid=$category");
     $res_row = mysql_fetch_assoc($check);
     $amt = $res_row['amount'];
@@ -126,7 +123,7 @@ if (isset($_POST["submit"])) {
     }
     }
     //take care of duplicates
-  
+
 
     if (!isset($error)) {
         $insert_query = mysql_query("INSERT INTO bill (source,amount,date,image,description,church_id,financial_year,mode_of_payment)VALUES('$category', '$amount', str_to_date('$date','%d-%m-%Y'), '$userpic','$desc',$church_id,$yr,'$bill')");
@@ -134,17 +131,17 @@ if (isset($_POST["submit"])) {
 
             exit(mysql_error($conn));
         }
-      
+
         $update_query = mysql_query("UPDATE financial_year F
     SET total_bills =
-    (SELECT SUM(amount) FROM bill 
+    (SELECT SUM(amount) FROM bill
     WHERE church_id = $church_id AND financial_year = $yr)
     WHERE church_id = $church_id AND id = $yr");
         if (!$update_query) {
             die("error2!");
             exit(mysql_error($conn));
         }
-        
+
         $sumincome_query = mysql_query("SELECT total_income AS Income from financial_year WHERE church_id = $church_id and id =$yr");
         $sumbills_query = mysql_query("SELECT total_bills AS Bills from financial_year WHERE church_id = $church_id and id =$yr");
         $incomerow = mysql_fetch_assoc($sumincome_query);
@@ -188,7 +185,7 @@ if (isset($_POST["submit"])) {
     }
 }
 
-$sql1 = "SELECT * FROM budget_expenses WHERE church_id=" . $_SESSION['user'];
+$sql1 = "SELECT * FROM budget_expenses WHERE church_id=" . $_SESSION['church'];
 $result1 = mysql_query($sql1, $conn);
 
 
@@ -200,6 +197,7 @@ if (mysql_num_rows($result1) <= 0) {
         window.location.href = 'expenses.php';
     </script>
     <?php
+}
 }
 include_once('includes/header.php');
 ?>
@@ -237,7 +235,7 @@ include_once('includes/header.php');
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                                 </li>
-                                
+
                                 <li class="divider"></li>
                                 <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                                 </li>
@@ -247,7 +245,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -272,13 +270,13 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                                 </li>
                                 <li>
-                                       <a href="balance.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a> 
+                                       <a href="balance.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a>
 
                                 </li>
                             </ul>
@@ -296,7 +294,7 @@ include_once('includes/header.php');
         </div>
         <!-- /.col-lg-12 -->
     </div>
-             
+
                     <div class ="btn-group w3-round-large buttoncontainer">
                         <div class="sidebyside"><a href="bills.php" class="btn btn-success w3-round-large " >&laquo; Back                             </a></div>
                </div>
@@ -314,7 +312,7 @@ include_once('includes/header.php');
                                                     <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
                                                         <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                                                     </div>
-                                                </div>  
+                                                </div>
 <?php } ?>
 
                                             <hr />
@@ -324,7 +322,7 @@ include_once('includes/header.php');
 
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-flag "></span></span>
 
-                                                      <select title=" Choose Financial Year" data-toggle="tooltip" style=" height: 40px" class="form-control w3-round-large" name="year" id="year" 
+                                                      <select title=" Choose Financial Year" data-toggle="tooltip" style=" height: 40px" class="form-control w3-round-large" name="year" id="year"
                                                         value="<?php echo $yr; ?>">
                                                     <option value=''>------- Select Year --------</option>
                                                     <?php
@@ -344,10 +342,10 @@ include_once('includes/header.php');
                                                 <div class="input-group">
 
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-apple "></span></span>
-                                          
+
                                                     <select title=" Click to Choose Category" data-toggle="tooltip" style=" height: 40px" class="form-control w3-round-large" name="category" id="category" value="<?php echo $category; ?>">
-                                                    <option value=''  >----Select Category----</option>                                                    
-                                                         </select>                                             
+                                                    <option value=''  >----Select Category----</option>
+                                                         </select>
 
                                                 </div>
                                                 <span class="text-danger"> <?php echo $catError; ?></span>
@@ -369,8 +367,8 @@ include_once('includes/header.php');
                                                 <label for="source">Payment Mode: </label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-bitcoin "></span></span>
-                                          
-                                                <select style=" height: 40px" class="w3-round-large form-control" id="source" name="bill" 
+
+                                                <select style=" height: 40px" class="w3-round-large form-control" id="source" name="bill"
                                                         onchange="if (this.options[this.selectedIndex].value === 'customOption') {
                                                     toggleField(this, this.nextSibling);
                                                     this.selectedIndex = '0';
@@ -380,11 +378,11 @@ include_once('includes/header.php');
                                     <option value="cash">Cash</option>
                                     <option value="cheque">Cheque </option>
                                     <option value="card">Card</option>
-                                    <option value="mpesa">M-Pesa</option>                                                    
-                                            </select><input style="display:none;height: 40px" class="w3-round-large form-control" name="bill" id="sources" disabled="disabled" 
+                                    <option value="mpesa">M-Pesa</option>
+                                            </select><input style="display:none;height: 40px" class="w3-round-large form-control" name="bill" id="sources" disabled="disabled"
                                                             onblur="if (this.value === '') {
                                                             toggleField(this, this.previousSibling);
-                                                                                                             }"> 
+                                                                                                             }">
                                                 </div>
                                                             <span class="text-danger"><?php echo $billError; ?></span>
 
@@ -396,11 +394,11 @@ include_once('includes/header.php');
                                                     <input style=" height: 40px ;margin: 0px" type="number" name="amount" title="Enter Amount" data-toggle="tooltip" id="amount" placeholder="Enter Amount" class="form-control w3-round-large" value="<?php echo $amount; ?>"/>
                                                 </div>
                                                 <span class="text-danger"><?php echo $amtError; ?></span>
-                                            </div>                     
+                                            </div>
 
 
 
-                                            <div class="form-group"> 
+                                            <div class="form-group">
                                                 <label>Select Bill Image(optional): </label>
 
                                                 <div class="input-group">
@@ -434,5 +432,5 @@ include_once('includes/header.php');
    <script type="text/javascript" src="assets/js/changeIncome.js">  </script>
    <script src="assets/js/js.js" > </script>
     <script src="assets/jquery-1.11.3-jquery.min.js"></script>
-                                      
+
 <?php include_once('includes/footer.php'); ?>

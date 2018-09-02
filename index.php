@@ -40,7 +40,7 @@ if (isset($_POST['btn-login'])) {
         $passError = "Please enter your password.";
     }
 
-    $res = mysql_query("SELECT id, status, name, pass FROM church WHERE email='$email'");
+    $res = mysql_query("SELECT id, status, user_name,user_type, passwd FROM users WHERE email='$email'");
 
     $row = mysql_fetch_array($res);
     $status = "Pending";
@@ -48,15 +48,24 @@ if (isset($_POST['btn-login'])) {
         $error = true;
         $errMSG = "Account not Active! Contact your System Admin";
     }
+    $type = "treasurer";
+      if ($row['user_type'] != $type) {
+        $error = true;
+        $errMSG = "Failed to Authenticate!";
+    }
 
     // if there's no error, continue to login
     if (!$error) {
         $password = hash('md5', $pass); // password hashing using SHA256
         $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
 
-        if ($count == 1 && $row['pass'] == $password) {
-            $_SESSION['user'] = $row['id'];
-            $_SESSION['name'] = $row['name'];
+        if ($count == 1 && $row['passwd'] == $password) {
+          $_SESSION['user'] = $row['id'];
+          $_SESSION['user_name'] = $row['user_name'];
+          $_SESSION['user_type'] = $row['user_type'];
+          $church = mysql_query("SELECT * FROM church WHERE user_id=" . $_SESSION['user']);
+          $church_row = mysql_fetch_array($church);
+        $_SESSION['church'] = $church_row['id'];
             header("Location: home.php");
         } else {
             $errMSG = "Incorrect Credentials, Try again..";

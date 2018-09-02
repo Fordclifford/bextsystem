@@ -6,40 +6,13 @@ session_start();
 include("dbconnect.php");
 
 // check request
-if (isset($_POST['name'])) {
+if (isset($_POST['user_name'])) {
     // get values
     $id = $_POST['id'];
-    $name = $_POST['name'];
+    $name = $_POST['user_name'];
 
     // Updaste name details
-    $query = "UPDATE church SET name = '$name' WHERE id = '$id'";
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
-    } else {
-        header("refresh:5;index.php");
-    }
-}
-
-if (isset($_POST['mobile'])) {
-    // get values
-    $id = $_POST['id'];
-    $mobile = $_POST['mobile'];
-
-  // Update mobile details
-    $query = "UPDATE church SET mobile = '$mobile' WHERE id = '$id'";
-    if (!$result = mysql_query($query)) {
-        exit(mysql_error());
-    } else {
-        header("refresh:5;index.php");
-    }
-}
-if (isset($_POST['union_mission'])&& isset($_POST['conference'])) {
-    // get values
-    $id = $_POST['id'];
-    $union = $_POST['union_mission'];
-        $conf = $_POST['conference'];
-    // Updaste mobile details
-    $query = "UPDATE church SET union_mission = '$union',conference = '$conf' WHERE id = '$id'";
+    $query = "UPDATE users SET user_name = '$name' WHERE id = '$id'";
     if (!$result = mysql_query($query)) {
         exit(mysql_error());
     } else {

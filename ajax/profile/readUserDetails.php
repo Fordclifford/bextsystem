@@ -9,7 +9,7 @@ if(isset($_POST['id']) && isset($_POST['id']) != "")
     $id = $_POST['id'];
 
     // Get income Details
-    $query = "SELECT * FROM church WHERE id = '$id'";
+    $query = "SELECT * FROM users WHERE id = '$id'";
     if (!$result = mysql_query($query)) {
         exit(mysql_error());
     }

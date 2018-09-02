@@ -15,7 +15,7 @@
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
             <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control" required="required"   value="<?php echo $edit ? $church['conference'] : ''; ?>" id="conference" name ="conference"></select>
-        </div>  </div> 
+        </div>  </div>
 
     <div class="form-group">
         <div class="input-group">
@@ -35,13 +35,14 @@
             $sqls = "Select * FROM users WHERE user_type='treasurer' ";
             $qs = mysql_query($sqls);
             echo "<select title=\" Choose User\" data-toggle=\"tooltip\"  style=\" height: 40px\" class=\"form-control w3-round-large\" name=\"user_id\" id=\"user_id\" >";
+  echo "<option value=''> -----Select User------ </option>";
             while ($row = mysql_fetch_array($qs)) {
-                echo "<option value=''> -----Select User------ </option>";
+
                 echo "<option value='" . $row['id'] . "'>" . $row['user_name'] . "</option>";
             } echo "</select>";
             ?>
 
-        </div>                              
+        </div>
 
     </div>
 
@@ -57,7 +58,7 @@
     <div class="form-group text-center">
         <label></label>
         <button type="submit" class="btn btn-warning" >Save <span class="glyphicon glyphicon-send"></span></button>
-    </div>            
+    </div>
 </fieldset>
 <script type="text/javascript">
 
@@ -73,7 +74,7 @@
         }
     }
 
-</script>       
+</script>
 <script type= "text/javascript" src = "js/conferences.js"></script>
 <script language="javascript">print_union("union_mission");</script>
 <script>
@@ -81,5 +82,3 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
-
-

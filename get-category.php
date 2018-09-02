@@ -2,7 +2,7 @@
 <?php
 ob_start();
 session_start();
-$church_id = $_SESSION['user'];
+$church_id = $_SESSION['church'];
 if(isset($_POST['y_id'])) {
     $sq=mysql_query("select * from `income_sources` where church_id=$church_id AND `financial_year`=".mysql_real_escape_string($_POST['y_id']));
 	$sql = "select * from `budget_expenses` where church_id=$church_id AND `financial_year`=".mysql_real_escape_string($_POST['y_id']);
@@ -16,9 +16,9 @@ if(isset($_POST['y_id'])) {
         else{
           ?>
     <script>
-        alert('No Expense Records for that year!\n You need to add ...');        
+        alert('No Expense Records for that year!\n You need to add ...');
     </script>
-    <?php   
+    <?php
         }
         if(mysql_num_rows($sq) == 0) {
             ?>
@@ -27,7 +27,7 @@ if(isset($_POST['y_id'])) {
         alert(' No income found for that year \n You need to add income for your church\n You will be redirected to income page ...');
         window.location.href = 'income.php';
     </script>
-    <?php    
+    <?php
         }
 } else {
 	header('location: ./');

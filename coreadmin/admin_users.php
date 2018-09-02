@@ -7,7 +7,7 @@ require_once 'includes/auth_validate.php';
 if ($_SESSION['user_type'] !== 'super') {
     // show permission denied message
     header('HTTP/1.1 401 Unauthorized', true, 401);
-    
+
     exit("401 Unauthorized");
 }
 //Get data from query string
@@ -33,7 +33,7 @@ if ($order_by == "") {
 $db = getDbInstance();
 $select = array('id', 'user_name', 'user_type','email','status');
 
-// If user searches 
+// If user searches
 if ($search_string) {
     $db->where('user_name', '%' . $search_string . '%', 'like');
 }
@@ -56,11 +56,8 @@ foreach ($result as $value) {
     //execute only once
     break;
 }
-
-
-include_once './includes/header.php';
 ?>
-
+<?php include_once './includes/header.php'; ?>
 <div id="page-wrapper">
 <div class="row">
      <div class="col-lg-6">
@@ -79,7 +76,7 @@ include_once './includes/header.php';
         echo '<div class="alert alert-info">Successfully deleted</div>';
     }
     ?>
-    
+
     <!--    Begin filter section-->
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
@@ -127,50 +124,113 @@ include_once './includes/header.php';
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-
-            <?php foreach ($result as $row) : ?>
-                
-            <tr>
-                <td><?php echo $row['id'] ?></td>
-                <td><?php echo htmlspecialchars($row['user_name']) ?></td>
-                <td><?php echo htmlspecialchars($row['user_type']) ?></td>
-                <td><?php echo htmlspecialchars($row['email']) ?></td>
-                <td><?php echo htmlspecialchars($row['status']) ?></td>
-
-                <td>
-                    <a href="edit_admin.php?admin_user_id=<?php echo $row['id']?>&operation=edit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
-
-                    <a href=""  class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span>
-                    
-                </td>
-            </tr>
-                <!-- Delete Confirmation Modal-->
-                     <div class="modal fade" id="confirm-delete-<?php echo $row['id'] ?>" role="dialog">
-                        <div class="modal-dialog">
-                          <form action="delete_user.php" method="POST">
-                          <!-- Modal content-->
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Confirm</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" name="del_id" id = "del_id" value="<?php echo $row['id'] ?>">
-                                    <p>Are you sure you want to delete this user?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default pull-left">Yes</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                </div>
-                              </div>
-                          </form>
-                          
-                        </div>
-                    </div>
-            <?php endforeach; ?>   
+        <tbody id="user_data">
         </tbody>
     </table>
+
+    <script type="text/javascript" language="javascript" >
+    $(document).ready(function(){
+
+    function fetch_user_data()
+    {
+    $.ajax({
+     url:"fetch_user.php",
+     method:"POST",
+     dataType:"json",
+     success:function(data)
+     {
+
+      for(var count=0; count<data.length; count++)
+
+      {
+       var html_data = '<tr><td>'+data[count].id+'</td>';
+       html_data += '<td data-name="user_name" class="user_name" data-type="text" data-pk="'+data[count].id+'">'+data[count].user_name+'</td>';
+       html_data += '<td data-name="user_type" class="user_type" id="user_type" data-type="select" data-pk="'+data[count].id+'">'+data[count].user_type+'</td>';
+       html_data += '<td data-name="email" id="email" class="email" data-type="text" data-pk="'+data[count].id+'">'+data[count].email+'</td>';
+      html_data += '<td data-name="status" class="status" data-type="select" data-pk="'+data[count].id+'">'+data[count].status+'</td>';
+      html_data += '<td> <a href="" data-name="delete" class="actions btn btn-danger delete_btn" data-toggle="modal"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
+
+       $('#user_data').append(html_data);
+     }
+
+}
+    });
+    }
+
+    fetch_user_data();
+
+    $('#user_data').editable({
+    container: 'body',
+    selector: 'td.user_name',
+    url: "update_user.php",
+    title: 'Username',
+    type: "POST",
+    //dataType: 'json',
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+    }
+    });
+
+    $('#user_data').editable({
+    container: 'body',
+    selector: 'td.user_type',
+    url: "update_user.php",
+    title: 'User Type',
+    type: "POST",
+    dataType: 'json',
+    source: [{value: '', text: '-Please Select-'},{value: 'super', text:'Super Admin'}, {value: 'admin', text:'Admin'},
+    {value: 'auditor', text:'Conference Auditor'},{value: 'treasurer', text:'Church Treasurer'}],
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+    }
+    });
+
+    $('#user_data').editable({
+    container: 'body',
+    selector: 'td.status',
+    url: "update_user.php",
+    title: 'Status',
+    type: "POST",
+    dataType: 'json',
+    source: [{value: '', text: '-Please Select-'}, {value: 'Approved', text: 'Approved'},{value: 'Pending', text: 'Pending'}],
+
+    validate: function(value){
+     if($.trim(value) == '')
+     {
+      return 'This field is required';
+     }
+    }
+    });
+
+    $('#user_data').editable({
+   container: 'body',
+   selector: 'td.email',
+   url: "update_user.php",
+   title: 'Email',
+   type: "POST",
+   dataType: 'json',
+   validate: function(value){
+    if($.trim(value) == '')
+    {
+     return 'This field is required';
+    }
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(! regex.test(value))
+    {
+     return 'Invalid Email!';
+    }
+   }
+  });
+
+
+  });
+</script>
     <!--    Pagination links-->
     <div class="text-center">
 

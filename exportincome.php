@@ -8,15 +8,13 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-
-$userRow = mysql_fetch_array($res);
+if ($_SESSION['user_type'] == 'treasurer') {
 $error = false;
 
 
 if (isset($_POST['submit'])) {
     $yr = $_POST['year'];
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
     $q1 = "SELECT * FROM income_sources WHERE financial_year ='$yr' AND church_id = '$church_id'";
     $result = mysql_query($q1);
     if (mysql_num_rows($result) == 0) {
@@ -86,6 +84,7 @@ if (isset($_POST['submit'])) {
 
         echo ucwords($columnHeader) . "\n" . $setData . "\n";
     }
+}
 }
 ?>
 <?php ob_end_flush(); ?>

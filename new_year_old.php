@@ -9,10 +9,6 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-
-
-$userRow = mysql_fetch_array($res);
 $error = false;
 
 if (isset($_POST['btn-year'])) {
@@ -22,7 +18,7 @@ if (isset($_POST['btn-year'])) {
     $year = trim($_POST['year']);
     $year = strip_tags($year);
     $year = htmlspecialchars($year);
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
 
 
 
@@ -63,13 +59,13 @@ if (isset($_POST['btn-year'])) {
             }
         }
     }
-   
-    
+
+
     $max_query = "SELECT MAX(year) AS max FROM financial_year WHERE church_id='$church_id'";
     $q_result = mysql_query($max_query);
     $r_count = mysql_fetch_array($q_result);
-    $max = $r_count['max'];   
-    
+    $max = $r_count['max'];
+
     $b_query = "SELECT balance FROM financial_year WHERE year='$max' AND church_id='$church_id'";
     $bq_result = mysql_query($b_query);
     $br_count = mysql_fetch_array($bq_result);
@@ -80,15 +76,15 @@ if (isset($_POST['btn-year'])) {
       $id_q =  "SELECT id AS id FROM financial_year WHERE year= '$year' AND church_id='$church_id'";
     $q_result = mysql_query($id_q);
     $r_count = mysql_fetch_array($q_result);
-     $id = $r_count['id'];   
-     $source ="".$max." Balance Carried Forward";      
+     $id = $r_count['id'];
+     $source ="".$max." Balance Carried Forward";
      $bal_q =mysql_query("INSERT INTO income_sources(source_name,amount,financial_year,church_id) VALUES ('$source','$bal','$id','$church_id')");
       if (!$bal_q){
          exit(mysql_error());
       }
       $update_query = mysql_query("UPDATE financial_year F
     SET total_income =
-    (SELECT SUM(amount) FROM income_sources 
+    (SELECT SUM(amount) FROM income_sources
     WHERE church_id = '$church_id' AND financial_year = $id)
     WHERE church_id = '$church_id' AND id = $id");
     if (!$update_query) {
@@ -106,18 +102,18 @@ if (isset($_POST['btn-year'])) {
     $sum_bill = $expenserow['Bills'];
     $balance = $sum_income - $sum_bill;
 
-    $bal_query = mysql_query("UPDATE financial_year 
+    $bal_query = mysql_query("UPDATE financial_year
     SET balance = '$balance' WHERE church_id = $church_id AND id = $id");
 
     if (!$bal_query) {
         die("error3!");
         exit(mysql_error($conn));
     }
-     
-     ?>    
+
+     ?>
       <script>
-       alert("New Year \n Balance will be carried forward!")          
-        </script>   
+       alert("New Year \n Balance will be carried forward!")
+        </script>
         <?php
     }
  if ($max > $year) {
@@ -153,11 +149,11 @@ if (isset($_POST['btn-year'])) {
                     <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                     <a href="expenses.php"> <i class="glyphicon glyphicon-apple"></i> Expenses</a>
                     <a href="bills.php"> <i class="glyphicon glyphicon-registration-mark"></i> Bills</a>
-                    <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>                    
+                    <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                     <a href="javascript:void(0);" class="icon" onClick="myFunction()">&#9776;</a>
 
-                </div> 
+                </div>
                 <div style="margin-top: 20px" class ="row">
                     <div class="col-lg-3"><a href="budget.php" class="btn btn-success w3-round-large " >&laquo; Back  </a></div>
                 </div>
@@ -173,7 +169,7 @@ if (isset($_POST['btn-year'])) {
                                 <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
                                     <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                                 </div>
-                            </div>  
+                            </div>
 <?php } ?>
 
 
@@ -186,7 +182,7 @@ if (isset($_POST['btn-year'])) {
                         </div>
                         <div >
                             <button type="submit" class="btn btn-block btn-primary" title="click to save" data-toggle="tooltip" name="btn-year"><span class="glyphicon glyphicon-save"> </span> Save</button>
-                        </div>                         
+                        </div>
                     </form>
 
                 </div>
@@ -210,7 +206,7 @@ if (isset($_POST['btn-year'])) {
             </div>
         </footer>
 
-        <script src="assets/js/navigation.js"></script>   
+        <script src="assets/js/navigation.js"></script>
         <script>
                         $(document).ready(function () {
                             $('[data-toggle="tooltip"]').tooltip();

@@ -1,21 +1,21 @@
 <?php
 ob_start();
 session_start();
-// include Database connection file 
+// include Database connection file
 include("dbconnect.php");
-$church_id = $_SESSION['user'];
+$church_id = $_SESSION['church'];
 $error = false;
 if (isset($_POST['year'])) {
 
     $year = $_POST['year'];
 
-    $data = '<div style="overflow-x:auto;padding-right: 20px; padding-left:20px"> 
-             <hr />        
+    $data = '<div style="overflow-x:auto;padding-right: 20px; padding-left:20px">
+             <hr />
  <h3  style="margin: 20px; margin-bottom: 0px"  >' . $year . ' Income Sources:</h3>
     <table class="table table-bordered table-striped">
 						<tr>
 							<th>No.</th>
-							<th>Source</th>                                                        	
+							<th>Source</th>
 							<th>Amount</th>
                                                         <th>Date</th>
 							<th>Update</th>
@@ -35,14 +35,14 @@ if (isset($_POST['year'])) {
     }
 
 
-// if query results contains rows then featch those rows 
+// if query results contains rows then featch those rows
     if (mysql_num_rows($result) > 0) {
         $number = 1;
         while ($row = mysql_fetch_assoc($result)) {
             $data .= '<tr>
 				<td>' . $number . '</td>
-				<td>' . $row['source_name'] . '</td>                                    	
-				<td>' . $row['amount'] . '</td>	
+				<td>' . $row['source_name'] . '</td>
+				<td>' . $row['amount'] . '</td>
                                     <td>' . $row['date'] . '</td>
 				<td>
 					<button onclick="GetIncomeDetails(' . $row['id'] . ')" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Update</button>
@@ -67,14 +67,14 @@ if (isset($_POST['year'])) {
 
                 $data .= '<tr>
         <td  colspan="1"></td>
-             <th class = "warning" colspan="1" > ' . $label . '</th>       
-            <th class = "warning" colspan="3"> ' . $row['total'] . '</th>            
-            
+             <th class = "warning" colspan="1" > ' . $label . '</th>
+            <th class = "warning" colspan="3"> ' . $row['total'] . '</th>
+
             </tr>';
             }
         }
     } else {
-        // records now found 
+        // records now found
         $data .= '<tr><td colspan="6">Records not found!</td></tr>';
     }
 
@@ -87,7 +87,7 @@ if (mysql_num_rows($income) == 0) {
     $error = TRUE;
     $errTyp = "warning";
     $errMSG = "No income records found for $year, if you have added refresh this page";
-} 
+}
  $sql = "SELECT balance FROM financial_year WHERE id=$id";
 $balance = mysql_query($sql);
 
@@ -96,19 +96,18 @@ while ($row = mysql_fetch_assoc($balance)) {
     $error = TRUE;
     $errTyp = "warning";
     $errMSG = "Income for $year is less than expenses! Consider adding more income";
-} 
 }
-// Design initial table header 
+}
+// Design initial table header
 if (isset($errMSG)) {
     ?>
     <div style="background-color: #ff9900" class="alert">
         <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
         <?php echo $errMSG; ?>
-    </div> 
+    </div>
     <?php
 }
 
 }
 
 ?>
- 

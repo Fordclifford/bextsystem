@@ -9,14 +9,9 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-
-
-$userRow = mysql_fetch_array($res);
 
 if (isset($_POST['update_password'])) {
-    $church_id = $_SESSION['user'];
-    // clean user inputs to prevent sql injections
+        // clean user inputs to prevent sql injections
     $pass = trim($_POST['password']);
     $pass = strip_tags($pass);
     $pass = htmlspecialchars($pass);
@@ -34,10 +29,10 @@ if (isset($_POST['update_password'])) {
     }
     if (!$error) {
         $password = hash('md5', $pass);
-        $query = "UPDATE church SET pass = '$password' WHERE id = '$church_id'";
+        $query = "UPDATE users SET passwd = '$password' WHERE id =".$_SESSION['user'];
         if (!$result = mysql_query($query)) {
             exit(mysql_error());
-        }    
+        }
     if ($query) {
         $errTyp = "success";
         $errMSG = "Successfully changed password";
@@ -54,7 +49,7 @@ if (isset($_POST['update_password'])) {
 <?php
 
 if (isset($_POST['update_email'])) {
-    $church_id = $_SESSION['user'];
+
     // clean user inputs to prevent sql injections
     $mail = trim($_POST['email']);
     $mail = strip_tags($mail);
@@ -67,7 +62,7 @@ if (isset($_POST['update_email'])) {
         $errMSG = "Please Provide a New Email Address";
     } else {
         // check email exist or not
-        $q1 = "SELECT email FROM church WHERE email ='$mail'";
+        $q1 = "SELECT email FROM users WHERE email ='$mail'";
         $results = mysql_query($q1);
         $count = mysql_num_rows($results);
         if ($count != 0) {
@@ -77,13 +72,13 @@ if (isset($_POST['update_email'])) {
             $emailError = "Provided Email is already in use.";
         }
     }
-    
-    if (!$error) {        
-        $q2 = "UPDATE church SET email = '$mail' WHERE id = '$church_id'";
+
+    if (!$error) {
+        $q2 = "UPDATE users SET email = '$mail' WHERE id =".$_SESSION['user'];
         if (!$resul = mysql_query($q2)) {
             exit(mysql_error());
         }
-    
+
     if ($q2) {
         $errTyp = "success";
         $errMSG = "Successfully changed Email";
@@ -140,7 +135,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -165,9 +160,9 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                                 </li>
                             </ul>
@@ -184,7 +179,7 @@ include_once('includes/header.php');
            <h1 align='center' class="h2"><?php echo $userRow['name']; ?> Profile. </h1>
         </div>
     </div>
-                
+
                     <div class="modal fade animate" id="update_name_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" style="width: 80%; margin: 0 auto">
@@ -209,9 +204,9 @@ include_once('includes/header.php');
                         </div>
                     </div>
                 </div>
-                
-                
-                
+
+
+
                 <div class="modal fade animate" id="update_union_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" style="width: 80%; margin: 0 auto">
@@ -227,15 +222,15 @@ include_once('includes/header.php');
                               <select  title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union_mission ?>" onchange="print_conf('conference',this.selectedIndex);" id="union_mission" name ="union_mission"></select>
 		               </div>
                             </div>
-                        
+
                           <div class="form-group">
                              <label for="conference" >Select Conference</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
                               <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $conference ?>" id="conference" name ="conference"></select>
 		             </div>
-                           </div>                    
-                                
+                           </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" title="close" data-toggle="tooltip"  class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -245,7 +240,7 @@ include_once('includes/header.php');
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal fade animate" id="update_mobile_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" style="width: 80%; margin: 0 auto">
@@ -270,14 +265,14 @@ include_once('includes/header.php');
                         </div>
                     </div>
                 </div>
-                
-                    
-               
-               
+
+
+
+
                 <div class="clearfix">
 
                 </div>
-                <div> 
+                <div>
                      <?php
                         if (isset($errMSG)) {
                             ?>
@@ -285,7 +280,7 @@ include_once('includes/header.php');
                                 <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
                                     <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                                 </div>
-                            </div>  
+                            </div>
                         <?php } ?>
                 </div>
                 <div id="email" class="collapse">
@@ -297,16 +292,16 @@ include_once('includes/header.php');
                             <input type="email" style="max-width: 200px;height: 35px;" data-toggle="tooltip" name="email" title="Enter Your New Email" class="form-control"  value="<?php echo $mail; ?>" maxlength="40"/>
                         </div>
                         <span class="text-danger"><?php echo $emailError; ?></span>
-                    </div>                   
+                    </div>
 
-                    <div style="padding: 25px; margin-bottom: 0px" class=" ">                    
+                    <div style="padding: 25px; margin-bottom: 0px" class=" ">
                         <button type="submit" title="Save Email" data-toggle="tooltip"  name="update_email" class=" btn btn-info" ><span class="glyphicon glyphicon-save"></span> Save</button>
                     </div>
 
                 </form>
                     </div>
-                
-                  
+
+
                 <div class="clearfix">
 
                 </div>
@@ -326,13 +321,13 @@ include_once('includes/header.php');
                         <input type="password" style="max-width: 200px;height: 35px" title="Confirm Your New Password"  data-toggle="tooltip" name="confirm" class="form-control" maxlength="40" />
                     </div>
 
-                    <div style="padding-top: 25px" class="form-group ">                    
+                    <div style="padding-top: 25px" class="form-group ">
                         <button type="submit" title="Save Password" data-toggle="tooltip"  name="update_password" class=" btn btn-info" onclick="return validatePassword()" ><span class="glyphicon glyphicon-save"></span> Save</button>
                     </div>
 
                 </form>
                   </div>
-                
+
                  <div class="row">
                     <div class="col-md-12">
 
@@ -342,9 +337,9 @@ include_once('includes/header.php');
 
                 </div>
            </div>
-                    <script src="assets/js/profile.js"></script> 
+                    <script src="assets/js/profile.js"></script>
         <script type= "text/javascript" src = "assets/js/conferences.js"></script>
-        <script language="javascript">print_union("union_mission");</script> 
+        <script language="javascript">print_union("union_mission");</script>
        <script type="text/javascript">
 
                         function validatePassword()

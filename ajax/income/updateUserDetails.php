@@ -11,18 +11,18 @@ if(isset($_POST))
     $id = $_POST['id'];
     $source = $_POST['source'];
     $amount = $_POST['amount'];
-     $church_id=$_SESSION['user'];
+     $church_id=$_SESSION['church'];
       $year = $_POST['year'];
-   
+
 
     // Updaste income details
-    $query = mysql_query("UPDATE income_sources SET source_name = '$source', amount = '$amount',church_id='$church_id' WHERE id = '$id'");       
+    $query = mysql_query("UPDATE income_sources SET source_name = '$source', amount = '$amount',church_id='$church_id' WHERE id = '$id'");
     if (!$query) {
-        exit(mysql_error());        
+        exit(mysql_error());
     }
     $update_query = mysql_query("UPDATE financial_year F
     SET total_income =
-    (SELECT SUM(amount) FROM income_sources 
+    (SELECT SUM(amount) FROM income_sources
     WHERE church_id = $church_id AND financial_year = $year)
     WHERE church_id = $church_id AND id = $year");
       if (!$update_query) {

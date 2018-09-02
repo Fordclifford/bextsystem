@@ -3,13 +3,13 @@
 ob_start();
 session_start();
 if (isset($_POST['source']) && isset($_POST['amount'])) {
-    // include Database connection file 
+    // include Database connection file
     include("dbconnect.php");
 
-    // get values 
+    // get values
     $source = $_POST['source'];
     $amount = $_POST['amount'];
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
     $year = $_POST['year'];
 
 
@@ -21,7 +21,7 @@ if (isset($_POST['source']) && isset($_POST['amount'])) {
     }
     $update_query = mysql_query("UPDATE financial_year F
     SET total_income =
-    (SELECT SUM(amount) FROM income_sources 
+    (SELECT SUM(amount) FROM income_sources
     WHERE church_id = $church_id AND financial_year = $year)
     WHERE church_id = $church_id AND id = $year");
     if (!$update_query) {

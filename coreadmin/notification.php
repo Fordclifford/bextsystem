@@ -33,7 +33,7 @@ $select = array('id', 'subject','comment','date','sender');
 
 //Start building query according to input parameters.
 // If search string
-if ($search_string) 
+if ($search_string)
 {
     $db->where('id', '%' . $search_string . '%', 'like');
     $db->orwhere('subject', '%' . $search_string . '%', 'like');
@@ -51,11 +51,11 @@ if ($order_by)
 $db->pageLimit = $pagelimit;
 
 //Get result of the query.
-$church = $db->arraybuilder()->paginate("comments", $page, $select);
+$comment = $db->arraybuilder()->paginate("comments", $page, $select);
 $total_pages = $db->totalPages;
 
 // get columns for order filter
-foreach ($church as $value) {
+foreach ($comment as $value) {
     foreach ($value as $col_name => $col_value) {
         $filter_options[$col_name] = $col_name;
     }
@@ -124,34 +124,34 @@ include_once 'includes/header.php';
         <thead>
             <tr><th class="header">#</th>
                 <th>Subject</th>
-				  
-                                  <th>Message</th> 
-                                  <th>Sender</th> 
-				  <th>Date</th>                 
-			                     
-			   
+
+                                  <th>Message</th>
+                                  <th>Sender</th>
+				  <th>Date</th>
+
+
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($church as $row) : ?>
+            <?php foreach ($comment as $row) : ?>
                 <tr>
 	                <td><?php echo $row['id'] ?></td>
 					<td><?php echo $row['subject'] ?></td>
 					  <td><?php echo htmlspecialchars($row['comment']); ?></td>
                                           <td><?php echo htmlspecialchars($row['sender']); ?></td>
 	              <td><?php echo htmlspecialchars($row['date']); ?></td>
-	                  
+
 	               <td>
 					<a href=""  class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
 				</tr>
 
-					
-            <?php endforeach; ?>      
+
+            <?php endforeach; ?>
         </tbody>
     </table>
 
 
-   
+
 <!--    Pagination links-->
     <div class="text-center">
 
@@ -182,4 +182,3 @@ include_once 'includes/header.php';
 
 
 <?php include_once 'includes/footer.php'; ?>
-

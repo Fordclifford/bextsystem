@@ -141,7 +141,7 @@ include_once 'includes/header.php';
     function fetch_church_data()
     {
     $.ajax({
-     url:"fetch.php",
+     url:"fetch_church.php",
      method:"POST",
      dataType:"json",
      success:function(data)
@@ -178,7 +178,7 @@ include_once 'includes/header.php';
     }
     });
 
- 
+
 
     $('#church_data').editable({
     container: 'body',
@@ -187,7 +187,7 @@ include_once 'includes/header.php';
     title: 'Union',
     type: "POST",
     dataType: 'json',
-    source: [{value: union_arr[1], text: union_arr[1]}, {value:union_arr[0], text: union_arr[0]}],
+    source: [{value: '', text: '-Please Select-'},{value: union_arr[1], text: union_arr[1]}, {value:union_arr[0], text: union_arr[0]}],
     validate: function(value){
      if($.trim(value) == '')
      {
@@ -208,7 +208,7 @@ include_once 'includes/header.php';
     title: 'Conference',
     type: "POST",
     dataType: 'json',
-    source: [{value: conference[0], text: conference[0]}, {value: conference[1], text: conference[1]},
+    source: [{value: '', text: '-Please Select-'},{value: conference[0], text: conference[0]}, {value: conference[1], text: conference[1]},
     {value: conference[2], text: conference[2]},{value: conference[3], text: conference[3]},
     {value: conference[4], text: conference[4]},{value: conference[5], text: conference[5]},
     {value: conference[6], text: conference[6]},{value: conference[7], text: conference[7]},
@@ -243,7 +243,7 @@ include_once 'includes/header.php';
 
 
 });
-    
+
     </script>
 
 

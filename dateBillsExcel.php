@@ -9,11 +9,10 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
+if ($_SESSION['user_type'] == 'treasurer') {
 
-
-$userRow = mysql_fetch_array($res);
 include_once('includes/header.php');
+}
 ?>
 <body>
 
@@ -58,7 +57,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -83,9 +82,9 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                                 </li>
                             </ul>
@@ -102,15 +101,15 @@ include_once('includes/header.php');
             <h1 class="page-header">Export to Excel</h1>
         </div>
     </div>
-             
-                
+
+
                                  <div  id="register_form_div">
                                     <form  method="post" action="exportBills.php" >
 
-                        <div  class="form-group"> 
+                        <div  class="form-group">
                             <label for="fyear"> Select Financial Year: </label>
                             <?php
-                            $c_id = $_SESSION['user'];
+                            $c_id = $_SESSION['church'];
                             $f_query = mysql_query("Select id, year from financial_year WHERE church_id = $c_id order by year DESC");
 
                             echo "<select title=\" Choose Financial Year\" style=\" data-toggle=\"tooltip\" height: 30px;\" class=\" w3-round-large\" name=\"year\" id=\"fyear\" value='<?php echo $year; ?>'>";
@@ -118,8 +117,8 @@ include_once('includes/header.php');
                             while ($row = mysql_fetch_array($f_query)) {
                                 echo "<option value='" . $row['id'] . "'>" . $row['year'] . "</option>";
                             } echo "</select>";
-                            ?>       
-                        </div> 
+                            ?>
+                        </div>
                         <span class="text-danger"> <?php echo $yrError; ?></span>
                             <div class="modal-footer">
                             <button title="Click to Print" data-toggle="tooltip" type="submit" name="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-export"></span> &nbsp; Export
@@ -129,6 +128,6 @@ include_once('includes/header.php');
                 </div>
            </div>
 
-    <script type="text/javascript" src="assets/js/dateTimePicker.js"></script>  
-        
+    <script type="text/javascript" src="assets/js/dateTimePicker.js"></script>
+
 <?php include_once('includes/footer.php'); ?>

@@ -9,10 +9,6 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-
-
-$userRow = mysql_fetch_array($res);
 
 include_once('includes/header.php');
 ?>
@@ -59,7 +55,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -92,9 +88,9 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="expenses.php"> <i class="glyphicon glyphicon-usd"></i> Expenses</a> 
+                                       <a href="expenses.php"> <i class="glyphicon glyphicon-usd"></i> Expenses</a>
 
                                 </li>
                             </ul>
@@ -111,15 +107,15 @@ include_once('includes/header.php');
             <h1 class="page-header">Reports</h1>
         </div>
     </div>
-    
+
 
 
 
 
                 <div style="padding-bottom: 30px"></div>
-                    
 
-                <!-- // Modal -->  
+
+                <!-- // Modal -->
            </div>
-    
+
 <?php include_once('includes/footer.php'); ?>

@@ -10,7 +10,7 @@ if (!isset($_SESSION['user'])) {
 }
 // select loggedin users detail
 
-
+if ($_SESSION['user_type'] == 'treasurer') {
 if (isset($_GET['edit_id']) && !empty($_GET['edit_id'])) {
     $id = $_GET['edit_id'];
     $query_edit = "SELECT church_id, source, amount, date, image, description FROM bill WHERE id =$id";
@@ -30,7 +30,7 @@ if (isset($_POST['update'])) {
     $date = date("Y-m-d", $d);  // //date
     $yr = $_POST['year'];
     $bill = $_POST['bill'];
-    $church_id = $_SESSION['user'];
+    $church_id = $_SESSION['church'];
 
     $desc = $_POST['desc']; // //description
     $imgFile = $_FILES['image']['name'];
@@ -86,7 +86,7 @@ if (isset($_POST['update'])) {
 
 
     if ($imgFile) {
-        $upload_dir = 'uploads/'; // upload directory 
+        $upload_dir = 'uploads/'; // upload directory
         $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
         $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
         $userpic = rand(1000, 1000000) . "." . $imgExt;
@@ -121,7 +121,7 @@ if (isset($_POST['update'])) {
 
         $update_query = mysql_query("UPDATE financial_year F
     SET total_bills =
-    (SELECT SUM(amount) FROM bill 
+    (SELECT SUM(amount) FROM bill
     WHERE church_id = '$church_id' AND financial_year = '$yr')
     WHERE church_id = '$church_id' AND id = '$yr'");
         if (!$update_query) {
@@ -164,6 +164,7 @@ if (isset($_POST['update'])) {
             <?php
         }
     }
+}
 }
 include_once('includes/header.php');
 ?>
@@ -243,11 +244,11 @@ include_once('includes/header.php');
                             </li>
 
                             <li>
-                                <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a> 
+                                <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
 
                             </li>
                             <li>
-                                <a href="balances.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a> 
+                                <a href="balances.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a>
 
                             </li>
                         </ul>
@@ -277,7 +278,7 @@ include_once('includes/header.php');
                         <div class="alert alert-<?php echo ($errTyp == "success") ? "success" : $errTyp; ?>">
                             <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                         </div>
-                    </div>  
+                    </div>
 <?php } ?>
 
                 <hr />
@@ -292,7 +293,7 @@ include_once('includes/header.php');
                             <option value=''>------- Select Year --------</option>
                             <?php
                             //echo $church_id= $_SESSION['user'];exit;
-                            $sql = "select * from `financial_year` where church_id=" . $_SESSION['user'];
+                            $sql = "select * from `financial_year` where church_id=" . $_SESSION['church'];
                             $resu = mysql_query($sql);
                             if (mysql_num_rows($resu) > 0) {
                                 while ($row = mysql_fetch_object($resu)) {
@@ -310,8 +311,8 @@ include_once('includes/header.php');
                         <span class="input-group-addon"><span class="glyphicon glyphicon-apple "></span></span>
 
                         <select title=" Click to Choose Category" data-toggle="tooltip" style=" height: 40px" class="form-control w3-round-large" name="category" id="category" value="<?php echo $edit_row['source']; ?>">
-                            <option value=''  >----Select Category----</option>                                                    
-                        </select>                                             
+                            <option value=''  >----Select Category----</option>
+                        </select>
 
                     </div>
                     <span class="text-danger"> <?php echo $catError; ?></span>
@@ -334,7 +335,7 @@ include_once('includes/header.php');
                         <span class="input-group-addon"><span class="glyphicon glyphicon-usd "></span></span>
                         <input style=" height: 40px ;margin: 0px" type="number" name="amount" id="amount" placeholder="Enter Amount" class="form-control w3-round-large" value="<?php echo $edit_row['amount']; ?>"/>
                     </div> <span class="text-danger"><?php echo $amtError; ?></span>
-                </div> 
+                </div>
 
                 <div class="form-group">
                     <label for="source">Payment Mode: </label>
@@ -351,11 +352,11 @@ include_once('includes/header.php');
                             <option value="cash">Cash</option>
                             <option value="cheque">Cheque </option>
                             <option value="card">Card</option>
-                            <option value="mpesa">M-Pesa</option>                                                    
+                            <option value="mpesa">M-Pesa</option>
                         </select><input style="display:none;height: 40px" class="w3-round-large form-control" name="bill" id="sources" disabled="disabled" value="<?php echo $edit_row['mode_of_payment']; ?>"
                                         onblur="if (this.value === '') {
                                                                         toggleField(this, this.previousSibling);
-                                                                    }"> 
+                                                                    }">
                     </div>
                     <span class="text-danger"><?php echo $billError; ?></span>
 
@@ -363,7 +364,7 @@ include_once('includes/header.php');
 
 
 
-                <div class="form-group"> 
+                <div class="form-group">
                     <label>Select Bill Image(optional): </label>
 
                     <div class="input-group">
@@ -388,7 +389,7 @@ include_once('includes/header.php');
                     <button title="Click to Save Record" data-toggle="tooltip" type="submit" name="update" class="btn btn-primary" ><span class="glyphicon glyphicon-save"></span> &nbsp; save</button>
                 </div>
             </form>
-       
+
         <script src ="assets/js/dateTimePicker.js"></script>
         <script type="text/javascript" src="assets/js/changeIncome.js"></script>
         <script src="assets/js/js.js"></script>

@@ -9,11 +9,6 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 // select loggedin users detail
-$res = mysql_query("SELECT * FROM church WHERE id=" . $_SESSION['user']);
-
-
-$userRow = mysql_fetch_array($res);
-
 include_once('includes/header.php');
 ?>
 <body>
@@ -59,7 +54,7 @@ include_once('includes/header.php');
                         <!-- /.dropdown -->
                     </ul>
                     <!-- /.navbar-top-links -->
-                   
+
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -92,9 +87,9 @@ include_once('includes/header.php');
                                  <li>
                                    <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
                                 </li>
-                                
+
                                 <li>
-                                       <a href="expenses.php"> <i class="glyphicon glyphicon-usd"></i> Expenses</a> 
+                                       <a href="expenses.php"> <i class="glyphicon glyphicon-usd"></i> Expenses</a>
 
                                 </li>
                             </ul>
@@ -111,24 +106,24 @@ include_once('includes/header.php');
             <h1 class="page-header">Income</h1>
         </div>
     </div>
-             <div class="row">                    
+             <div class="row">
                     <div class="col-lg-4">
                         <button title="Click to add income"   style="margin-bottom: 20px" class="btn btn-success  w3-round-large "  data-toggle="modal" data-target="#add_new_record_modal"  ><span class="glyphicon glyphicon-plus-sign"></span> Add Income</button>
                     </div>
                     <div class="col-lg-7">
-                        <button  data-toggle="collapse"  data-target="#yr_div" title="click to export income records to excel" 
+                        <button  data-toggle="collapse"  data-target="#yr_div" title="click to export income records to excel"
                                  class="btn btn-success  navbar-vav navbar-right w3-round-large"><span class="glyphicon glyphicon-export"></span>  Export Income</button>
-                    </div>                    
+                    </div>
 
 
 
-                    <div style="margin:20px" class=" row animate ">                   
-                        <form class="frm">                            
+                    <div style="margin:20px" class=" row animate ">
+                        <form class="frm">
 
-                            <div  class="col-lg-3"> 
+                            <div  class="col-lg-3">
                                 <label> Year: </label>
                                 <?php
-                                $c_id = $_SESSION['user'];
+                                $c_id = $_SESSION['church'];
                                 $f_query = mysql_query("Select id, year from financial_year WHERE church_id = $c_id order by year DESC");
 
                                 echo "<select title=\" Choose Financial Year\" data-toggle=\"tooltip\"  style=\" height: 30px;margin-right:20px\" class=\" w3-round-large\" name=\"year\" id=\"fyear\" value\"echo $fyear\">";
@@ -136,27 +131,27 @@ include_once('includes/header.php');
                                 while ($row = mysql_fetch_array($f_query)) {
                                     echo "<option value='" . $row['year'] . "'>" . $row['year'] . "</option>";
                                 } echo "</select>";
-                                ?>       
-                            </div> 
+                                ?>
+                            </div>
 
-                            <div class="col-lg-3 ">                                            
+                            <div class="col-lg-3 ">
                                 <button  style="margin-top: 25px" type="button" data-toggle="tooltip"   name="filter" id="filter" title="Click to Search" class="btn btn-info  w3-round-xxlarge"><i class="glyphicon glyphicon-search"></i> Search </button>
                             </div>
-                        </form> 
+                        </form>
                     </div>
                 </div>
-                
+
                 <div  id="yr_div" class="collapse">
                    <hr />
                     <div align='center' class="form-group"><h style="font-size: 22px;"><i class="glyphicon glyphicon-export"></i> Export Income to Excel</h>
                     </div>
 
                     <form style="margin-left: 30%"class="form-inline frm" method="post" action="exportincome.php" >
-                        
-                        <div class="form-group"> 
+
+                        <div class="form-group">
                             <label for="fyear"> Select Financial Year: </label>
                             <?php
-                            $ch_id = $_SESSION['user'];
+                            $ch_id = $_SESSION['church'];
                             $fn_query = mysql_query("Select id, year from financial_year WHERE church_id = $ch_id order by year DESC");
 
                             echo "<select title=\" Choose Financial Year\" style=\" data-toggle=\"tooltip\" height: 30px;\" class=\" w3-round-large\" name=\"year\" id=\"fyear\" value='<?php echo $year; ?>'>";
@@ -164,8 +159,8 @@ include_once('includes/header.php');
                             while ($row = mysql_fetch_array($fn_query)) {
                                 echo "<option value='" . $row['id'] . "'>" . $row['year'] . "</option>";
                             } echo "</select>";
-                            ?>       
-                        </div>                        
+                            ?>
+                        </div>
                         <div class="form-group">
                             <button title="Click to export" data-toggle="tooltip" type="submit" name="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-export"></span> &nbsp; Export
                             </button>
@@ -174,7 +169,7 @@ include_once('includes/header.php');
                 </div>
 
 
-   
+
 
                 <div class="animate row">
                     <div class="col-md-12">
@@ -188,8 +183,8 @@ include_once('includes/header.php');
                                 </div>
                             </div>
                             <?php
-                        }                        
-                        
+                        }
+
                 $error = false;
                 $sq = "SELECT * FROM income_sources WHERE church_id = '$c_id'";
                 $income = mysql_query($sq);
@@ -198,18 +193,18 @@ include_once('includes/header.php');
                     $errTyp = "warning";
                     $errorMSG = "You have not added income for your church, if you have added refresh this page";
                 }
-// Design initial table header 
+// Design initial table header
                 if (isset($errorMSG)) {
                     ?>
                     <div style="background-color: #ff9900" class="alert">
                         <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
                         <?php echo $errorMSG; ?>
-                    </div> 
+                    </div>
                     <?php
                 }
                 ?>
-                        
-                   
+
+
                         <div class="records_content"></div>
                     </div>
                 </div>
@@ -232,7 +227,7 @@ include_once('includes/header.php');
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag "></span></span>
 
                                         <?php
-                                        $chu_id = $_SESSION['user'];
+                                        $chu_id = $_SESSION['church'];
                                         $sqls = "Select id, year from financial_year WHERE church_id = '$chu_id' order by year DESC";
                                         $qs = mysql_query($sqls);
                                         echo "<select title=\" Choose Financial Year\" data-toggle=\"tooltip\"  style=\" height: 40px; width:80%\" class=\"form-control w3-round-large\" name=\"year\" id=\"year\" value\"echo $yr\">";
@@ -241,7 +236,7 @@ include_once('includes/header.php');
                                         } echo "</select>";
                                         ?>
 
-                                    </div>                              
+                                    </div>
 
                                 </div>
 
@@ -274,7 +269,7 @@ include_once('includes/header.php');
                                 <button type="button" data-toggle="tooltip"  title="dismiss modal" class="btn btn-default" data-dismiss="modal">Cancel</button>
                                 <input type="submit" value="Add Income" title="click to add record" data-toggle="tooltip"  class="btn btn-primary" onclick="addRecord()">
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
                 <!-- // Modal -->
@@ -294,7 +289,7 @@ include_once('includes/header.php');
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-flag "></span></span>
 
                                         <?php
-                                        $church_id = $_SESSION['user'];
+                                        $church_id = $_SESSION['church'];
                                         $sql = "Select id, year from financial_year WHERE church_id = '$church_id' order by year DESC";
                                         $q = mysql_query($sql);
                                         echo "<select title=\" Choose Financial Year\" data-toggle=\"tooltip\"  style=\" height: 40px\" class=\"form-control w3-round-large\" name=\"year\" id=\"update_year\" value\"echo $fr\">";
@@ -303,7 +298,7 @@ include_once('includes/header.php');
                                         } echo "</select>";
                                         ?>
 
-                                    </div>                              
+                                    </div>
 
                                 </div>
 
@@ -347,12 +342,12 @@ include_once('includes/header.php');
 
 
                 <div style="padding-bottom: 30px"></div>
-                    
 
-                <!-- // Modal -->  
+
+                <!-- // Modal -->
            </div>
      <script src="assets/js/modal.js"></script>
         <script type="text/javascript" src="assets/js/income_ajax.js"></script>
-      
+
      <script type="text/javascript" src="js/script.js"></script>
 <?php include_once('includes/footer.php'); ?>

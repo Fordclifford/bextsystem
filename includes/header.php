@@ -1,6 +1,11 @@
 <?php
 require_once './coreadmin/config/config.php';
-include_once 'count.php';
+
+if (isset($_SESSION['user'])) {
+
+    include_once 'count.php';
+  
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

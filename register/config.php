@@ -12,7 +12,7 @@ define('DB_SERVER_PASSWORD', '');
 define('DB_DATABASE', 'bext_system');
 
 // must end with a slash
-define('SITE_URL', 'http://localhost/bextsystem/register/');
+define('SITE_URL', 'http://localhost/project/bextsystem/register/');
 
 $dboptions = array(
     PDO::ATTR_PERSISTENT => FALSE,

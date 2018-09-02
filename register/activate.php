@@ -5,7 +5,7 @@ require_once './config.php';
 if (isset($_GET["token"]) && preg_match('/^[0-9A-F]{40}$/i', $_GET["token"])) {
     $token = $_GET["token"];
 }
-else { 
+else {
     $msg = "No account found";
       $msgType = "warning";
     throw new Exception("Valid token not provided.");
@@ -23,24 +23,24 @@ if ($row) {
 else {
       $msg = "Invalid Link.";
     throw new Exception("Valid token not provided.");
-        
+
 }
-     
+
 $delta = 8640;
 
 // Check to see if link has expired
 if ($_SERVER["REQUEST_TIME"] - $tstamp > $delta) {
      $msg = "Link has expired Link.";
     throw new Exception("Token has expired.");
-    
+
 }
 //
 // do one-time action here, like activating a user account
 // ...
-$email=$row['username'];
-$sql = "UPDATE `church` SET  `status` =  'approved' WHERE `email` = :email";
+$uname=$row['username'];
+$sql = "UPDATE `users` SET  `status` =  'Approved' WHERE `user_name` = :username";
         $stmt = $DB->prepare($sql);
-        $stmt->bindValue(":email", $email);
+        $stmt->bindValue(":username", $uname);
         $stmt->execute();
         $msg = "Your account has been activated you can now login.";
         $msgType = "success";
@@ -51,8 +51,8 @@ $query = $DB->prepare(
     "DELETE FROM pending_users WHERE username = ? AND token = ? ");
 $query->execute(
     array(
-        $email,
-        $token     
+        $uname,
+        $token
     )
 );
 

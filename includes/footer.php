@@ -17,7 +17,7 @@
         <script src="includes/js/bootstrap.min.js"></script>
            <script src="includes/js/jquery.validate.min.js"></script>
 
-                          
+
            <!-- The End of the Header -->
 			<script type="text/javascript">
 
@@ -48,9 +48,9 @@
                                             $('[data-toggle="tooltip"]').tooltip();
                                         });
         </script>
-        
 
-       
+
+
 
 </body>
 

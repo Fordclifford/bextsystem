@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once './config/config.php';
+require_once 'coreadmin/config/config.php';
 require_once 'includes/auth_validate.php';
-
+require_once BASE_PATH.'/lib/MysqliDb.php';
 //Get Input data from query string
 $search_string = filter_input(INPUT_GET, 'search_string');
 $filter_col = filter_input(INPUT_GET, 'filter_col');
@@ -28,11 +28,13 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'subject','comment','date','sender');
-
+// $select = array('id', 'subject','comment','date','sender');
+$user= $_SESSION['user'];
+$db->where("recipient",$user);
+$arr = $db->get('comments');
 //Start building query according to input parameters.
 // If search string
-if ($search_string) 
+if ($search_string)
 {
     $db->where('id', '%' . $search_string . '%', 'like');
     $db->orwhere('subject', '%' . $search_string . '%', 'like');
@@ -50,11 +52,11 @@ if ($order_by)
 $db->pageLimit = $pagelimit;
 
 //Get result of the query.
-$church = $db->arraybuilder()->paginate("comments", $page, $select);
+// $church = $db->arraybuilder()->paginate("comments", $page, $select);
 $total_pages = $db->totalPages;
 
 // get columns for order filter
-foreach ($church as $value) {
+foreach ($arr as $value) {
     foreach ($value as $col_name => $col_value) {
         $filter_options[$col_name] = $col_name;
     }
@@ -65,6 +67,89 @@ include_once 'includes/header.php';
 ?>
 
 <!--Main container start-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <?php if (isset($_SESSION['user']) && $_SESSION['user'] == true ) : ?>
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="">B&E Tracker</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+
+                <!-- /.dropdown -->
+    <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-envelope fa-fw"></i></a>
+<div id="notification-latest"></div>
+</li>
+
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="home.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+
+                        <li <?php echo (CURRENT_PAGE =="balance.php" || CURRENT_PAGE=="balance.php") ? 'class="active"' : '' ; ?>>
+                            <a href="bills.php"><i class="glyphicon glyphicon-registration-mark fa-fw"></i> Bills<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="bills.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                </li>
+                            <li>
+                                <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                            </li>
+                            </ul>
+                        </li>
+                        <li>
+                           <a href="expenses.php"> <i class="glyphicon glyphicon-apple"></i> Expenses</a>
+                        </li>
+                         <li>
+                           <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
+                        </li>
+
+                        <li>
+                               <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
+
+                        </li>
+                        <li>
+                        <a href="balances.php"> <i class="glyphicon glyphicon-usd"></i> Balance</a>
+
+                    </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+    <?php endif; ?>
+
 <div id="page-wrapper">
     <div class="row">
 
@@ -73,7 +158,7 @@ include_once 'includes/header.php';
         </div>
         <div class="col-lg-6" style="">
             <div class="page-action-links text-right">
-	            <a href="add_church.php?operation=create">
+	            <a href="add_notification.php?operation=create">
 	            	<button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new </button>
 	            </a>
             </div>
@@ -124,33 +209,33 @@ include_once 'includes/header.php';
             <tr>
                 <th class="header">#</th>
                 <th>Subject</th>
-				 <th>Message</th>  
-                                  <th>Sender</th>     
-				  <th>Date</th>                 
-			    <th>Delete</th>                 
-			   
+				 <th>Message</th>
+                                  <th>Sender</th>
+				  <th>Date</th>
+			    <th>Delete</th>
+
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($church as $row) : ?>
+            <?php foreach ($arr as $row) : ?>
                 <tr>
 	                <td><?php echo $row['id'] ?></td>
 					<td><?php echo $row['subject'] ?></td>
 					  <td><?php echo htmlspecialchars($row['comment']); ?></td>
                                           <td><?php echo htmlspecialchars($row['sender']); ?></td>
 	              <td><?php echo htmlspecialchars($row['date']); ?></td>
-	                  
+
 	               <td>
 					<a href=""  class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
 				</tr>
 
-					
-            <?php endforeach; ?>      
+
+            <?php endforeach; ?>
         </tbody>
     </table>
 
 
-   
+
 <!--    Pagination links-->
     <div class="text-center">
 
@@ -181,4 +266,3 @@ include_once 'includes/header.php';
 
 
 <?php include_once './includes/footer.php'; ?>
-

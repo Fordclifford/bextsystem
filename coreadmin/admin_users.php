@@ -31,11 +31,17 @@ if ($order_by == "") {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'user_name', 'user_type','email','status');
+// $db->join("church c","c.user_id=u.id", "INNER");
+$select = array('u.user_name','u.id','u.user_type','u.email','u.status',"date_created");
+
 
 // If user searches
 if ($search_string) {
     $db->where('user_name', '%' . $search_string . '%', 'like');
+    $db->orwhere('user_type', '%' . $search_string . '%', 'like');
+	 $db->orwhere('email', '%' . $search_string . '%', 'like');
+   $db->orwhere('status', '%' . $search_string . '%', 'like');
+
 }
 
 
@@ -44,12 +50,14 @@ if ($order_by) {
 }
 
 $db->pageLimit = $pagelimit;
-$result = $db->arraybuilder()->paginate("users", $page, $select);
+
+$user = $db->arraybuilder()->paginate("users u", $page, $select);
+// print_r($user);
 $total_pages = $db->totalPages;
 
 
 // get columns for order filter
-foreach ($result as $value) {
+foreach ($user as $value) {
     foreach ($value as $col_name => $col_value) {
         $filter_options[$col_name] = $col_name;
     }
@@ -71,13 +79,9 @@ foreach ($result as $value) {
 </div>
  <?php include('./includes/flash_messages.php') ?>
 
-    <?php
-    if (isset($del_stat) && $del_stat == 1) {
-        echo '<div class="alert alert-info">Successfully deleted</div>';
-    }
-    ?>
-
     <!--    Begin filter section-->
+    <div id="alert_message"></div>
+    
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="input_search" >Search</label>
@@ -120,117 +124,29 @@ foreach ($result as $value) {
                 <th>Name</th>
                 <th>User type</th>
                 <th>Email</th>
+                <!-- <th>Church</th> -->
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody id="user_data">
-        </tbody>
+              <?php foreach ($user as $row) : ?>
+                  <tr>
+                    <td><?php echo $row['id']; ?></td>
+                    <td data-name="user_name" class="user_name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['user_name'] ?></td>
+                    <td data-name="user_type" class="user_type" id="user_type" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_type']) ?></td>'
+                    <td data-name="email" id="email" class="email" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['email']) ?></td>
+                    <!-- <td data-name="church" id="church" class="church"  data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['name']) ?></td> -->
+                  <td data-name="status" id="status" class="status"  data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['status']) ?></td>
+                       <td>
+          <a href=""  class="btn btn-danger delete delete_btn" name="delete" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
+          </tr>
+             <?php endforeach; ?>
+          </tbody>
+
     </table>
 
-    <script type="text/javascript" language="javascript" >
-    $(document).ready(function(){
 
-    function fetch_user_data()
-    {
-    $.ajax({
-     url:"fetch_user.php",
-     method:"POST",
-     dataType:"json",
-     success:function(data)
-     {
-
-      for(var count=0; count<data.length; count++)
-
-      {
-       var html_data = '<tr><td>'+data[count].id+'</td>';
-       html_data += '<td data-name="user_name" class="user_name" data-type="text" data-pk="'+data[count].id+'">'+data[count].user_name+'</td>';
-       html_data += '<td data-name="user_type" class="user_type" id="user_type" data-type="select" data-pk="'+data[count].id+'">'+data[count].user_type+'</td>';
-       html_data += '<td data-name="email" id="email" class="email" data-type="text" data-pk="'+data[count].id+'">'+data[count].email+'</td>';
-      html_data += '<td data-name="status" class="status" data-type="select" data-pk="'+data[count].id+'">'+data[count].status+'</td>';
-      html_data += '<td> <a href="" data-name="delete" class="actions btn btn-danger delete_btn" data-toggle="modal"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
-
-       $('#user_data').append(html_data);
-     }
-
-}
-    });
-    }
-
-    fetch_user_data();
-
-    $('#user_data').editable({
-    container: 'body',
-    selector: 'td.user_name',
-    url: "update_user.php",
-    title: 'Username',
-    type: "POST",
-    //dataType: 'json',
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-    }
-    });
-
-    $('#user_data').editable({
-    container: 'body',
-    selector: 'td.user_type',
-    url: "update_user.php",
-    title: 'User Type',
-    type: "POST",
-    dataType: 'json',
-    source: [{value: '', text: '-Please Select-'},{value: 'super', text:'Super Admin'}, {value: 'admin', text:'Admin'},
-    {value: 'auditor', text:'Conference Auditor'},{value: 'treasurer', text:'Church Treasurer'}],
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-    }
-    });
-
-    $('#user_data').editable({
-    container: 'body',
-    selector: 'td.status',
-    url: "update_user.php",
-    title: 'Status',
-    type: "POST",
-    dataType: 'json',
-    source: [{value: '', text: '-Please Select-'}, {value: 'Approved', text: 'Approved'},{value: 'Pending', text: 'Pending'}],
-
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-    }
-    });
-
-    $('#user_data').editable({
-   container: 'body',
-   selector: 'td.email',
-   url: "update_user.php",
-   title: 'Email',
-   type: "POST",
-   dataType: 'json',
-   validate: function(value){
-    if($.trim(value) == '')
-    {
-     return 'This field is required';
-    }
-  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if(! regex.test(value))
-    {
-     return 'Invalid Email!';
-    }
-   }
-  });
-
-
-  });
-</script>
     <!--    Pagination links-->
     <div class="text-center">
 

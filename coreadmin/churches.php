@@ -28,7 +28,11 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$select = array('id', 'name', 'union_mission', 'conference', 'mobile', 'date');
+$db->join("users u", "c.user_id=u.id", "INNER");
+$select = array('u.user_name','c.id','c.name','c.union_mission','c.conference','c.mobile','c.date');
+//
+// $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
+// print_r($church);
 
 //Start building query according to input parameters.
 // If search string
@@ -37,8 +41,6 @@ if ($search_string)
     $db->where('name', '%' . $search_string . '%', 'like');
     $db->orwhere('conference', '%' . $search_string . '%', 'like');
 	 $db->orwhere('union_mission', '%' . $search_string . '%', 'like');
- $db->orwhere('email', '%' . $search_string . '%', 'like');
-
 }
 
 //If order by option selected
@@ -51,7 +53,7 @@ if ($order_by)
 $db->pageLimit = $pagelimit;
 
 //Get result of the query.
-$church = $db->arraybuilder()->paginate("church", $page, $select);
+$church = $db->arraybuilder()->paginate("church c", $page, $select);
 $total_pages = $db->totalPages;
 
 // get columns for order filter
@@ -83,6 +85,7 @@ foreach ($church as $value) {
     </div>
         <?php include('./includes/flash_messages.php') ?>
     <!--    Begin filter section-->
+    <div id="alert_message"></div>
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="input_search">Search</label>
@@ -116,12 +119,7 @@ foreach ($church as $value) {
 
         </form>
     </div>
-<!--   Filter section end-->
 
-
-
-
-<div id="alert_message"></div>
 
     <table class="table table-bordered table-striped table-condensed">
         <thead>
@@ -130,128 +128,28 @@ foreach ($church as $value) {
              <th>Union</th>
              <th>Conference</th>
               <th>Phone</th>
+               <th>Date</th>
                <th>User</th>
               <th>Actions</th>
          </tr>
         </thead>
         <tbody id="church_data">
+          <?php foreach ($church as $row) : ?>
+                <tr>
+                  <td><?php echo $row['id']; ?></td>
+	                <td data-name="name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></td>
+                  <td data-name="union_mission" class="union" id="union" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['union_mission']) ?></td>'
+	                <td data-name="conference" id="conference" class="conference" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['conference']) ?></td>
+                  <td data-name="mobile" class="mobile" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['mobile']); ?></td>
+                  <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date']); ?></td>
+                  <td data-name="user" id="user" class="user" data-original-title="Select option" data-value="0" data-type="select" data-source="fetch_user_name.php" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
+	                   <td>
+				<a href=""  class="btn btn-danger delete_church delete_btn" name="delete_church" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
+				</tr>
+           <?php endforeach; ?>
         </tbody>
        </table>
-    <script type="text/javascript" language="javascript" >
-    $(document).ready(function(){
 
-    function fetch_church_data()
-    {
-    $.ajax({
-     url:"fetch_church.php",
-     method:"POST",
-     dataType:"json",
-     success:function(data)
-     {
-      for(var count=0; count<data.length; count++)
-      {
-       var html_data = '<tr><td>'+data[count].id+'</td>';
-       html_data += '<td data-name="name" class="name" data-type="text" data-pk="'+data[count].id+'">'+data[count].name+'</td>';
-       html_data += '<td data-name="union_mission" class="union" id="union" data-type="select" data-pk="'+data[count].id+'">'+data[count].union_mission+'</td>';
-       html_data += '<td data-name="conference" id="conference" class="conference" data-type="select" data-pk="'+data[count].id+'">'+data[count].conference+'</td>';
-      html_data += '<td data-name="mobile" class="mobile" data-type="text" data-pk="'+data[count].id+'">'+data[count].mobile+'</td>';
-       html_data += '<td data-name="user" class="user" data-type="select" data-pk="'+data[count].id+'">'+data[count].user_id+'</td>';
-          html_data += '<td> <a href="" data-name="delete" class="actions btn btn-danger delete_btn" data-toggle="modal"><span class="fa fa-trash fa-2x" ></span></a></td></tr>';
-       $('#church_data').append(html_data);
-      }
-     }
-    });
-    }
-
-    fetch_church_data();
-
-    $('#church_data').editable({
-    container: 'body',
-    selector: 'td.name',
-    url: "update_church.php",
-    title: 'Church Name',
-    type: "POST",
-    //dataType: 'json',
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-   },
-   success:function(data)
-   {
-    $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-  }
-
-   });
-
-
-
-    $('#church_data').editable({
-    container: 'body',
-    selector: 'td.union',
-    url: "update_church.php",
-    title: 'Union',
-    type: "POST",
-    dataType: 'json',
-    source: [{value: '', text: '-Please Select-'},{value: union_arr[1], text: union_arr[1]}, {value:union_arr[0], text: union_arr[0]}],
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-       var regex = /^[a-zA-Z ]+$/;
-       if(! regex.test(value))
-       {
-        return 'Enter Valid Name!';
-       }
-    }
-    });
-
-    $('#church_data').editable({
-    container: 'body',
-    selector: 'td.conference',
-    url: "update_church.php",
-    title: 'Conference',
-    type: "POST",
-    dataType: 'json',
-    source: [{value: '', text: '-Please Select-'},{value: conference[0], text: conference[0]}, {value: conference[1], text: conference[1]},
-    {value: conference[2], text: conference[2]},{value: conference[3], text: conference[3]},
-    {value: conference[4], text: conference[4]},{value: conference[5], text: conference[5]},
-    {value: conference[6], text: conference[6]},{value: conference[7], text: conference[7]},
-    {value: conference[8], text: conference[8]},{value: conference[9], text: conference[9]}],
-    validate: function(value){
-     if($.trim(value) == '')
-     {
-      return 'This field is required';
-     }
-    }
-    });
-
-    $('#church_data').editable({
-   container: 'body',
-   selector: 'td.mobile',
-   url: "update_church.php",
-   title: 'Mobile',
-   type: "POST",
-   dataType: 'json',
-   validate: function(value){
-    if($.trim(value) == '')
-    {
-     return 'This field is required';
-    }
-    var regex = /^[0-9]+$/;
-    if(! regex.test(value))
-    {
-     return 'Numbers only!';
-    }
-   }
-  });
-
-
-});
-
-    </script>
 
 
 <!--    Pagination links-->

@@ -41,6 +41,8 @@
 
   <!-- select2 bootstrap -->
   <link href="assets/select2/select2-bootstrap.css" rel="stylesheet">
+  <script src="js/crud.js" type="text/javascript" ></script>
+    <script src="js/crud_church.js" type="text/javascript" ></script>
 
 
 
@@ -72,4 +74,3 @@ $('body').click(function(e){
 </body>
 
 </html>
-

@@ -1,6 +1,6 @@
 <fieldset>
     <!-- Form Name -->
-    <legend>Add new admin user</legend>
+    <legend>Add new user</legend>
     <!-- Text input-->
     <div class="form-group">
         <label class="col-md-4 control-label">User name</label>
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- radio checks -->
     <div class="form-group">
         <label class="col-md-4 control-label">User type</label>
@@ -74,7 +74,7 @@
                     <input  type="radio" name="status" value="Pending" checked="true" required="" <?php echo ($edit && $admin_account['status'] =='Pending') ? "checked": "" ; ?>/> Pending
                 </label>
             </div>
-            
+
         </div>
     </div>
     <!-- Button -->

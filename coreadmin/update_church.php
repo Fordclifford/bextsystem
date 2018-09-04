@@ -7,6 +7,7 @@ $query = "
 
 if(mysqli_query($connect, $query))
 {
- echo 'Data Updated';
+  echo $_SESSION['success'] ="Successfully Updated";
 }
+
 ?>

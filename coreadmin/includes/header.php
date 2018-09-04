@@ -17,9 +17,9 @@ require_once './config/config.php';
         <!-- Bootstrap Core CSS -->
         <link  href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
         <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-        <!--        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+               <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link  rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-        
+
         <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 <!-- <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script> -->
         <link href="messages/style.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +58,8 @@ require_once './config/config.php';
                         <!-- /.dropdown -->
 
                         <!-- /.dropdown -->
-                        <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php
+                        <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count">
+                          <?php
                                     include_once 'count.php';
                                     if ($count > 0) {
                                         echo $count;

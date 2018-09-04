@@ -62,8 +62,9 @@ foreach ($church as $value) {
     //execute only once
     break;
 }
-include_once 'includes/header.php';
+
 ?>
+<?php include_once './includes/header.php'; ?>
 
 <!--Main container start-->
 <div id="page-wrapper">
@@ -120,6 +121,7 @@ include_once 'includes/header.php';
 
 
 
+<div id="alert_message"></div>
 
     <table class="table table-bordered table-striped table-condensed">
         <thead>
@@ -175,8 +177,13 @@ include_once 'includes/header.php';
      {
       return 'This field is required';
      }
-    }
-    });
+   },
+   success:function(data)
+   {
+    $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+  }
+
+   });
 
 
 

@@ -1,4 +1,15 @@
-<?php  include_once '../config.php';   ?>
+<?php  
+$db = getDbInstance();
+  foreach( $db->get('union_mission') as $row) {
+  $unions[] = array("id" => $row['id'], "val" => $row['union_name']);
+}
+
+foreach($db->get('conference') as $row) {
+  $conferences[$row['union_id']][] = array("id" => $row['id'], "val" => $row['conf_name']);
+}
+$jsonUnions = json_encode($unions);
+$jsonConferences = json_encode($conferences);
+ ?>
 <fieldset>
 
     <div class="form-group">
@@ -6,7 +17,7 @@
         <div class="input-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-globe"></span></span>
-            <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" required="required"  class="w3-round-large form-control"  value="<?php echo $edit ? $church['union_mission'] : ''; ?>" onchange="print_conf('conference', this.selectedIndex);" id="union_mission" name ="union_mission"></select>
+            <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" required="required"  class="w3-round-large form-control"  value="<?php echo $edit ? $church['union_mission'] : ''; ?>" id="union_mission" name ="union_mission"></select>
         </div>
     </div>
 
@@ -31,13 +42,10 @@
             <span class="input-group-addon"><span class="glyphicon glyphicon-flag "></span></span>
 
             <?php
-            $church_ids = $_SESSION['user'];
-            $sqls = "Select * FROM users WHERE user_type='treasurer' ";
-            $qs = mysql_query($sqls);
+            $db->where ("user_type", 'treasurer');
             echo "<select title=\" Choose User\" data-toggle=\"tooltip\"  style=\" height: 40px\" class=\"form-control w3-round-large\" name=\"user_id\" id=\"user_id\" >";
   echo "<option value=''> -----Select User------ </option>";
-            while ($row = mysql_fetch_array($qs)) {
-
+            foreach ($db->get('users') as $row) {
                 echo "<option value='" . $row['id'] . "'>" . $row['user_name'] . "</option>";
             } echo "</select>";
             ?>
@@ -60,25 +68,3 @@
         <button type="submit" class="btn btn-warning" >Save <span class="glyphicon glyphicon-send"></span></button>
     </div>
 </fieldset>
-<script type="text/javascript">
-
-    function validatePassword()
-    {
-        if (document.login.password.value !== document.login.confirm_password.value) {
-            alert("Your passwords did not match!. Please check and register again");
-
-
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-</script>
-<script type= "text/javascript" src = "js/conferences.js"></script>
-<script language="javascript">print_union("union_mission");</script>
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>

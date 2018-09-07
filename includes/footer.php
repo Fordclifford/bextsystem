@@ -4,7 +4,7 @@
     <!-- jQuery -->
 
                     <div align='center' style="margin: auto">
-                    <p2 style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Budget and Expense Tracker  </p2>
+                    <p2 style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Income and Expense Tracker  </p2>
 
 
     <!-- Bootstrap Core JavaScript -->
@@ -43,12 +43,17 @@
 	});
 
 	</script>
+
          <script>
-                                        $(document).ready(function () {
-                                            $('[data-toggle="tooltip"]').tooltip();
-                                        });
+           $(document).ready(function () {
+             $('[data-toggle="tooltip"]').tooltip();
+             });
         </script>
 
+        
+        
+        
+        
 
 
 

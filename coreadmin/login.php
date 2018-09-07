@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once './config/config.php';
+
+
 //If User has already logged in, redirect to dashboard page.
 if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE) {
     header('Location:index.php');

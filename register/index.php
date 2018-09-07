@@ -79,7 +79,7 @@ $error=false;
                       $stmt->execute();
                 $result = $stmt->fetchAll();
 
-            $sql = "INSERT INTO `church` (`name`, `conference`,`mobile`,`union_mission`,`user_id`) VALUES " . "( :name, :conf, :mobile, :union, :user_id)";
+            $sql = "INSERT INTO `church` (`name`, `conference_id`,`mobile`,`union_id`,`user_id`) VALUES " . "( :name, :conf, :mobile, :union, :user_id)";
             $stmt = $DB->prepare($sql);
             $stmt->bindValue(":name", $name);
             $stmt->bindValue(":mobile", $mobile);
@@ -155,9 +155,27 @@ $error=false;
     }
 }
 
+$query = "SELECT id,union_name FROM union_mission";
+$stmt = $DB->prepare($query);
+$stmt->execute();
+
+  foreach($stmt->fetchAll() as $row) {
+  $unions[] = array("id" => $row['id'], "val" => $row['union_name']);
+}
+$query = "SELECT id, union_id,conf_name FROM conference";
+$stmt = $DB->prepare($query);
+$stmt->execute();
+
+foreach($stmt->fetchAll() as $row) {
+  $conferences[$row['union_id']][] = array("id" => $row['id'], "val" => $row['conf_name']);
+}
+$jsonUnions = json_encode($unions);
+$jsonConferences = json_encode($conferences);
+
+
 require_once('header.php');
 ?>
-<body>
+<body onload='loadUnions()'>
 
     <div id="wrapper">
 
@@ -188,7 +206,7 @@ require_once('header.php');
                             <label for="union" >Select Union/Mission</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                                <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union ?>" onchange="print_conf('conference', this.selectedIndex);" id="union_mission" name ="union_mission"></select>
+                                <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control"  value="<?php echo $union ?>" id="union_mission" name ="union_mission"></select>
                             </div>
 
                         </div>
@@ -282,5 +300,29 @@ require_once('header.php');
                             </div>
                         </div>
 
+                        <script type='text/javascript'>
+                          <?php
+                            echo "var unions = $jsonUnions; \n";
+                            echo "var conferences = $jsonConferences; \n";
+                          ?>
+                          function loadUnions(){
+                            var select = document.getElementById("union_mission");
+                            select.option = new Option('','Select');
+                            select.onchange = updateConferences;
+                              for(var i = 0; i < unions.length; i++){
+                              select.options[i] = new Option(unions[i].val,unions[i].id);
+                            }
+                          }
+                          function updateConferences(){
+                            var unionSelect = this;
+                            var unionid = this.value;
+                            var confSelect = document.getElementById("conference");
+                            confSelect.options[i] = new Option('','Select');
+                            confSelect.options.length = 0; //delete all options if any present
+                            for(var i = 0; i < conferences[unionid].length; i++){
+                              confSelect.options[i] = new Option(conferences[unionid][i].val,conferences[unionid][i].id);
+                            }
+                          }
+                        </script>
 
                         <?php include 'footer.php'; ?>

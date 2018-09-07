@@ -15,11 +15,8 @@ validate: function(value){
 success:function(data)
 {
   $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-
 }
-
 });
-
 
 
 $('#church_data').editable({
@@ -124,7 +121,5 @@ title: 'User',
 type: "POST",
 dataType: 'json'
 });
-
-
 
 });

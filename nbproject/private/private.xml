@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/css/bootstrap.min.css.map</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/header.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/footer.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/flash_messages.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/notification.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/index.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/view_notification.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/register.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/forms/login_type.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/css/bootstrap.min.css</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/forms/login_form.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/profile.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/assets/image/heade-2.png</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/authenticate.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/balances.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/add_notification.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/css/notification-demo-style.css</file>
+        </group>
     </open-files>
 </project-private>

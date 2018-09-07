@@ -1,153 +1,290 @@
 <?php
-ob_start();
 session_start();
-require_once 'config.php';
+require_once './config.php';
 
-// it will never let you open index(login) page if session is set
-if (isset($_SESSION['user'])) {
-    unset($_SESSION['user']);
-    session_destroy();
+// if session is not set this will redirect to login page
+require_once './includes/auth_validate.php';
+// select loggedin users detail
+if ($_SESSION['user_type'] == 'treasurer') {
+    // show permission denied message
+
+$f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['church']);
+if (mysql_num_rows($f_year) == 0) {
+    $church_id = $_SESSION['church'];
+    $year = date("Y");
+    $query_insert = mysql_query("INSERT INTO financial_year(year,church_id) VALUES ('$year','$church_id')");
+    if (!$query_insert) {
+        //die("could not execute query 2");
+        exit(mysql_error($conn));
+    }
+    ?>
+    <script>
+        alert('Hello!\n To begin a new financial year \n You will be redirected to income page to add income ...');
+        window.location.href = 'income.php';
+    </script>
+    <?php
 }
-
-
-$error = false;
-
-if (isset($_POST['btn-login'])) {
-
-    // prevent sql injections/ clear user invalid inputs
-    $email = trim($_POST['email']);
-    $email = strip_tags($email);
-    $email = htmlspecialchars($email);
-
-    $pass = trim($_POST['password']);
-    $pass = strip_tags($pass);
-    $pass = htmlspecialchars($pass);
-    // prevent sql injections / clear user invalid inputs
-
-    if (empty($email)) {
-        $error = true;
-        $errMSG = "Error! Empty username/email!";
-        $emailError = "Please enter your username or email";
-    }
-    if (empty($pass)) {
-        $error = true;
-        $errMSG = "Input Error! Empty mail/password";
-        $passError = "Please enter your password.";
-    }
-
-    $res = mysql_query("SELECT id, status, user_name,user_type, passwd FROM users WHERE email='$email' or  user_name='$email'");
-
-    $row = mysql_fetch_array($res);
-    $status = "Pending";
-    if ($row['status'] == $status) {
-        $error = true;
-        $errMSG = "Account not Active! Contact your System Admin";
-    }
-    $type = "treasurer";
-      if ($row['user_type'] != $type) {
-        $error = true;
-        $errMSG = "Failed to Authenticate!";
-    }
-
-    // if there's no error, continue to login
-    if (!$error) {
-        $password = hash('md5', $pass); // password hashing using SHA256
-        $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
-
-        if ($count == 1 && $row['passwd'] == $password) {
-          $_SESSION['user'] = $row['id'];
-          $_SESSION['user_name'] = $row['user_name'];
-          $_SESSION['user_type'] = $row['user_type'];
-          $church = mysql_query("SELECT * FROM church WHERE user_id=" . $_SESSION['user']);
-          $church_row = mysql_fetch_array($church);
-        $_SESSION['church'] = $church_row['id'];
-            header("Location: home.php");
-        } else {
-            $errMSG = "Incorrect Credentials, Try again..";
-        }
-    }
+$budget = mysql_query("SELECT expense_name,church_id FROM budget_expenses WHERE church_id=" . $_SESSION['church']);
+if (mysql_num_rows($budget) == 0) {
+    ?>
+    <script>
+        alert('Hello!\n You need to add expenses for your church\n You will be redirected to expenses page ...');
+        window.location.href = 'expenses.php';
+    </script>
+    <?php
 }
-include_once"includes/header.php";
+$income = mysql_query("SELECT source_name,church_id FROM income_sources WHERE church_id=" . $_SESSION['church']);
+if (mysql_num_rows($income) == 0) {
+    ?>
+    <script>
+        alert('Hello!\n You need to add income for your church\n You will be redirected to income page ...');
+        window.location.href = 'income.php';
+    </script>
+    <?php
+}
+}
+include_once('includes/header.php');
 ?>
 
+                <!-- Navigation -->
+                <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true ) : ?>
+                    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="">Income & Expenses Tracking System</a>
+                        </div>
+                        <!-- /.navbar-header -->
+
+                        <ul class="nav navbar-top-links navbar-right">
+                            <!-- /.dropdown -->
+
+                            <!-- /.dropdown -->
+                        <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-exclamation-triangle fa-fw"></i></a>
+    			<div id="notification-latest"></div>
+    			</li>
+                            
+    			<li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-envelope fa-fw"></i></a>
+    			<div id="notification-latest"></div>
+    			</li>
 
 
-                <div class="login_form_div w3-round-large" >
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                    </li>
 
-                    <div style="position:relative;" id="trformContainer">
+                                    <li class="divider"></li>
+                                    <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                    </li>
+                                </ul>
+                                <!-- /.dropdown-user -->
+                            </li>
+                            <!-- /.dropdown -->
+                        </ul>
+                        <!-- /.navbar-top-links -->
 
-                        <form id="trform" method="post" class="animate" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+                       
+                        <!-- /.navbar-static-side -->
+                    </nav>
+                <?php endif; ?>
+    <div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+                   <div  class=" animate row">
+                    <div class="col-md-9 col-lg-9">
 
-                            <div class="form-group">
-                                <h2 style="font-size: 15px; margin-top: 0px;"><span class="glyphicon glyphicon-user"></span> Please Sign In</h2>
-                            </div>
+                          <div class="row">
+                            <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="glyphicon glyphicon-briefcase fa-5x"></i>
+                                            </div>
 
-                            <div class="form-group">
-                                <hr />
-                            </div>
-                            <?php
-                            if (isset($errMSG)) {
-                                ?>
-                                <div class="form-group">
-                                    <div class="alert alert-danger">
-                                        <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> Budget</div>
+                                            </div>
+
+                                        </div>
                                     </div>
+                                    <a href="budget.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Go to Budget&nbsp;</span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <?php
-                            }
-                            ?>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                    <input style="height:40px" type="text" name="email" class="form-control w3-round-large" title="Enter Login Email" data-toggle="tooltip" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
+                            </div>
+                            <div data-toggle="tooltip" title="Click the link to go to expenses page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-gold">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="glyphicon glyphicon-apple fa-5x"></i>
+                                            </div>
+
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> Expenses</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <a href="expenses.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Go to Expenses&nbsp;</span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <span class="text-danger"><?php echo $emailError; ?></span>
                             </div>
+                            <div data-toggle="tooltip" title="Click the link to go to income page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-darkBlue">
+                                    <div class="panel-heading">
+                                        <div class="row">
 
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><span class=" glyphicon glyphicon-lock "></span></span>
-                                    <input style="height:40px; margin-top: 0px" type="password" name="password" title="enter password" data-toggle="tooltip" class="form-control w3-round-large" placeholder="Enter Password"  />
+                                            <div class="col-xs-3">
+                                                <i class="glyphicon glyphicon-usd fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> Income</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <a href="income.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Go to Income&nbsp;&nbsp;</span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <span class="text-danger"><?php echo $passError; ?></span>
+                            </div>
+                            <div data-toggle="tooltip" title="Click the link to go to bills page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-paleGreen">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="glyphicon glyphicon-registration-mark fa-5x"></i>
+                                            </div>
+
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> Bills</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <a href="bills.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Manage Bills&nbsp; </span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div data-toggle="tooltip" title="Click the link to go to income-expense report page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-purple">
+                                    <div class="panel-heading">
+                                        <div class="row">
+
+                                            <div class=" col-xs-3"><i class="glyphicon glyphicon-calendar fa-5x"></i>  </div>
+
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> I vs E</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <a href="income_expense_curve.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">View Report &nbsp;</span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div data-toggle="tooltip" title="Click the link to go to balance page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-yellow">
+                                    <div class="panel-heading">
+                                        <div class="row">
+
+                                            <div class="col-xs-3">
+                                                <i class="glyphicon glyphicon-bitcoin fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> Balance</div>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a href="balances.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Go to Balance&nbsp;</span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div data-toggle="tooltip" title="Click the link to go to profile page" class="col-md-3 col-lg-3">
+                                <div class="panel panel-bloodRed">
+                                    <div class="panel-heading">
+                                        <div class="row">
+
+                                            <div class="col-xs-3">
+                                                <i class="glyphicon glyphicon-user fa-5x"></i>
+                                            </div>
+
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"> Profile</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <a href="profile.php">
+                                        <div class="panel-footer">
+                                            <span class="pull-left"> Manage Profile </span>
+                                            <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
 
 
 
-                            <div >
-                                <button type="submit" title="click to sign in" data-toggle="tooltip" class="btn btn-block btn-primary" name="btn-login"><span class="glyphicon glyphicon-log-in"> </span> Sign In</button>
-                            </div>
+                        </div>
 
-
-
-                            <div style="margin: 5px">
-                                <a  style="color: #0000CC;" href="register" data-toggle="tooltip" title="click to register"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</a>
-                                <div align='right' >  <span>Forgot <a title="click to reset password" data-toggle="tooltip" style="color: #0000CC" href="reset/"> password?</a></span></div>
-                            </div>
-
-                        </form>
                     </div>
 
                 </div>
+    </div>
+   
 
-
-        <script src="assets/js/navigation.js"></script>
-        <script type="text/javascript">
-            function displayForm(c) {
-                if (c.value == "1") {
-
-                    document.getElementById("auformContainer").style.visibility = 'visible';
-                    document.getElementById("trformContainer").style.visibility = 'hidden';
-                } else if (c.value == "2") {
-                    document.getElementById("auformContainer").style.visibility = 'hidden';
-
-                    document.getElementById("trformContainer").style.visibility = 'visible';
-                } else {
-                }
-            }
-
-        </script>
-        <script type="text/javascript" src="assets/jquery-1.11.3-jquery.min.js"></script>
-        <script type="text/javascript">
-
-           <?php include_once './includes/footer.php';
+<?php include_once('includes/footer.php'); ?>

@@ -20,7 +20,7 @@ if (!$page) {
 
 // If filter types are not selected we show latest created data first
 if (!$filter_col) {
-    $filter_col = "date";
+    $filter_col = "date_created";
 }
 if (!$order_by) {
     $order_by = "Desc";
@@ -29,7 +29,7 @@ if (!$order_by) {
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
 $db->join("users u", "c.user_id=u.id", "INNER");
-$select = array('u.user_name','c.id','c.name','c.union_mission','c.conference','c.mobile','c.date');
+$select = array('u.user_name','c.id','c.union_name','c.date_created');
 //
 // $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
 // print_r($church);
@@ -38,10 +38,8 @@ $select = array('u.user_name','c.id','c.name','c.union_mission','c.conference','
 // If search string
 if ($search_string)
 {
-    $db->where('name', '%' . $search_string . '%', 'like');
-    $db->orwhere('conference', '%' . $search_string . '%', 'like');
-	 $db->orwhere('union_mission', '%' . $search_string . '%', 'like');
-}
+    $db->where('union_name', '%' . $search_string . '%', 'like');
+  	 }
 
 //If order by option selected
 if ($order_by)
@@ -53,11 +51,11 @@ if ($order_by)
 $db->pageLimit = $pagelimit;
 
 //Get result of the query.
-$church = $db->arraybuilder()->paginate("church c", $page, $select);
+$union = $db->arraybuilder()->paginate("union_mission c", $page, $select);
 $total_pages = $db->totalPages;
 
 // get columns for order filter
-foreach ($church as $value) {
+foreach ($union as $value) {
     foreach ($value as $col_name => $col_value) {
         $filter_options[$col_name] = $col_name;
     }
@@ -73,11 +71,11 @@ foreach ($church as $value) {
     <div class="row">
 
         <div class="col-lg-6">
-            <h1 class="page-header">Churches</h1>
+            <h1 class="page-header">Unions</h1>
         </div>
         <div class="col-lg-6" style="">
             <div class="page-action-links text-right">
-	            <a href="add_church.php?operation=create">
+	            <a href="add_union.php?operation=create">
 	            	<button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new </button>
 	            </a>
             </div>
@@ -89,9 +87,9 @@ foreach ($church as $value) {
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="input_search">Search</label>
-            <input type="text" style="height:30px" class="form-control" title="search by name,email,conference,union" data-toggle="tooltip" id="input_search" name="search_string" value="<?php echo $search_string; ?>">
+            <input type="text" style="height:30px" class="form-control" title="search by name" data-toggle="tooltip" id="input_search" name="search_string" value="<?php echo $search_string; ?>">
             <label for ="input_order">Order By</label>
-            <select name="filter_col"  title="order by name,email,conference,union,status" data-toggle="tooltip" class="form-control">
+            <select name="filter_col"  title="order by name,user" data-toggle="tooltip" class="form-control">
 
                 <?php
                 foreach ($filter_options as $option) {
@@ -125,26 +123,20 @@ foreach ($church as $value) {
         <thead>
          <tr> <th class="header">#</th>
              <th>Name</th>
-             <th>Union</th>
-             <th>Conference</th>
-              <th>Phone</th>
-               <th>Date</th>
+             <th>Date</th>
                <th>User</th>
               <th>Actions</th>
          </tr>
         </thead>
-        <tbody id="church_data">
-          <?php foreach ($church as $row) : ?>
+        <tbody id="union_data">
+          <?php foreach ($union as $row) : ?>
                 <tr>
                   <td><?php echo $row['id']; ?></td>
-	                <td data-name="name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></td>
-                  <td data-name="union_mission" class="union" id="union" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['union_mission']) ?></td>'
-	                <td data-name="conference" id="conference" class="conference" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['conference']) ?></td>
-                  <td data-name="mobile" class="mobile" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['mobile']); ?></td>
-                  <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date']); ?></td>
+	                <td data-name="name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['union_name'] ?></td>
+                   <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date_created']); ?></td>
                   <td data-name="user" id="user" class="user" data-original-title="Select option" data-value="0" data-type="select" data-source="fetch_user_name.php" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
 	                   <td>
-				<a href=""  class="btn btn-danger delete_church delete_btn" name="delete_church" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
+				<a href=""  class="btn btn-danger delete_union delete_btn" name="delete_union" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
 				</tr>
            <?php endforeach; ?>
         </tbody>
@@ -169,7 +161,7 @@ foreach ($church as $value) {
             echo '<ul class="pagination text-center">';
             for ($i = 1; $i <= $total_pages; $i++) {
                 ($page == $i) ? $li_class = ' class="active"' : $li_class = "";
-                echo '<li' . $li_class . '><a href="churches.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
+                echo '<li' . $li_class . '><a href="unions.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
             }
             echo '</ul></div>';
         }
@@ -178,6 +170,6 @@ foreach ($church as $value) {
     <!--    Pagination links end-->
 
 </div>
-
+<!--Main container end-->
 
 <?php include_once './includes/footer.php'; ?>

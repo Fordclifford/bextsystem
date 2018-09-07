@@ -325,8 +325,8 @@ label.error{
 }
 .frm {
     border: 0px ;
-    background: none;   
-	display: inline-block;        
+    background: none;
+	display: inline-block;
         margin:0 auto;
 }
 .btn-group *{
@@ -362,29 +362,29 @@ label.error{
     overflow:auto;
 }
 .sidebyside {
-    float:left; 
-    width:20%;      
+    float:left;
+    width:20%;
     padding-right: 100px;
 }
 .sideside {
-    float:left; 
-    width:40%;      
-    
+    float:left;
+    width:40%;
+
 }
 .side {
-    float:left; 
-    width:60%;      
-    
+    float:left;
+    width:60%;
+
 }
 .search{
             padding-bottom:10px;
-   
-    
+
+
 }
-.budget{        
+.budget{
     margin: auto;
-   
-    
+
+
 }
 .closebtn {
     margin-left: 15px;
@@ -401,43 +401,10 @@ label.error{
 .closebtn:hover {
     color: black;
 }
-.frm {
-    border: 0px ;
-    background: none;   
-	display: inline-block;        
-        margin:0 auto;
-}
-#frm {
-    border: 0px ;
-    background: none;   
-	display: inline-block;  
-        max-width: 400px;
-        margin:0 auto;
-}
-
-form {
-    border: 1px solid #f1f1f1;
-    background: #B6E0FF;
-    padding: 20px ;
-	display: inline-block;
-	border-radius: 4px;
-       
-        
-}
-.login_form_div{  
-   padding: 15px;
-    max-width: 400px;
-    margin: auto;
-  
-}
-.register_form_div{      
-      padding: 10px;   
-    margin:0 auto;
-  
-}
 .belowdiv {
-    width:300px; 
-    height:100px; 
-    border-style:solid; 
+    width:300px;
+    height:100px;
+    border-style:solid;
     margin:5px;
 }
+

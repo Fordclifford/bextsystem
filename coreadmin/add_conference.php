@@ -11,14 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $data_to_store = filter_input_array(INPUT_POST);
 
     //Insert timestamp
-    $data_to_store['date'] = date('Y-m-d H:i:s');
     $db = getDbInstance();
-    $last_id = $db->insert ('church', $data_to_store);
+    $last_id = $db->insert ('conference', $data_to_store);
 
     if($last_id)
     {
-    	$_SESSION['success'] = "Church added successfully!";
-    	header('location: churches.php');
+    	$_SESSION['success'] = "Conference added successfully!";
+    	header('location: conferences.php');
     	exit();
     }
 }
@@ -31,28 +30,24 @@ require_once 'includes/header.php';
 <div id="page-wrapper">
 <div class="row">
      <div class="col-lg-12">
-            <h2 class="page-header">Add churches</h2>
+            <h2 class="page-header">Add conference</h2>
         </div>
 
 </div>
-      	<form class="well form-horizontal" action=" "  id="church_form" method="post"  enctype="multipart/form-data">
-       <?php  include_once('./forms/church_form.php'); ?>
+  	<form class="well form-horizontal" action=" " method="post"  id="conference_form" enctype="multipart/form-data">
+       <?php  include_once('./forms/conference_form.php'); ?>
     </form>
 </div>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
-   $("#church_form").validate({
+   $("#conference_form").validate({
        rules: {
-            name: {
+            conf_name: {
                 required: true,
                 minlength: 3
-            },
-            mobile: {
-                required: true,
-                minlength: 3
-            },
+            }
         }
     });
 });

@@ -12,7 +12,7 @@ require_once './config/config.php';
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Administrator</title>
+        <title>Church Income & Expense Tracking System Administrator</title>
 
         <!-- Bootstrap Core CSS -->
         <link  href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -20,9 +20,9 @@ require_once './config/config.php';
                <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link  rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<!-- <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script> -->
-        <link href="messages/style.css" rel="stylesheet" type="text/css"/>
+        
+<script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
         <!-- MetisMenu CSS -->
         <link href="js/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@ require_once './config/config.php';
 
     </head>
 
-    <body>
+    <body onload='loadUnions()'>
 
         <div id="wrapper">
 
@@ -50,7 +50,7 @@ require_once './config/config.php';
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="">Administrator</a>
+                        <a class="navbar-brand" href="">Church Income & Expense Tracking System Administrator</a>
                     </div>
                     <!-- /.navbar-header -->
 
@@ -64,7 +64,7 @@ require_once './config/config.php';
                                     if ($count > 0) {
                                         echo $count;
                                     }
-                                    ?></span><i class="fa fa-envelope fa-fw"></i></a>
+                                    ?></span><i class="fa fa-comment fa-fw"></i></a>
                             <div id="notification-latest"></div>
                         </li>
 
@@ -94,7 +94,7 @@ require_once './config/config.php';
                                 </li>
 
                                 <li <?php echo (CURRENT_PAGE == "churches.php" || CURRENT_PAGE == "add_church.php") ? 'class="active"' : ''; ?>>
-                                    <a href="#"><i class="fa fa-user-circle fa-fw"></i> churches<span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-globe fa-fw"></i> churches<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a href="churches.php"><i class="fa fa-list fa-fw"></i>List all</a>
@@ -112,6 +112,28 @@ require_once './config/config.php';
                                         </li>
                                         <li>
                                             <a href="add_admin.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li <?php echo (CURRENT_PAGE == "unions.php" || CURRENT_PAGE == "add_union.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-flag fa-fw"></i> unions<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="unions.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                        </li>
+                                        <li>
+                                            <a href="add_union.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li <?php echo (CURRENT_PAGE == "conferences.php" || CURRENT_PAGE == "add_conference.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-asterik fa-fw"></i> conferences<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="conferences.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                        </li>
+                                        <li>
+                                            <a href="add_conference.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
                                         </li>
                                     </ul>
                                 </li>

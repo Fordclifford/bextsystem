@@ -44,7 +44,11 @@
   <script src="js/crud.js" type="text/javascript" ></script>
     <script src="js/crud_church.js" type="text/javascript" ></script>
 
-
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
   <script type="text/javascript">
 
@@ -68,6 +72,30 @@ $('body').click(function(e){
   }
 });
 });
+</script>
+<script type='text/javascript'>
+  <?php
+    echo "var unions = $jsonUnions; \n";
+    echo "var conferences = $jsonConferences; \n";
+  ?>
+  function loadUnions(){
+    var select = document.getElementById("union_mission");
+    select.option = new Option('','Select');
+    select.onchange = updateConferences;
+      for(var i = 0; i < unions.length; i++){
+      select.options[i] = new Option(unions[i].val,unions[i].id);
+    }
+  }
+  function updateConferences(){
+    var unionSelect = this;
+    var unionid = this.value;
+    var confSelect = document.getElementById("conference");
+    confSelect.options[i] = new Option('','Select');
+    confSelect.options.length = 0; //delete all options if any present
+    for(var i = 0; i < conferences[unionid].length; i++){
+      confSelect.options[i] = new Option(conferences[unionid][i].val,conferences[unionid][i].id);
+    }
+  }
 </script>
 
 

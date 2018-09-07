@@ -9,8 +9,6 @@ if ($_SESSION['user_type'] !== 'super') {
     echo 'Permission Denied';
     exit();
 }
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$data_to_store = filter_input_array(INPUT_POST);
@@ -40,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $last_id = $db->insert ('users', $data_to_store);
         if($last_id)
     {
-    	$_SESSION['success'] = "Admin user added successfully!";
+    	$_SESSION['success'] = "User added successfully!";
     	header('location: admin_users.php');
     	exit();
     }
@@ -71,12 +69,27 @@ require_once 'includes/header.php';
 
       </div>
   <?php } ?>
-	<form class="well form-horizontal" action=" " method="post"  id="contact_form" enctype="multipart/form-data">
+	<form class="well form-horizontal" action=" " method="post"  id="user_form" enctype="multipart/form-data">
 		<?php include_once './forms/admin_users_form.php'; ?>
 	</form>
 </div>
 
-
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#user_form").validate({
+       rules: {
+            user_name: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                minlength: 3
+            },
+        }
+    });
+});
+</script>
 
 
 <?php include_once 'includes/footer.php'; ?>

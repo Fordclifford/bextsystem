@@ -1,10 +1,10 @@
 <?php
 require_once './coreadmin/config/config.php';
 
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['user_logged_in'])) {
 
     include_once 'count.php';
-  
+
 }
 ?>
 <!DOCTYPE html>
@@ -18,22 +18,23 @@ if (isset($_SESSION['user'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>B&E System</title>
+        <title>I&E Tracking System</title>
 
         <link rel="shortcut icon" href="assets/image/favicon.png" type="image/x-icon" />
          <link rel="stylesheet" href="assets/css/w3.css" type="text/css"/>
-         <link rel="stylesheet" href="coreadmin/messages/style.css" type="text/css"/>
+         <link rel="stylesheet" href="coreadmin/css/style.css" type="text/css"/>
 
 
         <!-- Bootstrap Core CSS -->
         <link  rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+		
+    
 
         <!-- MetisMenu CSS -->
         <link href="includes/js/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom CSS -->
 
-        <link href="includes/css/sb-admin-2.css" rel="stylesheet">
+        <link href="includes/css/sb-admin.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="includes/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -47,3 +48,6 @@ if (isset($_SESSION['user'])) {
 
 
     </head>
+    <body>
+          <div id="wrapper">
+

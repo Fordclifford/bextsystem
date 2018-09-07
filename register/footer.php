@@ -10,7 +10,7 @@
     <!-- Bootstrap Core JavaScript -->
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../includes/js/metisMenu/metisMenu.min.js"></script>
-   
+
     <!-- Custom Theme JavaScript -->
     <script src="../includes/js/sb-admin-2.js"></script>
              <script src="../includes/js/jquery.validate.min.js"></script>
@@ -139,8 +139,6 @@
     }
 </script>
 
-<script type= "text/javascript" src = "../assets/js/conferences.js"></script>
-<script language="javascript">print_union("union_mission");</script>
 
 </body>
 </html>

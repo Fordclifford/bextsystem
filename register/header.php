@@ -32,7 +32,7 @@ $select = array('id', 'subject','comment','date');
         <link href="../includes/js/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom CSS -->
 
-        <link href="../includes/css/sb-admin-2.css" rel="stylesheet">
+        <link href="../includes/css/sb-admin.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="../includes/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 

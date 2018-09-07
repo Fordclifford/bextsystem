@@ -2,7 +2,7 @@
 session_start();
 require_once 'coreadmin/config/config.php';
 require_once 'includes/auth_validate.php';
-require_once BASE_PATH.'/lib/MysqliDb.php';
+
 //Get Input data from query string
 $search_string = filter_input(INPUT_GET, 'search_string');
 $filter_col = filter_input(INPUT_GET, 'filter_col');
@@ -29,7 +29,7 @@ if (!$order_by) {
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
 // $select = array('id', 'subject','comment','date','sender');
-$user= $_SESSION['user'];
+$user= $_SESSION['user_logged_in'];
 $db->where("recipient",$user);
 $arr = $db->get('comments');
 //Start building query according to input parameters.
@@ -70,7 +70,7 @@ include_once 'includes/header.php';
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php if (isset($_SESSION['user']) && $_SESSION['user'] == true ) : ?>
+    <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true ) : ?>
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -210,19 +210,22 @@ include_once 'includes/header.php';
                 <th class="header">#</th>
                 <th>Subject</th>
 				 <th>Message</th>
-                                  <th>Sender</th>
+                   <th>Sender</th>
 				  <th>Date</th>
 			    <th>Delete</th>
 
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($arr as $row) : ?>
+            <?php foreach ($arr as $row) : 
+                $db->where('id',$row['sender']);
+           foreach ($db->get('users') as $row1):
+                ?>
                 <tr>
 	                <td><?php echo $row['id'] ?></td>
 					<td><?php echo $row['subject'] ?></td>
 					  <td><?php echo htmlspecialchars($row['comment']); ?></td>
-                                          <td><?php echo htmlspecialchars($row['sender']); ?></td>
+                                          <td><?php echo htmlspecialchars($row1['user_name']); ?></td>
 	              <td><?php echo htmlspecialchars($row['date']); ?></td>
 
 	               <td>
@@ -230,7 +233,9 @@ include_once 'includes/header.php';
 				</tr>
 
 
-            <?php endforeach; ?>
+            <?php endforeach;
+            endforeach;
+            ?>
         </tbody>
     </table>
 

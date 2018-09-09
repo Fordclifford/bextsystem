@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 //We are using same form for adding and editing. This is a create form so declare $edit = false.
 $edit = false;
-
 require_once 'includes/header.php';
 ?>
 <div id="page-wrapper">
@@ -52,5 +51,17 @@ $(document).ready(function(){
     });
 });
 </script>
+<script type="text/javascript">
+  <?php
+                            echo "var unions = $jsonUnions; \n";
+                           
+                          ?>
+                          function loadUnions(){
+                            var select = document.getElementById("union_mission");
+                                 for(var i = 0; i < unions.length; i++){
+                              select.options[i] = new Option(unions[i].val,unions[i].id);
+                            }
+                          }
+                          </script>
 
 <?php include_once 'includes/footer.php'; ?>

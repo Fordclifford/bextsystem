@@ -1,26 +1,32 @@
 <?php
 //update.php
 $error=false;
-$connect = mysqli_connect("localhost", "root", "", "bext_system");
-if ($_POST["name"] =="email" || $_POST["name"]=="user_name"){
- $sql2 = "SELECT * from users where ".$_POST["name"]." = '".$_POST["value"]."'";
- $result = mysqli_query($connect, $sql2);
- if( $count = mysqli_num_rows($result)>0)
+//update.php
+session_start();
+require_once './config/config.php';
+require_once 'includes/auth_validate.php';
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_POST["name"] =="email" || $_POST["name"]=="user_name"){
+        $db = getDbInstance();
+        $db->where($_POST["name"],$_POST["value"]);
+       if( $db->getValue ("users", "count(*)")>0)
  {
-echo  $errMSG = $_POST["name"]." Already Taken!";
+echo  $_SESSION['failure'] = $_POST["name"]." Already Taken!";
    $error=true;
-   $errTyp="danger";
  }
 }
-if(!$error){
-$query = "
- UPDATE users SET ".$_POST["name"]." = '".$_POST["value"]."'
- WHERE id = '".$_POST["pk"]."'";
+    if(!$error){
+  $db = getDbInstance();
+$data = Array($_POST["name"] => $_POST["value"]);      
+$db->where('id',$_POST["pk"]);
+$last_id=$db->update('users', $data);
 
- if(mysqli_query($connect, $query))
- {
+if($last_id)
+{
+    	echo $_SESSION['success'] ="Successfully Updated ".$_POST["name"];
+}
 
-  echo $_POST["name"]. ' Successfully Updated';
- }
+
+   }
 }
 ?>

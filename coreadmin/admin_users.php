@@ -4,11 +4,13 @@ require_once './config/config.php';
 require_once 'includes/auth_validate.php';
 
 //Only super admin is allowed to access this page
-if ($_SESSION['user_type'] !== 'super') {
+
+if ($_SESSION['user_type'] != 'super') {
     // show permission denied message
+
     header('HTTP/1.1 401 Unauthorized', true, 401);
 
-    exit("401 Unauthorized");
+   exit("401 Unauthorized");
 }
 //Get data from query string
 $search_string = filter_input(INPUT_GET, 'search_string');
@@ -31,7 +33,7 @@ if ($order_by == "") {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-// $db->join("church c","c.user_id=u.id", "INNER");
+
 $select = array('u.user_name','u.id','u.user_type','u.email','u.status',"date_created");
 
 
@@ -124,7 +126,7 @@ foreach ($user as $value) {
                 <th>Name</th>
                 <th>User type</th>
                 <th>Email</th>
-                <!-- <th>Church</th> -->
+                <th>Date Added</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
@@ -136,8 +138,9 @@ foreach ($user as $value) {
                     <td data-name="user_name" class="user_name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['user_name'] ?></td>
                     <td data-name="user_type" class="user_type" id="user_type" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_type']) ?></td>'
                     <td data-name="email" id="email" class="email" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['email']) ?></td>
-                    <!-- <td data-name="church" id="church" class="church"  data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['name']) ?></td> -->
-                  <td data-name="status" id="status" class="status"  data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['status']) ?></td>
+                    <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date_created']); ?></td>
+                 
+                    <td data-name="status" id="status" class="status"  data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['status']) ?></td>
                        <td>
           <a href=""  class="btn btn-danger delete delete_btn" name="delete" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
           </tr>

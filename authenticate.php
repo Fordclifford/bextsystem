@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $remember = filter_input(INPUT_POST, 'remember');
     $user_type = filter_input(INPUT_POST, 'user_type');
     $passwd=  md5($passwd);
+    $usertype=array("admin","super","auditor");	
 //$users=array("super","auditor","admin");
     //Get DB instance. function is defined in config.php
     if ($user_type=="treasurer"){
@@ -19,7 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
       if ($db->count >= 1) {
         $_SESSION['user_logged_in'] = TRUE;
         $_SESSION['user_type'] = $row[0]['user_type'];
-        $db = getDbInstance();
+   if($row[0]['status'] == 'Pending'){
+       $_SESSION['login_failure'] = "Error! Kindly check your email/contact admin to activate your account";
+   }else{
+        
        $_SESSION['user_logged_in'];
         $db->where("user_id",  $_SESSION['user_logged_in']);
         $row = $db->get('church');
@@ -32,8 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         header('Location:index.php');
         exit;
     }
-    } 
-    if ($user_type!="treasurer"){
+      }
+	 else {
+        $_SESSION['login_failure'] = "Invalid credentials";
+        header('Location:login.php');
+        exit;
+    }
+    }
+	
+    if (in_array($user_type,$usertype)){
         
      $db = getDbInstance();
     $db->where ("user_name", $username);
@@ -51,14 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
        	}
         header('Location:coreadmin/index.php');
         exit;
-    } 
-        
     }
-    
-    else {
+ else {
         $_SESSION['login_failure'] = "Invalid credentials";
         header('Location:login.php');
         exit;
+    }	
+        
     }
+    
+   
 }
 

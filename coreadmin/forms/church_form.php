@@ -12,38 +12,44 @@ $jsonConferences = json_encode($conferences);
  ?>
 <fieldset>
 
-    <div class="form-group">
-        <label for="union" >Select Union/Mission</label>
-        <div class="input-group">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-globe"></span></span>
-            <select title="union" data-toggle="tooltip" style="height:40px;margin-top: 0px" required="required"  class="w3-round-large form-control"  value="<?php echo $edit ? $church['union_mission'] : ''; ?>" id="union_mission" name ="union_mission"></select>
+<div class="form-group">
+        <label class="col-md-4 control-label">Union/Mission</label>
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                <select  style="height:40px" id="union_mission" name="union_id" placeholder="union" class="form-control"  autocomplete="off"></select>
+            </div>
+        </div>
+    </div>
+  <div class="form-group">
+        <label class="col-md-4 control-label">Conference</label>
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                <select  style="height:40px" id="conference" name="conference_id" placeholder="Conference" class="form-control"  autocomplete="off"></select>
+            </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="conference" >Select Conference</label>
-        <div class="input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-            <select title="Conference" data-toggle="tooltip" style="height:40px;margin-top: 0px" class="w3-round-large form-control" required="required"   value="<?php echo $edit ? $church['conference'] : ''; ?>" id="conference" name ="conference"></select>
-        </div>  </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-cog"></span></span>
-            <input title="Enter Church Name" data-toggle="tooltip" style="height:40px;margin-top: 0px" type="text" name="name" required="required"  placeholder="Church Name e.g Nairobi Central SDA" class="form-control w3-round-large"  value="<?php echo $edit ? $church['name'] : ''; ?>" maxlength="40" />
+   <div class="form-group">
+        <label class="col-md-4 control-label">Church name</label>
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-cog"></i></span>
+                <input style="height:40px" type="text" name="name" placeholder="church name" class="form-control"  autocomplete="off">
+            </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <label>Select User: </label>
-        <div class="input-group">
-
-            <span class="input-group-addon"><span class="glyphicon glyphicon-flag "></span></span>
-
+   <div class="form-group">
+        <label class="col-md-4 control-label">User</label>
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+   
             <?php
             $db->where ("user_type", 'treasurer');
-            echo "<select title=\" Choose User\" data-toggle=\"tooltip\"  style=\" height: 40px\" class=\"form-control w3-round-large\" name=\"user_id\" id=\"user_id\" >";
+            echo "<select title=\" Choose User\"   style=\" height: 40px\" class=\"form-control w3-round-large\" name=\"user_id\" id=\"user_id\" >";
   echo "<option value=''> -----Select User------ </option>";
             foreach ($db->get('users') as $row) {
                 echo "<option value='" . $row['id'] . "'>" . $row['user_name'] . "</option>";
@@ -53,15 +59,18 @@ $jsonConferences = json_encode($conferences);
         </div>
 
     </div>
+   </div>
 
 
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-            <input title="Enter Mobile Number" data-toggle="tooltip" required="required"  style="height:40px;margin-top: 0px" type="text" placeholder="Contact Number e.g. 0712345678" name="mobile" class="form-control w3-round-large"  value="<?php echo $edit ? $church['mobile'] : ''; ?>" maxlength="40" />
-        </div> </div>
-
-
+   <div class="form-group">
+        <label class="col-md-4 control-label">Church name</label>
+        <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                <input style="height:40px" type="text" name="mobile" placeholder="Mobile Number" class="form-control"  autocomplete="off">
+            </div>
+        </div>
+    </div>
 
     <div class="form-group text-center">
         <label></label>

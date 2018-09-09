@@ -28,8 +28,10 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$db->join("users u", "c.user_id=u.id", "INNER");
-$select = array('u.user_name','c.id','c.name','c.union_mission','c.conference','c.mobile','c.date');
+$db->join("users u", "c.user_id=u.id", "LEFT");
+$db->join("conference n", "c.conference_id=n.id", "LEFT");
+$db->join("union_mission m", "c.union_id=m.id", "LEFT");
+$select = array('u.user_name','c.id','c.name','m.union_name','n.conf_name','c.mobile','c.date');
 //
 // $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
 // print_r($church);
@@ -65,7 +67,24 @@ foreach ($church as $value) {
     break;
 }
 
-?>
+$dbs = getDbInstance();
+  foreach( $dbs->get('union_mission') as $row) {
+  $unions[] = array("value" => $row['id'], "text" => $row['union_name']);
+}
+
+foreach($dbs->get('conference') as $row) {
+  $conferences[] = array("value" => $row['id'], "text" => $row['conf_name']);
+}
+$d = getDbInstance();
+$d->where('user_type','treasurer');
+foreach($d->get('users') as $row) {
+  $users[] = array("value" => $row['id'], "text" => $row['user_name']);
+}
+ $jsonUsers = json_encode($users);
+$jsonUnions = json_encode($unions);
+ $jsonConferences = json_encode($conferences);
+ ?>
+
 <?php include_once './includes/header.php'; ?>
 
 <!--Main container start-->
@@ -125,10 +144,11 @@ foreach ($church as $value) {
         <thead>
          <tr> <th class="header">#</th>
              <th>Name</th>
+             <th>Phone</th>
              <th>Union</th>
              <th>Conference</th>
-              <th>Phone</th>
-               <th>Date</th>
+              
+               <th>Date Added</th>
                <th>User</th>
               <th>Actions</th>
          </tr>
@@ -138,11 +158,11 @@ foreach ($church as $value) {
                 <tr>
                   <td><?php echo $row['id']; ?></td>
 	                <td data-name="name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></td>
-                  <td data-name="union_mission" class="union" id="union" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['union_mission']) ?></td>'
-	                <td data-name="conference" id="conference" class="conference" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['conference']) ?></td>
-                  <td data-name="mobile" class="mobile" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['mobile']); ?></td>
+                         <td data-name="mobile" class="phone" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['mobile']); ?></td>
+                  <td data-name="union_id" class="union_id" data-original-title="Select Union/Mission" id="union" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['union_name']) ?></td>'
+	                <td data-name="conference_id" data-original-title="Select Conference" id="conference" class="conference_id" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['conf_name']) ?></td>
                   <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date']); ?></td>
-                  <td data-name="user" id="user" class="user" data-original-title="Select option" data-value="0" data-type="select" data-source="fetch_user_name.php" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
+                  <td data-name="user_id" id="user" class="user_id" data-original-title="Select User" data-type="select"  data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
 	                   <td>
 				<a href=""  class="btn btn-danger delete_church delete_btn" name="delete_church" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
 				</tr>
@@ -178,6 +198,63 @@ foreach ($church as $value) {
     <!--    Pagination links end-->
 
 </div>
+ <script type="text/javascript">
+     $(document).ready(function(){
+<?php echo "var unions = $jsonUnions; \n";
+echo "var conferences = $jsonConferences; \n";
+echo "var users = $jsonUsers; \n";?>
+$('#church_data').editable({
+container: 'body',
+selector: 'td.conference_id',
+url: "update_church.php",
+title: 'Conference',
+type: "POST",
+dataType: 'json',
+source: function(){
+   return conferences;
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
+}
+});
 
+$('#church_data').editable({
+container: 'body',
+selector: 'td.user_id',
+url: "update_church.php",
+title: 'User',
+type: "POST",
+dataType: 'json',
+source: function(){
+   return users;
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+}
+});
+
+$('#church_data').editable({
+container: 'body',
+selector: 'td.union_id',
+url: "update_church.php",
+title: 'Union',
+type: "POST",
+dataType: 'json',
+source: function(){
+   return unions;
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+}
+});
+});
+  </script>
+  <script src="js/crud_church.js" type="text/javascript" >
+	</script>
 <?php include_once './includes/footer.php'; ?>

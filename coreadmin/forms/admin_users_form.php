@@ -52,6 +52,12 @@
                     <input type="radio" name="user_type" value="auditor" required="" <?php echo ($edit && $admin_account['user_type'] =='auditor') ? "checked": "" ; ?>/> Conference Auditor
                 </label>
             </div>
+            <div class="radio">
+                <label>
+                    <?php //echo $admin_account['admin_type'] ?>
+                    <input type="radio" name="user_type" value="union_auditor" required="" <?php echo ($edit && $admin_account['user_type'] =='auditor') ? "checked": "" ; ?>/> Union Auditor
+                </label>
+            </div>
              <div class="radio">
                 <label>
                     <?php //echo $admin_account['admin_type'] ?>

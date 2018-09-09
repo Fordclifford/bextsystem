@@ -28,7 +28,7 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$db->join("users u", "c.user_id=u.id", "INNER");
+$db->join("users u", "c.user_id=u.id", "LEFT");
 $select = array('u.user_name','c.id','c.union_name','c.date_created');
 //
 // $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
@@ -39,7 +39,7 @@ $select = array('u.user_name','c.id','c.union_name','c.date_created');
 if ($search_string)
 {
     $db->where('union_name', '%' . $search_string . '%', 'like');
-  	 }
+}
 
 //If order by option selected
 if ($order_by)
@@ -62,6 +62,17 @@ foreach ($union as $value) {
     //execute only once
     break;
 }
+
+
+$d = getDbInstance();
+
+$d->where('user_type','union_auditor');
+foreach($d->get('users') as $row) {
+  $users[] = array("value" => $row['id'], "text" => $row['user_name']);
+}
+ $jsonUsers = json_encode($users);
+
+
 
 ?>
 <?php include_once './includes/header.php'; ?>
@@ -123,7 +134,7 @@ foreach ($union as $value) {
         <thead>
          <tr> <th class="header">#</th>
              <th>Name</th>
-             <th>Date</th>
+             <th>Date Added</th>
                <th>User</th>
               <th>Actions</th>
          </tr>
@@ -132,9 +143,9 @@ foreach ($union as $value) {
           <?php foreach ($union as $row) : ?>
                 <tr>
                   <td><?php echo $row['id']; ?></td>
-	                <td data-name="name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['union_name'] ?></td>
+	                <td data-name="union_name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['union_name'] ?></td>
                    <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date_created']); ?></td>
-                  <td data-name="user" id="user" class="user" data-original-title="Select option" data-value="0" data-type="select" data-source="fetch_user_name.php" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
+                  <td data-name="user_id" id="user" class="user" data-original-title="Select option" data-value="0" data-type="select"  data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
 	                   <td>
 				<a href=""  class="btn btn-danger delete_union delete_btn" name="delete_union" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
 				</tr>
@@ -171,5 +182,63 @@ foreach ($union as $value) {
 
 </div>
 <!--Main container end-->
+<script type="text/javascript">
+<?php echo "var users = $jsonUsers; \n";?>
+$(document).ready(function () {
+$('#union_data').editable({
+container: 'body',
+selector: 'td.user',
+url: "update_union.php",
+title: 'User',
+type: "POST",
+dataType: 'json',
+source: function(){
+   return users;
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
+}
+});
+
+$('#union_data').editable({
+container: 'body',
+selector: 'td.name',
+url: "update_union.php",
+title: 'Union Name',
+type: "POST",
+//dataType: 'json',
+validate: function(value){
+ if($.trim(value) == '')
+ {
+  return 'This field is required';
+ }
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+}
+});
+
+$(document).on('click', '.delete_union', function(){
+var id = $(this).attr("id");
+ if(confirm("Are you sure you want to remove this?"))
+{
+$.ajax({
+ url:"delete_union.php",
+ method:"POST",
+ data:{id:id},
+ success:function(data){
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+ }
+});
+setInterval(function(){
+ $('#alert_message').html('');
+}, 500);
+}
+});
+
+  });
+  </script>
 <?php include_once './includes/footer.php'; ?>

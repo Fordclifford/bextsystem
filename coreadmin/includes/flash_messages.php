@@ -22,7 +22,7 @@ if(isset($_SESSION['info']))
 {
 echo '<div class="alert alert-info alert-dismissable">
    		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    		'. $_SESSION['info'].'
+    		<strong>Success! </strong>'. $_SESSION['info'].'
   	  </div>';
   unset($_SESSION['info']);
 }

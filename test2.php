@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-class6
+
 <head>
     <script src="assets/zingchart/zingchart.min.js"></script>
   <script>
@@ -21,7 +21,7 @@ class6
     <div class="glyphicon glyphicon-subtitles" id='myChart'></div>
   <script>
     var myConfig = {
-      type: "bar",
+      type: "line",
       plotarea: {
         adjustLayout: true
       },

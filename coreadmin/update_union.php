@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 $db = getDbInstance();
 $data = Array($_POST["name"] => $_POST["value"]);      
 $db->where('id',$_POST["pk"]);
-$last_id=$db->update('church', $data);
+$last_id=$db->update('union_mission', $data);
 
      if($last_id)
 {

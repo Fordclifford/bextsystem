@@ -22,6 +22,7 @@ require_once './config/config.php';
 
         
 <script src="assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
         <!-- MetisMenu CSS -->

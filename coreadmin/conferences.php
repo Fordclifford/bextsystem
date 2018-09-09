@@ -28,8 +28,8 @@ if (!$order_by) {
 
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
-$db->join("users u", "c.user_id=u.id", "INNER");
-$db->join("union_mission m", "c.union_id=m.id", "INNER");
+$db->join("users u", "c.user_id=u.id", "LEFT");
+$db->join("union_mission m", "c.union_id=m.id", "LEFT");
 $select = array('u.user_name','c.id','m.union_name','c.conf_name','c.date_created');
 //
 // $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
@@ -40,7 +40,7 @@ $select = array('u.user_name','c.id','m.union_name','c.conf_name','c.date_create
 if ($search_string)
 {
     $db->where('conf_name', '%' . $search_string . '%', 'like');
-  	 $db->orwhere('union_id', '%' . $search_string . '%', 'like');
+  $db->orwhere('union_name', '%' . $search_string . '%', 'like');
 }
 
 //If order by option selected
@@ -64,6 +64,20 @@ foreach ($conf as $value) {
     //execute only once
     break;
 }
+
+$dbs = getDbInstance();
+  foreach( $dbs->get('union_mission') as $row) {
+  $unions[] = array("value" => $row['id'], "text" => $row['union_name']);
+}
+
+$d = getDbInstance();
+$d->where('user_type','auditor');
+foreach($d->get('users') as $row) {
+  $users[] = array("value" => $row['id'], "text" => $row['user_name']);
+}
+ $jsonUsers = json_encode($users);
+$jsonUnions = json_encode($unions);
+
 
 ?>
 <?php include_once './includes/header.php'; ?>
@@ -126,7 +140,7 @@ foreach ($conf as $value) {
          <tr> <th class="header">#</th>
              <th>Name</th>
              <th>Union</th>
-              <th>Date</th>
+              <th>Date Added</th>
                <th>User</th>
               <th>Actions</th>
          </tr>
@@ -135,10 +149,10 @@ foreach ($conf as $value) {
           <?php foreach ($conf as $row) : ?>
                 <tr>
                   <td><?php echo $row['id']; ?></td>
-	                <td data-name="name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['conf_name'] ?></td>
-                  <td data-name="union_mission" class="union" id="union" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['union_name']) ?></td>'
+	                <td data-name="conf_name" class="name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['conf_name'] ?></td>
+                  <td data-name="union_id" class="union_id" id="union" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['union_name']) ?></td>'
 	                <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date_created']); ?></td>
-                  <td data-name="user" id="user" class="user" data-original-title="Select option" data-value="0" data-type="select" data-source="fetch_user_name.php" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
+                  <td data-name="user_id" id="user" class="user" data-original-title="Select User" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_name']) ?></td>
 	                   <td>
 				<a href=""  class="btn btn-danger delete_conf delete_btn" name="delete_conf" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
 				</tr>
@@ -174,11 +188,85 @@ foreach ($conf as $value) {
     <!--    Pagination links end-->
 
 </div>
+
+ <script type="text/javascript">
+<?php echo "var unions = $jsonUnions; \n";
+echo "var users = $jsonUsers; \n";?>
+$(document).ready(function () {
+$('#conf_data').editable({
+container: 'body',
+selector: 'td.user',
+url: "update_conference.php",
+title: 'User',
+type: "POST",
+dataType: 'json',
+source: function(){
+   return users;
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+}
+});
+
+$('#conf_data').editable({
+container: 'body',
+selector: 'td.union_id',
+url: "update_conference.php",
+title: 'Union',
+type: "POST",
+dataType: 'json',
+source: function(){
+   return unions;
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+}
+});
+
+$('#conf_data').editable({
+container: 'body',
+selector: 'td.name',
+url: "update_conference.php",
+title: 'Conference Name',
+type: "POST",
+//dataType: 'json',
+validate: function(value){
+ if($.trim(value) == '')
+ {
+  return 'This field is required';
+ }
+},
+success:function(data)
+{
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+}
+});
+
+$(document).on('click', '.delete_conf', function(){
+var id = $(this).attr("id");
+ if(confirm("Are you sure you want to remove this?"))
+{
+$.ajax({
+ url:"delete_conference.php",
+ method:"POST",
+ data:{id:id},
+ success:function(data){
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+ }
+});
+setInterval(function(){
+ $('#alert_message').html('');
+}, 500);
+}
+});
+
+  });
+  </script>
+  
+  
 <!--Main container end-->
-<script type="text/javascript" src="../assets/js/conferences.js"></script>
-
-<script>
-    var conference = new Array("Central Kenya Conference","Central Rift Valley Conference","Kenya Coast Field","Nyamira Conference","South Kenya Conference","Central Nyanza Conference","Greater Rift Valley Conference","Kenya Lake Conference","North West Kenya Conference","Ranen Conference");
-</script>
-
 <?php include_once './includes/footer.php'; ?>

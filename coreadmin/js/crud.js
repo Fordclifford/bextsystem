@@ -27,7 +27,8 @@ title: 'User Type',
 type: "POST",
 dataType: 'json',
 source: [{value: '', text: '-Please Select-'},{value: 'super', text:'Super Admin'}, {value: 'admin', text:'Admin'},
-{value: 'auditor', text:'Conference Auditor'},{value: 'treasurer', text:'Church Treasurer'}],
+{value: 'auditor', text:'Conference Auditor'},{value: 'treasurer', text:'Church Treasurer'},
+{value: 'union_auditor', text:'Union Auditor'}],
 validate: function(value){
  if($.trim(value) == '')
  {

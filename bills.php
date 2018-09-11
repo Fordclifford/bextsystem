@@ -3,7 +3,7 @@ ob_start();
 session_start();
 require_once 'config.php';
 // if session is not set this will redirect to login page
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user_logged_in'])) {
     header("Location: index.php");
     exit;
 }

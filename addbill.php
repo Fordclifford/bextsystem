@@ -1,10 +1,9 @@
 <?php
-ob_start();
 session_start();
-require_once 'config.php';
-
+require_once './coreadmin/config/config.php';
+require_once 'includes/auth_validate.php';
 // if session is not set this will redirect to login page
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user_logged_in'])) {
     header("Location: index.php");
     exit;
 }
@@ -31,37 +30,6 @@ if (isset($_POST["submit"])) {
     $imgFile = $_FILES['image']['name'];
     $tmp_dir = $_FILES['image']['tmp_name'];
 
-    if (empty($bill)) {
-        $error = true;
-        $billError = "Please select mode of payment.";
-        $errTyp = "danger";
-        $errMSG = "Sorry an Error Occured! Check and Try Again!";
-    }
-    if (empty($category)) {
-        $error = true;
-        $catError = "Please select category.";
-        $errTyp = "danger";
-        $errMSG = "Sorry an Error Occured! Check and Try Again!";
-    } if (empty($amount)) {
-        $errMSG = "Sorry an Error Occured! Check and Try Again!";
-        $error = true;
-        $amtError = "Please Enter Amount.";
-        $errTyp = "danger";
-    } if (empty($date)) {
-        $errMSG = "Sorry an Error Occured! Check and Try Again!";
-        $error = true;
-        $dateError = "Please Select Date.";
-        $errTyp = "danger";
-    } if (empty($desc)) {
-        $errMSG = "Sorry an Error Occured! Check and Try Again!";
-        $error = true;
-        $descError = "Please Enter Description.";
-        $errTyp = "danger";
-    } if (empty($yr)){
-        $error = true;
-        $yrError = "Please Select year.";
-        $errMSG = "Sorry an Error Occured! Check and Try Again!";
-    }
     $date1 = date("Y-m-d h:i:sa");
 
     $d = (strtotime($date));
@@ -432,5 +400,34 @@ include_once('includes/header.php');
    <script type="text/javascript" src="assets/js/changeIncome.js">  </script>
    <script src="assets/js/js.js" > </script>
     <script src="assets/jquery-1.11.3-jquery.min.js"></script>
-
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#bill_form").validate({
+       rules: {
+            category: {
+                required: true               
+            },
+            bill: {
+                required: true                
+            },
+             date: {
+                required: true
+               
+            },
+             desc: {
+                required: true,
+                 minlength: 3
+            },
+             year: {
+                 required: true,
+                                 
+            },
+            amount: {
+                required: true,
+                 minlength: 3             
+            }
+        }
+    });
+});
+</script>
 <?php include_once('includes/footer.php'); ?>

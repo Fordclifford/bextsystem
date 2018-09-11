@@ -12,7 +12,7 @@ $order_by = filter_input(INPUT_GET, 'order_by');
 $page = filter_input(INPUT_GET, 'page');
 
 //Per page limit for pagination.
-$pagelimit = 20;
+$pagelimit = 10;
 
 if (!$page) {
     $page = 1;

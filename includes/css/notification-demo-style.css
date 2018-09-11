@@ -4,14 +4,6 @@
 	text-align:right;
 }
 
-#notification-count{
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	font-size: 0.8em;		
-	color: #de5050;
-	font-weight:bold;
-}
 #form-header {
 	font-size:1.5em;
 }

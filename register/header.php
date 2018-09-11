@@ -43,45 +43,5 @@ $select = array('id', 'subject','comment','date');
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script src="../includes/js/jquery.min.js" type="text/javascript"></script>
-		<style>
-	#notification-latest {
-	position: absolute;
-	right: 0px;
-	background:white;
-	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.20);
-	max-width: 250px;
-	text-align: left;
-}
-.notification-item {
-	padding:10px;
-	border-bottom:0.5px solid;
-	cursor:pointer;
-}
-.notification-subject {
-  white-space: nowrap;
-  overflow: hidden;
-  font-weight:bold;
-  text-overflow: ellipsis;
-}
-.view-all {
-  font-weight:bold;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-.notification-comment {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-style:italic;
-}
-#notification-count{
-	position: absolute;
-	left: 8px;
-	top: 15px;
-	font-size: 0.9em;
-	color: #de5050;
-	font-weight:bold;
-}
-		</style>
-
+		
     </head>

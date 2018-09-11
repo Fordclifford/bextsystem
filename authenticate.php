@@ -54,6 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
       if ($db->count >= 1) {
         $_SESSION['user_logged_in'] = TRUE;
         $_SESSION['user_type'] = $row[0]['user_type'];
+        $db = getDbInstance();
+    $db->where ("user_id",$_SESSION['user_logged_in']);
+     $row = $db->get('church');
+      $_SESSION['church'] = $row[0]['id'];
        
        	if($remember)
        	{
@@ -64,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         exit;
     }
  else {
-        $_SESSION['login_failure'] = "Invalid credentials";
+        $_SESSION['login_failure'] = "Invalid credentials! Try again";
         header('Location:login.php');
         exit;
     }	

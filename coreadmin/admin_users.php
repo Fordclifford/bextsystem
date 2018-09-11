@@ -19,7 +19,7 @@ $del_id = filter_input(INPUT_GET, 'del_id');
 $filter_col = filter_input(INPUT_GET, 'filter_col');
 $order_by = filter_input(INPUT_GET, 'order_by');
 $page = filter_input(INPUT_GET, 'page');
-$pagelimit = 20;
+$pagelimit = 10;
 if ($page == "") {
     $page = 1;
 }
@@ -165,7 +165,7 @@ foreach ($user as $value) {
             echo '<ul class="pagination text-center">';
             for ($i = 1; $i <= $total_pages; $i++) {
                 ($page == $i) ? $li_class = ' class="active"' : $li_class = "";
-                echo '<li' . $li_class . '><a href="index.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
+                echo '<li' . $li_class . '><a href="admin_users.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
             }
             echo '</ul></div>';
         }

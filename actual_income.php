@@ -418,7 +418,7 @@ $jsonYears = json_encode($years);
                     method: "POST",
                     data: {id: id},
                     success: function () {
-                        window.location.reload();
+//                        window.location.reload();
                     }
                 });
                 setInterval(function () {

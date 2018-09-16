@@ -14,10 +14,30 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="includes/js/sb-admin-2.js"></script>
-        <script src="includes/js/bootstrap.min.js"></script>
+
            <script src="includes/js/jquery.validate.min.js"></script>
 
 
+
+  <!-- select2 -->
+  <link href="coreadmin/assets/select2/select2.css" rel="stylesheet">
+  <script src="coreadmin/assets/select2/select2.js"></script>
+  <!-- bootstrap -->
+
+  <link href="coreadmin/assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <script src="coreadmin/assets/bootstrap/js/bootstrap.js"></script>
+
+  <!-- bootstrap-datetimepicker -->
+
+
+  <!-- x-editable (bootstrap) -->
+  <link href="coreadmin/assets/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+  <script src="coreadmin/assets/x-editable/bootstrap-editable/js/bootstrap-editable.js"></script>
+
+  <!-- wysihtml5 -->
+
+  <!-- select2 bootstrap -->
+  <link href="coreadmin/assets/select2/select2-bootstrap.css" rel="stylesheet">
            <!-- The End of the Header -->
 			<script type="text/javascript">
 

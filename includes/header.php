@@ -26,9 +26,10 @@ if (isset($_SESSION['user_logged_in'])) {
 
 
         <!-- Bootstrap Core CSS -->
-        <link  rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-		
-    
+       <link  href="coreadmin/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+       
+        <link  rel="stylesheet" href="coreadmin/css/bootstrap.min.css" type="text/css"/>
+
 
         <!-- MetisMenu CSS -->
         <link href="includes/js/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
@@ -44,7 +45,7 @@ if (isset($_SESSION['user_logged_in'])) {
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="includes/js/jquery.min.js" type="text/javascript"></script>
+        <script src="coreadmin/assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
 
 
     </head>

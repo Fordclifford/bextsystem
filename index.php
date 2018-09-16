@@ -106,8 +106,8 @@ include_once('includes/header.php');
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    <div  class=" animate row">
-        <div class="col-md-9 col-lg-9">
+
+        
 
             <div class="row">
                 <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-3">
@@ -262,7 +262,7 @@ include_once('includes/header.php');
 
             </div>
 
-        </div>
+      
 
     </div>
 </div>

@@ -43,5 +43,6 @@ $select = array('id', 'subject','comment','date');
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script src="../includes/js/jquery.min.js" type="text/javascript"></script>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
 		
     </head>

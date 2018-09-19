@@ -5,8 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/addRecord.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/updateUserDetails.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/header.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/includes/footer.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/header.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/index.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/expense/deleteRecord.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/actual_income.php</file>
@@ -14,6 +14,7 @@
             <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/expense/updateExpenseDetails.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/estimated_income.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/estimated_expenses.php</file>
+            <file>file:/C:/xampp/htdocs/project/bextsystem/assets/js/app.js</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/delete_actual_income.php</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/assets/js/modal.js</file>
             <file>file:/C:/xampp/htdocs/project/bextsystem/login.php</file>

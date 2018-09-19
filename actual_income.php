@@ -89,22 +89,13 @@ $jsonYears = json_encode($years);
 
             <!-- /.dropdown -->
             <li>  <a name="button" id="notification-icon" name="button" onclick="myFunction()" class="notification">
-                    <span class="fa fa-envelope fa-fw"></span ><?php if ($count > 0) { ?>
+                    <i class="fa fa-envelope fa-fw"></i><?php if ($count > 0) { ?>
                         <span class="badge" id="notification-count" ><?php
                             echo $count;
                         }
                         ?></span>
                 </a> <div id="notification-latest"></div>
             </li>
-            <li>  <a name="button" id="notification-icon" name="button" onclick="myFunction()" class="notification">
-                    <span class="fa fa-exclamation-triangle fa-fw"></span ><?php if ($count > 0) { ?>
-                        <span class="badge" id="notification-count" ><?php
-                            echo $count;
-                        }
-                        ?></span>
-                </a> <div id="notification-latest"></div>
-            </li>
-
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

@@ -60,35 +60,19 @@ header("refresh:5;../index.php");
 ?>
 <link href="demo-style.css" rel="stylesheet" type="text/css">
 <?php require_once './header.php'; ?>
-
-<div class="login_form_div" >
-    <form name="frmReset" id="frmReset" method="post" onSubmit="return validate_password_reset();">
-        <h1>Reset Password</h1>
-<?php if (!empty($success_message)) { ?>
-            <div class="success_message alert alert-success"><?php echo $success_message; ?></div>
-<?php } ?>
-
-        <div id="validation-message">
-<?php if (!empty($error_message)) { ?>
-            <?php echo $error_message; ?>
-        <?php } ?>
-        </div>
-
-        <div class="field-group">
-            <div><label for="Password">Password</label></div>
-            <div>
-                <input type="password" name="member_password" id="member_password" class="input-field"></div>
-        </div>
-
-        <div class="field-group">
-            <div><label for="email">Confirm Password</label></div>
-            <div><input type="password" name="confirm_password" id="confirm_password" class="input-field"></div>
-        </div>
-
-        <div class="field-group">
-            <div><input type="submit" name="reset-password" id="reset-password" value="Reset Password" class="form-submit-button"></div>
-        </div>
+<body>
+    <div class="container-fluid">
+   <div class="row">
+       <img height="200px" width="1500px" src="../assets/image/header3.png"  border="0" alt="Main Banner">
+   </div>
+</div>
+       
+<div id="wrapper">
+<div  >
+    <form name="frmReset" class="well form-horizontal" method="post" onSubmit="return validate_password_reset();">
+       <?php include_once 'forms/forgot_form.php';?>
     </form>
 </div>
-
+</div>
+</body>
 <?php require_once 'footer.php' ?>

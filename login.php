@@ -139,6 +139,10 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
                                 <input name="remember" type="checkbox" value="1">Remember Me
                             </label>
                         </div>
+                          <div style="margin: 5px">
+                                <a  style="color: #0000CC;" href="register/" data-toggle="tooltip" title="click to register"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</a>
+                                <div align='right' >  <span>Forgot <a title="click to reset password" data-toggle="tooltip" style="color: #0000CC" href="reset/"> password?</a></span></div>
+                            </div>
 <?php if (isset($_SESSION['login_failure'])) { ?>
                             <div class="alert alert-danger alert-dismissable fade in">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

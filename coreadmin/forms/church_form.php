@@ -63,11 +63,11 @@ $jsonConferences = json_encode($conferences);
 
 
    <div class="form-group">
-        <label class="col-md-4 control-label">Church name</label>
+        <label class="col-md-4 control-label">Mobile number</label>
         <div class="col-md-4 inputGroupContainer">
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                <input style="height:40px" type="text" name="mobile" placeholder="Mobile Number" class="form-control"  autocomplete="off">
+                <input style="height:40px" type="number" name="mobile" placeholder="Mobile Number" class="form-control"  autocomplete="off">
             </div>
         </div>
     </div>

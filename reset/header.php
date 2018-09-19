@@ -22,12 +22,12 @@ $select = array('id', 'subject','comment','date');
         
         <link rel="shortcut icon" href="../assets/image/favicon.png" type="image/x-icon" />
          <link rel="stylesheet" href="../assets/css/w3.css" type="text/css"/>
+         <link href="demo-style.css" rel="stylesheet" type="text/css">
       
 
         <!-- Bootstrap Core CSS -->
         <link  rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-
+		
         <!-- MetisMenu CSS -->
         <link href="../includes/js/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom CSS -->
@@ -43,45 +43,6 @@ $select = array('id', 'subject','comment','date');
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script src="../includes/js/jquery.min.js" type="text/javascript"></script>
-		<style>
-	#notification-latest {
-	position: absolute;
-	right: 0px;
-	background:white;
-	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.20);
-	max-width: 250px;
-	text-align: left;
-}
-.notification-item {
-	padding:10px;
-	border-bottom:0.5px solid;
-	cursor:pointer;
-}
-.notification-subject {
-  white-space: nowrap;
-  overflow: hidden;
-  font-weight:bold;
-  text-overflow: ellipsis;
-}
-.view-all {
-  font-weight:bold;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-.notification-comment {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-style:italic;
-}
-#notification-count{
-	position: absolute;
-	left: 8px;
-	top: 15px;
-	font-size: 0.9em;
-	color: #de5050;
-	font-weight:bold;
-}
-		</style>
+		
 
     </head>

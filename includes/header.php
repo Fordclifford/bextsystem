@@ -38,8 +38,13 @@ if (isset($_SESSION['user_logged_in'])) {
         <link href="includes/css/sb-admin.css" rel="stylesheet">
         <!-- Custom Fonts -->
         <link href="includes/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--        angular assets-->
+<link rel="stylesheet" href="assets/angular/bower_components/angular-notification-icons/dist/angular-notification-icons.min.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<script src="assets/angular/bower_components/angular/angular.js"></script>
+<script src="assets/angular/angular-animate.js"></script>
+<script src="assets/angular/bower_components/angular-notification-icons/dist/angular-notification-icons.min.js"></script>
+       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

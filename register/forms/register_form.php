@@ -2,19 +2,20 @@
     <div class="row">
         <div  class="col-md-2"></div>
         <div  class="col-md-3">
-            <h1 style="font-size: 22px;" class="text-center">Church Details</h1>
+                        <h1 style="font-size: 22px;" class="text-center">Church Details</h1>
  <div class="form-group">  <?php if ($msg <> "") { ?>
                             <div class="alert alert-dismissable alert-<?php echo $msgType; ?>">
                                 <button data-dismiss="alert" class="close" onclick="this.parentElement.style.display = 'none';" type="button">x</button>
                                 <p><?php echo $msg; ?></p>
                             </div>
                         <?php } ?></div>
+                        <div id="error_msg" class="form-group"></div>
 <div class="form-group">
         <label>Union/Mission</label>
         
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                <select  style="height:40px" id="union_mission" name="union_mission" id="union_mission" placeholder="union" class="form-control"  autocomplete="off"></select>
+                <select required="true"  style="height:40px" id="union_mission" name="union_mission"  placeholder="union" class="form-control"  autocomplete="off"></select>
             </div>
        
     </div>
@@ -23,7 +24,7 @@
         
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                <select  style="height:40px" id="conference" name="conference" placeholder="Conference" id="conference" class="form-control"  autocomplete="off"></select>
+                <select   style="height:40px"  name="conference" placeholder="Conference" id="conference" class="form-control"  autocomplete="off"></select>
             </div>
        
     </div>
@@ -44,7 +45,7 @@
        
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                <input style="height:40px" type="number" name="mobile" placeholder="Mobile Number" id="mobile" class="form-control"  autocomplete="off">
+                <input style="height:40px" type="test" name="mobile" placeholder="Mobile Number" id="mobile" class="form-control"  autocomplete="off">
          
         </div>
     </div>
@@ -105,7 +106,7 @@
 </div>
           <div class="col-md-2">
         <label></label>
-        <button type="button" onclick="return validateForm();" name="sub" id="reg_btn" class="btn  btn-warning" >Save <span class="glyphicon glyphicon-send"></span></button>
+        <button type="button"  name="sub" id="reg_btn" class="btn  btn-warning" >Save <span class="glyphicon glyphicon-send"></span></button>
         </div>
          
         </div>

@@ -7,8 +7,8 @@ define('PROJECT_NAME', 'Budget and Expense Tracker');
 
 define('DB_DRIVER', 'mysql');
 define('DBHOST', 'localhost');
-define('DBUSER', 'root');
-define('DBPASS', '');
+define('DBUSER', 'clifford');
+define('DBPASS', 'cliffkaka');
 define('DBNAME', 'bext_system');
 
 // must end with a slash

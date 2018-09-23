@@ -8,8 +8,8 @@ define('PROJECT_NAME', 'User Registration with Email Verification ');
 
 define('DB_DRIVER', 'mysql');
 define('DBHOST', 'localhost');
-define('DBUSER', 'root');
-define('DBPASS', '');
+define('DBUSER', 'clifford');
+define('DBPASS', 'cliffkaka');
 define('DBNAME', 'bext_system');
 
 // must end with a slash

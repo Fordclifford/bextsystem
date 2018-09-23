@@ -3,36 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/addRecord.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/updateUserDetails.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/footer.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/includes/header.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/header.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/index.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/expense/deleteRecord.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/actual_income.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/index.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/index.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/register.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/expense/updateExpenseDetails.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/estimated_income.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/css/style.css</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/estimated_expenses.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/forms/forgot_form.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/assets/js/modal.js</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/forms/register_form.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/config.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/js/register.js</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/reset_password.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/register/header.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/update_actual_income.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/delete_actual_income.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/login.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/ajax/income/addActualIncome.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/balances.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/add_notification.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/budget.php</file>
-            <file>file:/C:/xampp/htdocs/project/bextsystem/reset/forms/mail_username.php</file>
+            <file>file:/var/www/html/project/bextsystem/dateBillsPdf.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/css/style.css</file>
+            <file>file:/var/www/html/project/bextsystem/reset/config.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/forms/register_form.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/logout.php</file>
+            <file>file:/var/www/html/project/bextsystem/register.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/config.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/register.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/footer.php</file>
+            <file>file:/var/www/html/project/bextsystem/config.php</file>
+            <file>file:/var/www/html/project/bextsystem/register/js/register.js</file>
+            <file>file:/var/www/html/project/bextsystem/register/index.php</file>
+            <file>file:/var/www/html/project/bextsystem/dateBillsExcel.php</file>
         </group>
     </open-files>
 </project-private>

@@ -48,11 +48,16 @@ require_once('header.php');
                     </div>
                 <?php } ?>
 
-                <form class="well form-horizontal" autocomplete="off" enctype="multipart/form-data">
+                <form id="register_church" class="well form-horizontal" autocomplete="off"  enctype="multipart/form-data">
                     <?php include_once('./forms/register_form.php'); ?>
                 </form>
             </div>
         </div>
+    <div class="loader">
+   <center>
+       <img class="loading-image" src="../assets/image/demo_wait.gif" alt="loading..">
+   </center>
+</div>
     </div>
 
 

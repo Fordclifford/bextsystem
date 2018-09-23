@@ -175,7 +175,7 @@ if ($result[0]["count"] > 0) {
                     unset($union);
                     header("refresh:5;../index.php");
                 } catch (Exception $ex) {
-                    $msg = $ex->getMessage();
+                   echo $msg = "Failed to send verification email! ".$ex->getMessage()." Contact your system admin";
                     $msgType = "danger";
                 }
             } else {

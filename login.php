@@ -3,7 +3,7 @@ session_start();
 require_once './coreadmin/config/config.php';
 //If User has already logged in, redirect to dashboard page.
 if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === TRUE) {
-    header('Location:index.php');
+    
 }
 
 //If user has previously selected "remember me option", his credentials are stored in cookies.
@@ -109,7 +109,7 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
                         <div class="radio">
                             <label>
 
-                                <input type="radio" name="user_type" value="auditor" required="" /> Conference Auditor
+                                <input type="radio" name="user_type" value="auditor" required="" /> Auditor
                             </label>
                         </div>
                         <div class="radio">

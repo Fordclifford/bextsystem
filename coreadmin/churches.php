@@ -32,6 +32,34 @@ $db->join("users u", "c.user_id=u.id", "LEFT");
 $db->join("conference n", "c.conference_id=n.id", "LEFT");
 $db->join("union_mission m", "c.union_id=m.id", "LEFT");
 $select = array('u.user_name','c.id','c.name','m.union_name','n.conf_name','c.mobile','c.date');
+
+   if($_SESSION['user_type']== 'auditor'){
+   $db->where("user_id",$_SESSION['user_logged_in']);
+   $row = $db->get('conference');
+   $db = getDbInstance();
+   $db->where("conference_id",$row[0]['id']);
+   $db->join("users u", "c.user_id=u.id", "LEFT");
+    $select = array('u.user_name','c.id','c.name','c.mobile','c.date');
+
+   } 
+
+ 
+   if($_SESSION['user_type']== 'union_auditor'){
+   $db = getDbInstance();
+   $db->where("user_id",$_SESSION['user_logged_in']);
+   $row = $db->get('union_mission');
+   $db = getDbInstance();
+   $db->where("union_id",$row[0]['id']);
+
+     $db->join("users u", "c.user_id=u.id", "LEFT");
+   $db->join("union_mission m", "c.union_id=m.id", "LEFT");
+   
+   $select = array('m.union_name','u.user_name','c.id','c.name','c.mobile','c.date');
+  
+   }
+ 
+ 
+  
 //
 // $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
 // print_r($church);

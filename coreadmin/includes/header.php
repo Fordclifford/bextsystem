@@ -105,6 +105,8 @@ require_once './config/config.php';
                                         </li>
                                     </ul>
                                 </li>
+                                  <?php if ($_SESSION['user_type']== 'admin' || $_SESSION['user_type']== 'super')  : ?>
+       
                                 <li <?php echo (CURRENT_PAGE == "admin_users.php" || CURRENT_PAGE == "add_admin.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-user-circle fa-fw"></i> users<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -116,6 +118,10 @@ require_once './config/config.php';
                                         </li>
                                     </ul>
                                 </li>
+                                 <?php endif;
+            ?>
+                                   <?php if ($_SESSION['user_type']== 'admin' || $_SESSION['user_type']== 'super')  : ?>
+                       
                                 <li <?php echo (CURRENT_PAGE == "unions.php" || CURRENT_PAGE == "add_union.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-flag fa-fw"></i> unions<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -127,6 +133,10 @@ require_once './config/config.php';
                                         </li>
                                     </ul>
                                 </li>
+                                   <?php endif;
+            ?>
+               
+                                 <?php if ($_SESSION['user_type']== 'admin' || $_SESSION['user_type']== 'super' || $_SESSION['user_type']== 'union_auditor')  : ?>
                                 <li <?php echo (CURRENT_PAGE == "conferences.php" || CURRENT_PAGE == "add_conference.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-asterik fa-fw"></i> conferences<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -138,6 +148,8 @@ require_once './config/config.php';
                                         </li>
                                     </ul>
                                 </li>
+                                 <?php endif;
+            ?>
 
                             </ul>
                         </div>

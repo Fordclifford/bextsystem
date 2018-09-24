@@ -1,3 +1,5 @@
+   <div align='center' style="margin: auto">
+                    <p2 style="margin: 0px" align='center'>&copy;<?php echo date("Y"); ?> - Church Income and Expense Tracker  </p2>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="js/metisMenu/metisMenu.min.js"></script>

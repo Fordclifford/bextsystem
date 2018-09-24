@@ -75,7 +75,7 @@ foreach ($user as $value) {
         </div>
         <div class="col-lg-6" style="">
             <div class="page-action-links text-right">
-            <a href="add_admin.php"> <button class="btn btn-success">Add new</button></a>
+            <a href="add_user.php"> <button class="btn btn-success">Add new</button></a>
             </div>
         </div>
 </div>

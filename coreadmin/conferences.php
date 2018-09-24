@@ -31,6 +31,18 @@ $db = getDbInstance();
 $db->join("users u", "c.user_id=u.id", "LEFT");
 $db->join("union_mission m", "c.union_id=m.id", "LEFT");
 $select = array('u.user_name','c.id','m.union_name','c.conf_name','c.date_created');
+
+  if($_SESSION['user_type']== 'union_auditor'){
+    $db = getDbInstance();
+   $db->where("user_id",$_SESSION['user_logged_in']);
+   $row = $db->get('union_mission');
+   $db = getDbInstance();
+   $db->where("union_id",$row[0]['id']);
+   $db->join("users u", "c.user_id=u.id", "LEFT");
+   $db->join("union_mission m", "c.union_id=m.id", "LEFT");
+   $select = array('c.id','c.conf_name','u.user_name','m.union_name','c.date_created');
+
+   }
 //
 // $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
 // print_r($church);

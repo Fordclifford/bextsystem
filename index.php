@@ -5,44 +5,7 @@ require_once './config.php';
 // if session is not set this will redirect to login page
 require_once './includes/auth_validate.php';
 // select loggedin users detail
-if ($_SESSION['user_type'] == 'treasurer') {
-    // show permission denied message
 
-    $f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['church']);
-    if (mysql_num_rows($f_year) == 0) {
-        $church_id = $_SESSION['church'];
-        $year = date("Y");
-        $query_insert = mysql_query("INSERT INTO financial_year(year,church_id) VALUES ('$year','$church_id')");
-        if (!$query_insert) {
-            //die("could not execute query 2");
-            exit(mysql_error($conn));
-        }
-        ?>
-        <!--    <script>
-                alert('Hello!\n To begin a new financial year \n You will be redirected to income page to add income ...');
-                window.location.href = 'income.php';
-            </script>-->
-        <?php
-    }
-    $budget = mysql_query("SELECT expense_name,church_id FROM estimated_expenses WHERE church_id=" . $_SESSION['church']);
-    if (mysql_num_rows($budget) == 0) {
-        ?>
-        <!--    <script>
-                alert('Hello!\n You need to add expenses for your church\n You will be redirected to expenses page ...');
-                window.location.href = 'expenses.php';
-            </script>-->
-        <?php
-    }
-    $income = mysql_query("SELECT source_name,church_id FROM estimated_income WHERE church_id=" . $_SESSION['church']);
-    if (mysql_num_rows($income) == 0) {
-        ?>
-        <!--    <script>
-                alert('Hello!\n You need to add income for your church\n You will be redirected to income page ...');
-                window.location.href = 'income.php';
-            </script>-->
-        <?php
-    }
-}
 include_once('includes/header.php');
 ?>
 
@@ -64,12 +27,6 @@ include_once('includes/header.php');
             <!-- /.dropdown -->
 
             <!-- /.dropdown -->
-            <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if ($count > 0) {
-        echo $count;
-    } ?></span><i class="fa fa-exclamation-triangle fa-fw"></i></a>
-                <div id="notification-latest"></div>
-            </li>
-
             <li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if ($count > 0) {
         echo $count;
     } ?></span><i class="fa fa-envelope fa-fw"></i></a>
@@ -100,6 +57,7 @@ include_once('includes/header.php');
     </nav>
 <?php endif; ?>
 <div id="page-wrapper">
+    
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Dashboard</h1>

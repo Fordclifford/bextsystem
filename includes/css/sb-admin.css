@@ -455,17 +455,17 @@ div.demo-content input[type='text'],textarea{
 	padding: 10px 5px;
 }
 #notification-latest {
-	color: white;
+	 
 	position: absolute;
 	right: 0px;
-	background: #17eccf;
+        background: #ffffff;
 	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.20);		
 	max-width: 250px;
 	text-align: left;
 }
 .notification-item {
 	padding:10px;
-	border-bottom: #3ae2cb 1px solid;
+	border-bottom: #000000 1px solid;
 	cursor:pointer;
 }
 .notification-subject {		

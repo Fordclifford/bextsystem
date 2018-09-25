@@ -39,11 +39,6 @@ if (isset($_SESSION['user_logged_in'])) {
         <!-- Custom Fonts -->
         <link href="includes/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!--        angular assets-->
-<link rel="stylesheet" href="assets/angular/bower_components/angular-notification-icons/dist/angular-notification-icons.min.css">
-
-<script src="assets/angular/bower_components/angular/angular.js"></script>
-<script src="assets/angular/angular-animate.js"></script>
-<script src="assets/angular/bower_components/angular-notification-icons/dist/angular-notification-icons.min.js"></script>
        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -51,9 +46,9 @@ if (isset($_SESSION['user_logged_in'])) {
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script src="coreadmin/assets/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
-
-
+        <link href="includes/css/angular-growl.min.css" rel="stylesheet" media="screen"/> 
+       
     </head>
-    <body>
-          <div id="wrapper">
+    <body ng-app="notifyApp" ng-controller="notifyCtrl">
+        <div  id="wrapper"><div growl></div>
 

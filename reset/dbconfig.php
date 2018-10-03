@@ -7,8 +7,8 @@ define('PROJECT_NAME', 'Budget and Expense Tracker');
 
 define('DB_DRIVER', 'mysql');
 define('DB_SERVER', 'localhost');
-define('DB_SERVER_USERNAME', 'root');
-define('DB_SERVER_PASSWORD', '');
+define('DB_SERVER_USERNAME', 'clifford');
+define('DB_SERVER_PASSWORD', 'cliffkaka');
 define('DB_DATABASE', 'bext_system');
 
 // must end with a slash

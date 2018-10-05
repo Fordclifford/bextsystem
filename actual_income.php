@@ -317,75 +317,7 @@ $jsonYears = json_encode($years);
 
         </div>
     </div>
-    <div class="modal fade" id="export_pdf_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-
-            <form id="pdf_form" name="pdf_form" method="post" class="well form-horizontal modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Exporting Actual Income to Pdf </h4>
-                </div>
-                <div class="modal-body"  >
-                    <fieldset>
-                        <div class="form-group">
-                        <div class="row">
-                             <div class="col-md-1"></div>
-                            <div class="col-md-3">
-                                  <label >From Date</label>
-                                       <input type="date" style="height:40px"  name="from_date"  id="from_date" placeholder="From Date " class="form-control w3-round-large"  autocomplete="off">
- 
-                            </div>
-                            <div class="col-md-3">
-                                <label >To Date</label>
-                              <input type="date" style="height:40px" name="to_date"  id="to_date" placeholder="TO Date " class="form-control w3-round-large"  autocomplete="off">
-
-                                </div>
-                           <div class="col-md-1"></div>
-                            <div class="col-md-2">
-                               
-                                <button type="button" style="margin-top: 25px"  title="Go" data-toggle="tooltip"  class="btn btn-primary" onclick="exportDatePdf()"><span class=" glyphicon glyphicon-export"></span> Go</button>
-                
-                            </div> 
-                            
-                        </div>
-                        </div>
-                        
-                        <div class="form-group"></div>
-                        <div class="form-group"></div>
-                        <div class="form-group">
-                            <div class="row">
-                                
-                            <label class="col-md-3 control-label">Financial Year</label>
-                            <div class="col-md-5 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
-
-                                    <?php
-                                    $db->where("church_id", $_SESSION['church']);
-                                    echo "<select title=\" choose year\"   style=\" height: 40px\" class=\"form-control w3-round-large\" name=\"financial_year_id\" id=\"financial_year_id\" >";
-                                    echo "<option value=''> -----Select Year------ </option>";
-                                    foreach ($db->get('financial_year') as $row) {
-                                        echo "<option value='" . $row['id'] . "'>" . $row['year'] . "</option>";
-                                    } echo "</select>";
-                                    ?>
-
-                                </div>
-
-                            </div>
-                            <div class="col-md-2">
-                                 <button type="button" style="margin-top: 0px"  title="Go" data-toggle="tooltip"  class="btn btn-primary" onclick="exportYearPdf()"><span class=" glyphicon glyphicon-export"></span> Go</button>
-                
-                            </div>
-                        </div>
-                        </div>
-
-                    </fieldset>
-                </div>
-                
-            </form>
-
-        </div>
-    </div>
+   
     
 </div>
 

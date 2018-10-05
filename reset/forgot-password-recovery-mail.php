@@ -7,7 +7,7 @@ if(!class_exists('PHPMailer')) {
 require_once("mail_configuration.php");
 
 
-$emailBody = "<div>" . $user["name"] . ",<br><br><p>Click this link to recover your password<br><a href='" . PROJECT_HOME . "reset_password.php?token=" . $token . "'>" . PROJECT_HOME . "reset_password.php?name=" . $token. "</a><br><br></p>Regards,<br> Admin.</div>";
+$emailBody = "<div>" . $uname . ",<br><br><p>Click this link to recover your password<br><a href='" . PROJECT_HOME . "reset_password.php?token=" . $token . "'>" . PROJECT_HOME . "reset_password.php?name=" . $token. "</a><br><br></p>Regards,<br> Admin.</div>";
  $mail = new PHPMailer(true);
                 $mail->IsSMTP(); // telling the class to use SMTP
                 $mail->SMTPOptions = array(
@@ -30,7 +30,7 @@ $mail->Host     = MAIL_HOST;
 $mail->SetFrom(SENDER_EMAIL, SENDER_NAME);
 $mail->AddReplyTo(SENDER_EMAIL, SENDER_NAME);
 $mail->ReturnPath=SENDER_EMAIL;	
-$mail->AddAddress($user["email"]);
+$mail->AddAddress($email);
 $mail->Subject = "Forgot Password Recovery";		
 $mail->MsgHTML($emailBody);
 $mail->IsHTML(true);

@@ -1,6 +1,6 @@
 <?php
-if (isset($_SESSION['user']) != "") {
-    header("Location: home.php");
+if (isset($_SESSION['user_logged_in']) != "") {
+    header("Location: ../index.php");
 }
 require_once './config.php';
 

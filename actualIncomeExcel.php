@@ -1,6 +1,7 @@
 
 <?php include_once './includes/header.php';
 session_start();
+require_once 'includes/auth_validate.php';
 ?>
 
 
@@ -161,7 +162,7 @@ session_start();
         </div>
     </div>
 </div>
-<script src="assets/js/modal.js"></script>
+
 <?php include_once('includes/footer.php'); ?>
  <script type="text/javascript" >
 

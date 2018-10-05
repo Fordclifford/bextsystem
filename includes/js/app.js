@@ -23,6 +23,27 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl','$http', function ($scope,
               
           });
         };
+        $scope.income = function() {
+                 $http({
+              
+              method: 'GET',
+              url: 'includes/api/income.php'
+              
+          }).then(function (response) {
+              
+              // on success
+              if(response.data =='actual_not_exist'){
+             growl.warning('Hello! You need to add income for your church', {title: 'Warning!'});
+         }
+         
+          }, function (response) {
+//              alert(response.data,response.status);
+              
+              // on error
+              console.log(response.data,response.status);
+              
+          });
+        };
         $scope.budget = function() {
                  $http({
               

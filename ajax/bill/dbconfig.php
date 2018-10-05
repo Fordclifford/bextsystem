@@ -7,7 +7,7 @@ $username = "clifford";          // Your database user id
 $password = "cliffkaka";   
  
  try {
-$dbo = new PDO('mysql:host='.$host_name.';dbname='.$database, $username, $password);
+$DB_con = new PDO('mysql:host='.$host_name.';dbname='.$database, $username, $password);
 } catch (PDOException $e) {
 print "Error!: " . $e->getMessage() . "<br/>";
 die();

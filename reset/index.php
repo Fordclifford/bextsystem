@@ -1,50 +1,50 @@
 <?php
 require_once './dbconfig.php';
 if (!empty($_POST["forgot-password"])) {
-    $condition = "";
 
-     if (!empty($_POST["user-login-name"])) {
-        $condition = " user_name = '" . $_POST["user-login-name"] . "'";
-    }
-    if (!empty($_POST["user-email"])) {
-        if (!empty($condition)) {
-            $condition = " and ";
-        }
-        $condition = " email = '" . $_POST["user-email"] . "'";
-    }
+ $email=$_POST['user-email'];
+ $q = $DB->prepare("SELECT * from users where email = ?");
+ 
+ 
+ try{
+    $q->execute(array($email));
+}catch (Exception $ex) {
+                    $error_message = $ex->getMessage();
+                    $msgType = "danger";
+}
+ 
+ $row = $q->fetch(PDO::FETCH_ASSOC);
 
-    if (!empty($condition)) {
-        $condition = " where " . $condition;
-    }
-$error=false;
- $conn = mysqli_connect("localhost", "root", "", "bext_system");
-  echo $sql = "Select * from users " . $condition;
-    $result = mysqli_query($conn, $sql);
-    $user = mysqli_fetch_array($result);
 
-   $token = sha1(uniqid($user['user_name'], true));
-
-   $uname= $user['user_name'];
-      $query = $DB->prepare(
+if ($row) {
+    extract($row);
+    $uname= $row['user_name'];
+       $token = sha1(uniqid($uname, true));
+    $query = $DB->prepare(
            "INSERT INTO reset (username, token, tstamp) VALUES (?, ?, ?)"
     );
 try{
     $query->execute(
             array(
-                $user['user_name'],
+                $uname,
                 $token,
                 $_SERVER["REQUEST_TIME"]
             )
     );
 }catch (Exception $ex) {
-                    $msg = $ex->getMessage();
+                    $error_message = $ex->getMessage();
                     $msgType = "danger";
 }
-    if (!empty($user)) {
+
         require_once("forgot-password-recovery-mail.php");
-    } else {
-        $error_message = 'No User Found';
-    }
+   
+}
+else {
+      $error_message = "No user found!";
+   
+
+}
+
     
 }
 include_once './header.php';

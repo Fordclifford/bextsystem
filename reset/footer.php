@@ -54,25 +54,9 @@
 <script type="text/javascript">
     function validate_forgot() {
 
-        var your_name = $.trim($("#user-login-name").val());
-        var your_email = $.trim($("#user-email").val());
+           var your_email = $.trim($("#user-email").val());
        
                    // validate name
-        if (your_name == "") {
-            alert("Enter your name.");
-            $("#user-login-name").focus();
-            return false;
-        } else if (!isValidName(your_name)) {
-            alert("Enter valid Name!");
-            $("#user-login-name").focus();
-            return false;
-        }else if (your_name.length < 3) {
-            alert("Name must be atleast 3 character.");
-            $("#user-login-name").focus();
-            return false;
-        }
-        
-
              // validate email
         if (!isValidEmail(your_email)) {
             alert("Enter valid email.");
@@ -80,8 +64,8 @@
             return false;
         }
 
-	if((document.getElementById("user-login-name").value == "") && (document.getElementById("user-email").value == "")) {
-		document.getElementById("validation-message").innerHTML = "Login name or Email is required!"
+	if(( (document.getElementById("user-email").value == "")) {
+		document.getElementById("validation-message").innerHTML = "Email is required!"
 		return false;
 	}
 	return true;

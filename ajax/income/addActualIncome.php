@@ -21,8 +21,7 @@ $data_to_store = filter_input_array(INPUT_POST);
     if($last_id)
     {
     	$_SESSION['success'] = "Record added successfully!";
-    	header('location: .././actual_income.php');
-    	exit();
+    	exit;
     }
 }
 

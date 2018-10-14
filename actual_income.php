@@ -147,6 +147,12 @@ $jsonYears = json_encode($years);
                             <li>
                                 <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
                             </li>
+                            <li>
+                                <a href="exportBillsPdf.php" ><i class="fa fa-file-pdf-o fa-fw"></i>Export pdf</a>
+                            </li>
+                            <li>
+                                <a href="exportBillsExcel.php" ><i class="fa fa-file-excel-o fa-fw"></i>Export Excel</a>
+                            </li>
                         </ul>
                     </li>
 

@@ -1,8 +1,6 @@
 <?php
-
-
 session_start();
-include("config.php");
+require_once 'config.php';
 
 // if session is not set this will redirect to login page
 if (!isset($_SESSION['user_logged_in'])) {
@@ -23,20 +21,20 @@ $dateto = new DateTime($to);
   $from=$datefrom->format('Y-m-d H:i:s');
   $church_id = $_SESSION['church'];
 
-       $q1 = "SELECT * FROM actual_income WHERE church_id='$church_id' AND date_added  BETWEEN '$from' AND '$to' ";
-        $result = mysql_query($q1);
+       $q3 = "SELECT * FROM estimated_expenses WHERE church_id=$church_id AND date  BETWEEN '$from' AND '$to'";
+        $result = mysql_query($q3);
 
         if (mysql_num_rows($result) == 0) {
             $error = true;
             
-          echo $_SESSION['failure'] ='No Income found between ' .$from. ' and '. $to.' !';
+          echo $_SESSION['failure'] ='No Expenses found between ' .$from. ' and '. $to.' !';
     
-   	header('location: ../../actualIncomeExcel.php');
+   	header('location: ../../estimatedExpensesExcel.php');
     	exit;
         }
 if(!$error){
-        $setSql = "SELECT source_name, amount, date_added,balance from actual_income WHERE church_id='$church_id' AND date_added  BETWEEN '$from' AND '$to' ORDER BY date_added DESC";
-        $sumQuery = " SELECT SUM(amount) AS totalIncome from actual_income WHERE church_id='$church_id' AND date_added  BETWEEN '$from' AND '$to' ";
+        $setSql = "SELECT expense_name, amount, date from estimated_expenses WHERE church_id='$church_id' AND date  BETWEEN '$from' AND '$to' ORDER BY date DESC";
+        $sumQuery = " SELECT SUM(amount) AS totalExpenses from estimated_expenses WHERE church_id='$church_id' AND date  BETWEEN '$from' AND '$to' ";
          $setRec = mysql_query($setSql);
        echo  $setSum = mysql_query($sumQuery);
 
@@ -50,7 +48,7 @@ if(!$error){
    
 
         $columnHeader = '';
-        $columnHeader = "Sr NO" . "\t" . "Source" . "\t" . "Amount" . "\t"."Date" . "\t"."Balance" . "\t";
+        $columnHeader = "Sr NO" . "\t" . "Name" . "\t" . "Amount" . "\t"."Date"  . "\t";
 
         $setData = '';
         $number = 1;
@@ -91,7 +89,7 @@ if(!$error){
 
 
         header("Content-type: application/octet-stream");
-        header("Content-Disposition: attachment; filename=Income_Report.xls");
+        header("Content-Disposition: attachment; filename=Expeses_Report.xls");
         header("Pragma: no-cache");
         header("Expires: 0");
 

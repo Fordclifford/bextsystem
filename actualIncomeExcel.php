@@ -6,7 +6,7 @@ require_once 'includes/auth_validate.php';
 
 
 <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true) : ?>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+   <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -59,13 +59,13 @@ require_once 'includes/auth_validate.php';
                     <li>
                         <a href="actual_income.php"> <i class="glyphicon glyphicon-usd"></i>Actual Income</a>
                         <ul class="nav nav-second-level">
-                            <li>
+                             <li>
                                 <a href="actual_income.php"><i class="fa fa-list fa-fw"></i>List all</a>
                             </li>
                             <li>
                                 <a href="actualIncomePdf.php" ><i class="fa fa-file-pdf-o fa-fw"></i>Export pdf</a>
                             </li>
-                          <li>
+                            <li>
                                 <a href="actualIncomeExcel.php" ><i class="fa fa-file-excel-o fa-fw"></i>Export Excel</a>
                             </li>
                         </ul>
@@ -80,6 +80,12 @@ require_once 'includes/auth_validate.php';
                             </li>
                             <li>
                                 <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                            </li>
+                            <li>
+                                <a href="exportBillsPdf.php" ><i class="fa fa-file-pdf-o fa-fw"></i>Export pdf</a>
+                            </li>
+                            <li>
+                                <a href="exportBillsExcel.php" ><i class="fa fa-file-excel-o fa-fw"></i>Export Excel</a>
                             </li>
                         </ul>
                     </li>

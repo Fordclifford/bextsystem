@@ -80,43 +80,42 @@ $dateto = new DateTime($to);
         $pdf->SetLeftMargin(30);
         $pdf->Ln();
         
-         $pdf->Cell(10, 20, 'Income Posted in between ' . $datefrom->format('d-m-Y').' and '.$dateto->format('d-m-Y') .'');
+         $pdf->Cell(10, 20, 'Expenses Posted in between ' . $datefrom->format('d-m-Y').' and '.$dateto->format('d-m-Y') .'');
         $pdf->Ln();
        
 
       
 
-        $q1 = "SELECT * FROM actual_income WHERE church_id=$church_id AND date_added  BETWEEN '$from' AND '$to' ";
+        $q1 = "SELECT * FROM estimated_expenses WHERE church_id=$church_id AND date  BETWEEN '$from' AND '$to' ";
         $result = mysql_query($q1);
 
         if (mysql_num_rows($result) == 0) {
             $error = true;
             
-          echo $_SESSION['failure'] ='No Income found between ' .$from. ' and '. $to.' !';
+          echo $_SESSION['failure'] ='No Expenses found between ' .$from. ' and '. $to.' !';
          
-   	header('location: ../../actualIncomePdf.php');
+   	header('location: ../../estimatedExpensesPdf.php');
          exit;
         } 
 if(!$error){
-        $count = "SELECT source_name, amount, date_added,balance from actual_income WHERE church_id='$church_id' AND date_added  BETWEEN '$from' AND '$to' ORDER BY date_added DESC";
-        $totalIncome = " SELECT SUM(amount) AS totalIncome from actual_income WHERE church_id='$church_id' AND date_added  BETWEEN '$from' AND '$to' ";
+        $count = "SELECT expense_name, amount, date from estimated_expenses WHERE church_id='$church_id' AND date  BETWEEN '$from' AND '$to' ORDER BY date DESC";
+        $totalExp = " SELECT SUM(amount) AS totalExp from estimated_expenses WHERE church_id='$church_id' AND date  BETWEEN '$from' AND '$to' ";
 
 
         if (!$resu = mysql_query($count)) {
             exit(mysql_error());
         }
-        if (!$total = mysql_query($totalIncome)) {
+        if (!$total = mysql_query($totalExp)) {
             exit(mysql_error());
         }
        
-        $width_cell = array(50, 25, 50, 25);
+        $width_cell = array(50, 25, 50);
         $pdf->SetFillColor(193, 229, 252); // Background color of header
 // Header starts ///
-        $pdf->Cell($width_cell[0], 10, 'SOURCE ', 1, 0, 'C', true); // First header column
+        $pdf->Cell($width_cell[0], 10, 'NAME ', 1, 0, 'C', true); // First header column
         $pdf->Cell($width_cell[1], 10, 'AMOUNT', 1, 0, 'C', true); // Second header column
         $pdf->Cell($width_cell[2], 10, 'DATE', 1, 0, 'C', true); // Second header column
-        $pdf->Cell($width_cell[3], 10, 'BALANCE', 1, 0, 'C', true); // Second header column
-        $pdf->Ln();
+         $pdf->Ln();
 
 //// header ends ///////
 
@@ -126,11 +125,9 @@ if(!$error){
 /// each record is one row  ///
         foreach ($dbo->query($count) as $row) {
            
-                $pdf->Cell($width_cell[0], 10, $row['source_name'], 1, 0, 'C', $fill);
+                $pdf->Cell($width_cell[0], 10, $row['expense_name'], 1, 0, 'C', $fill);
                 $pdf->Cell($width_cell[1], 10, $row['amount'], 1, 0, 'L', $fill);
-                $pdf->Cell($width_cell[2], 10, $row['date_added'], 1, 0, 'L', $fill);
-                $pdf->Cell($width_cell[3], 10, $row['balance'], 1, 0, 'L', $fill);
-                
+                $pdf->Cell($width_cell[2], 10, $row['date'], 1, 0, 'L', $fill);
                 $pdf->Ln();
                 $fill = !$fill; // to give alternate background fill  color to rows
             
@@ -141,19 +138,19 @@ if(!$error){
 
         $pdf->SetFont('Arial', 'B', 16);
         $width_cells = array(80, 50);
-        $label = "TOTAL ACTUAL INCOME";
-        foreach ($dbo->query($totalIncome) as $row) {
+        $label = "TOTAL Estimated Expenses";
+        foreach ($dbo->query($totalExp) as $row) {
             $pdf->Ln();
             $pdf->SetFillColor(0, 240, 180);
             $pdf->Cell($width_cells[0], 10, $label, 0, 0, 'C', $fill);
-            $pdf->Cell($width_cells[1], 10, $row['totalIncome'], 0, 0, 'C', $fill);
+            $pdf->Cell($width_cells[1], 10, $row['totalExp'], 0, 0, 'C', $fill);
             $pdf->Ln();
            
 
             // to give alternate background fill  color to rows
         }
        
-       $pdf->Output('actualIncomePdf.pdf','D');
+       $pdf->Output('estimatedExpPdf.pdf','D');
 
 }
 }

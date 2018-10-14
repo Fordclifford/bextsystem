@@ -11,9 +11,9 @@ $host = "localhost";
 /* The database port number */
 $port = 3306;
 /* The username to connect to the database */
-$usernm = "root";
+$usernm = "clifford";
 /* The password associated with the username */
-$passwd = "";
+$passwd = "cliffkaka";
 /* The database to which to connect */
 $dbname = "bext_system";
 /*

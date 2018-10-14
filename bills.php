@@ -164,10 +164,10 @@ $jsonIncome = json_encode($income);
                                 <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
                             </li>
                             <li>
-                                <a href="exportBillPdf.php" ><i class="fa fa-file-pdf-o fa-fw"></i>Export pdf</a>
+                                <a href="exportBillsPdf.php" ><i class="fa fa-file-pdf-o fa-fw"></i>Export pdf</a>
                             </li>
                             <li>
-                                <a href="exportBillExcel.php" ><i class="fa fa-file-excel-o fa-fw"></i>Export Excel</a>
+                                <a href="exportBillsExcel.php" ><i class="fa fa-file-excel-o fa-fw"></i>Export Excel</a>
                             </li>
                         </ul>
                     </li>

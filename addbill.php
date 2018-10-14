@@ -86,7 +86,9 @@ if (isset($_POST["submit"])) {
 
 
     if (!isset($error)) {
-        $insert_query = mysql_query("INSERT INTO bill (source,amount,date,image,description,church_id,financial_year,mode_of_payment)VALUES('$category', '$amount', str_to_date('$date','%d-%m-%Y'), '$userpic','$desc',$church_id,$yr,'$bill')");
+        $dateto = new DateTime($date);
+   $to=$dateto->format('Y-m-d H:i:s');
+        $insert_query = mysql_query("INSERT INTO bill (source,amount,date,image,description,church_id,financial_year,mode_of_payment)VALUES('$category', '$amount', '$to', '$userpic','$desc',$church_id,$yr,'$bill')");
         if (!$insert_query) {
 
             exit(mysql_error($conn));
@@ -102,7 +104,7 @@ if (isset($_POST["submit"])) {
             exit(mysql_error($conn));
         }
 
-        $sumincome_query = mysql_query("SELECT total_income AS Income from financial_year WHERE church_id = $church_id and id =$yr");
+        $sumincome_query = mysql_query("SELECT total_actual_income AS Income from financial_year WHERE church_id = $church_id and id =$yr");
         $sumbills_query = mysql_query("SELECT total_bills AS Bills from financial_year WHERE church_id = $church_id and id =$yr");
         $incomerow = mysql_fetch_assoc($sumincome_query);
         $sum_income = $incomerow['Income'];
@@ -135,7 +137,7 @@ if (isset($_POST["submit"])) {
         }
         if ($insert_query && $update_query && $bal_query && $upd_query) {
             $errTyp = "success";
-            $errMSG = "new record succesfully inserted redirecting...";
+           $_SESSION['success'] = $errMSG = "new record succesfully inserted redirecting...";
             header("refresh:5;bills.php"); // redirects image view page after 5 seconds.
         } else {
             $error = TRUE;
@@ -158,7 +160,7 @@ include_once './includes/header.php';
 ?>
 
 <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true) : ?>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -177,9 +179,9 @@ include_once './includes/header.php';
             <li>  <a name="button" id="notification-icon" name="button" onclick="myFunction()" class="notification">
                     <i class="fa fa-envelope fa-fw"></i><?php if ($count > 0) { ?>
                         <span class="badge" id="notification-count" ><?php
-        echo $count;
-    }
-    ?></span>
+                            echo $count;
+                        }
+                        ?></span>
                 </a> <div id="notification-latest"></div>
             </li>
 
@@ -211,7 +213,7 @@ include_once './includes/header.php';
                     <li>
                         <a href="actual_income.php"> <i class="glyphicon glyphicon-usd"></i>Actual Income</a>
                         <ul class="nav nav-second-level">
-                            <li>
+                             <li>
                                 <a href="actual_income.php"><i class="fa fa-list fa-fw"></i>List all</a>
                             </li>
                             <li>
@@ -232,6 +234,12 @@ include_once './includes/header.php';
                             </li>
                             <li>
                                 <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                            </li>
+                            <li>
+                                <a href="exportBillsPdf.php" ><i class="fa fa-file-pdf-o fa-fw"></i>Export pdf</a>
+                            </li>
+                            <li>
+                                <a href="exportBillsExcel.php" ><i class="fa fa-file-excel-o fa-fw"></i>Export Excel</a>
                             </li>
                         </ul>
                     </li>
@@ -327,8 +335,8 @@ include_once './includes/header.php';
            <label class="col-md-6 control-label">Date: </label>
            <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
-                    <span style="height: 40px" class="input-group-addon"><a title="Click to Select Date" data-toggle="tooltip" href="javascript:NewCal('date','ddmmyyyy')"><span class="glyphicon glyphicon-calendar "></span></a></span>
-                    <input onclick="javascript:NewCal('date', 'ddmmyyyy')" title="Select Date " data-toggle="tooltip" style="height:40px;  margin:0px 0px 0px 0px;" type="text" id="date" name="date" class="form-control w3-round-large" placeholder="Click to Select Date" readonly="true" value="<?php echo $date; ?>"/>
+                    <span style="height: 40px" class="input-group-addon"><a title="Click to Select Date" ><span class="glyphicon glyphicon-calendar "></span></a></span>
+                    <input  title="Select Date " type="date" style="height:40px;  margin:0px 0px 0px 0px;" type="text" id="date" name="date" class="form-control w3-round-large" placeholder="Click to Select Date"  value="<?php echo $date; ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $dateError; ?></span>
             </div>
@@ -367,7 +375,7 @@ include_once './includes/header.php';
                 <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-usd "></span></span>
-                    <input style=" height: 40px ;margin: 0px" type="number" name="amount" title="Enter Amount" data-toggle="tooltip" id="amount" placeholder="Enter Amount" class="form-control w3-round-large" value="<?php echo $amount; ?>"/>
+                    <input style=" height: 40px ;margin: 0px" type="number" name="amount" title="Enter Amount"  id="amount" placeholder="Enter Amount" class="form-control w3-round-large" value="<?php echo $amount; ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $amtError; ?></span>
             </div>
@@ -380,7 +388,7 @@ include_once './includes/header.php';
                 <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-file "></span></span>
-                    <input title="Click to Choose Image File" data-toggle="tooltip" style="height:40px; margin:0px" class="form-control" type="file" name="image" id="image" accept="image/*" value="<?php echo $userpic; ?>" />
+                    <input title="Click to Choose Image File"  style="height:40px; margin:0px" class="form-control" type="file" name="image" id="image" accept="image/*" value="<?php echo $userpic; ?>" />
                 </div>
                 <span class="text-danger"><?php echo $imgError; ?></span>
                 </div>
@@ -392,7 +400,7 @@ include_once './includes/header.php';
             <div class="col-md-4 inputGroupContainer">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-book "></span></span>
-                    <input title="Add a Brief Description of the Bill" data-toggle="tooltip"  style="  height: 40px; margin-top: 0px" type="text" name="desc" id="desc" placeholder="Description " class="form-control w3-round-large" value="<?php echo $desc; ?>"/>
+                    <input title="Add a Brief Description of the Bill"  style="  height: 40px; margin-top: 0px" type="text" name="desc" id="desc" placeholder="Description " class="form-control w3-round-large" value="<?php echo $desc; ?>"/>
                 </div>
                 <span class="text-danger"><?php echo $descError; ?></span>
             </div>

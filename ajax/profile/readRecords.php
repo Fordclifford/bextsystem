@@ -8,7 +8,7 @@ include("dbconnect.php");
 $data = '
     ';
 
-$query = "SELECT * FROM users WHERE id =".$_SESSION['user'];
+$query = "SELECT * FROM users WHERE id =".$_SESSION['user_logged_in'];
 
 
 if (!$result = mysql_query($query)) {

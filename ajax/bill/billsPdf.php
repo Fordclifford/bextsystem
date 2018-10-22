@@ -96,22 +96,19 @@ $dateto = new DateTime($to);
          exit;
         } 
 if(!$error){
-        $bills = "SELECT source, amount,date,mode_of_payment, description from bill WHERE church_id='$church_id' AND date  BETWEEN '$from' AND '$to' ORDER BY date DESC";
-        $totalBills = " SELECT SUM(amount) AS totalBill from bill WHERE church_id='$church_id' AND date  BETWEEN '$from' AND '$to' ";
-         $income = "SELECT source_name from actual_income WHERE church_id='$church_id' AND date_added  BETWEEN '$from' AND '$to' ORDER BY date_added DESC";
-       
-
+        $bills = "SELECT * FROM bill b INNER JOIN actual_income i ON b.source=i.id WHERE i.church_id='$church_id' AND b.date  BETWEEN '$from' AND '$to' ORDER BY b.date DESC";
+        $totalBills = " SELECT SUM(amount) AS totalBill from bill WHERE church_id='$church_id' AND date BETWEEN '$from' AND '$to' ";
+        
         if (!$resu = mysql_query($bills)) {
-            exit(mysql_error());
+            exit(mysql_error()).'here';
         }
-        if (!$resu = mysql_query($income)) {
-            exit(mysql_error());
-        }
+       
         if (!$total = mysql_query($totalBills)) {
             exit(mysql_error());
         }
        
-        $width_cell = array(50, 25, 25, 25, 50);
+        $width_cell = array(50, 20, 40, 20, 50);
+         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetFillColor(193, 229, 252); // Background color of header
 // Header starts ///
         $pdf->Cell($width_cell[0], 10, 'SOURCE ', 1, 0, 'C', true); // First header column
@@ -132,7 +129,7 @@ if(!$error){
         foreach ($dbo->query($bills) as $row) {
               
            
-                $pdf->Cell($width_cell[0], 10, $irow['source_name'], 1, 0, 'C', $fill);
+                $pdf->Cell($width_cell[0], 10, $row['source_name'], 1, 0, 'C', $fill);
                 $pdf->Cell($width_cell[1], 10, $row['amount'], 1, 0, 'L', $fill);
                 $pdf->Cell($width_cell[2], 10, $row['date'], 1, 0, 'L', $fill);
                 $pdf->Cell($width_cell[3], 10, $row['mode_of_payment'], 1, 0, 'L', $fill);
@@ -144,9 +141,6 @@ if(!$error){
         
         }
 
-
-
-
         $pdf->SetFont('Arial', 'B', 16);
         $width_cells = array(80, 50);
         $label = "TOTAL BILLS";
@@ -154,7 +148,7 @@ if(!$error){
             $pdf->Ln();
             $pdf->SetFillColor(0, 240, 180);
             $pdf->Cell($width_cells[0], 10, $label, 0, 0, 'C', $fill);
-            $pdf->Cell($width_cells[1], 10, $row['totalBills'], 0, 0, 'C', $fill);
+            $pdf->Cell($width_cells[1], 10, $row['totalBill'], 0, 0, 'C', $fill);
             $pdf->Ln();
            
 

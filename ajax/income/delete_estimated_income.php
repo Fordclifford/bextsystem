@@ -31,14 +31,12 @@ if ($del_id && $_SERVER['REQUEST_METHOD'] == 'POST'){
     if ($status && !$error)
     {
         $_SESSION['info'] = "Record deleted successfully!";
-        header('location: ../estimated_income.php');
-        exit;
+       
     }
     if(!$status)
     {
     	$_SESSION['failure'] ="Unable to delete record!!";
-    	header('location: ../estimated_income.php');
-        exit;
+    	
     }
    
 

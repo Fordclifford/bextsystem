@@ -1,184 +1,295 @@
 <?php
 session_start();
-require_once './config.php';
+require_once 'includes/auth_validate.php';
+include_once'includes/header.php';
+require_once 'coreadmin/config/config.php';
+$search_string = filter_input(INPUT_GET, 'search_string');
+$filter_col = filter_input(INPUT_GET, 'filter_col');
+$order_by = filter_input(INPUT_GET, 'order_by');
 
-// if session is not set this will redirect to login page
-if (!isset($_SESSION['user'])) {
-    header("Location: index.php");
-    exit;
+//Get current page.
+$page = filter_input(INPUT_GET, 'page');
+
+//Per page limit for pagination.
+$pagelimit = 10;
+
+if (!$page) {
+    $page = 1;
 }
-// select loggedin users detail
-if ($_SESSION['user_type'] == 'treasurer') {
 
-$f_year = mysql_query("SELECT year,church_id FROM financial_year WHERE church_id=" . $_SESSION['church']);
-if (mysql_num_rows($f_year) == 0) {
-    $church_id = $_SESSION['church'];
-    $year = date("Y");
-    $query_insert = mysql_query("INSERT INTO financial_year(year,church_id) VALUES ('$year','$church_id')");
-    if (!$query_insert) {
-        //die("could not execute query 2");
-        exit(mysql_error($conn));
+// If filter types are not selected we show latest created data first
+if (!$filter_col) {
+    $filter_col = "date_added";
+}
+if (!$order_by) {
+    $order_by = "Desc";
+}
+
+//Get DB instance. i.e instance of MYSQLiDB Library
+$db = getDbInstance();
+//$db->where('church_id',$_SESSION['church']);
+$db->join("financial_year f", "i.financial_year_id=f.id", "LEFT");
+
+$select = array('i.id', 'i.source_name', 'i.amount', 'i.date_added', 'f.year', 'i.church_id');
+//
+// $church = $db->get ("church c", null, "u.user_name,c.id,c.name,c.union_mission,c.conference,c.mobile,c.date");
+// print_r($church);
+//Start building query according to input parameters.
+// If search string
+if ($search_string) {
+    $db->where('source_name', '%' . $search_string . '%', 'like');
+}
+
+//If order by option selected
+if ($order_by) {
+    $db->orderBy($filter_col, $order_by);
+}
+
+//Set pagination limit
+$db->pageLimit = $pagelimit;
+
+//Get result of the query.
+$income = $db->arraybuilder()->paginate("actual_income i", $page, $select);
+$total_pages = $db->totalPages;
+
+// get columns for order filter
+foreach ($income as $value) {
+    foreach ($value as $col_name => $col_value) {
+        $filter_options[$col_name] = $col_name;
     }
-    ?>
-    <script>
-        alert('Hello!\n To begin a new financial year \n You will be redirected to income page to add income ...');
-        window.location.href = 'income.php';
-    </script>
-    <?php
+    //execute only once
+    break;
 }
-$budget = mysql_query("SELECT expense_name,church_id FROM budget_expenses WHERE church_id=" . $_SESSION['church']);
-if (mysql_num_rows($budget) == 0) {
-    ?>
-    <script>
-        alert('Hello!\n You need to add expenses for your church\n You will be redirected to expenses page ...');
-        window.location.href = 'expenses.php';
-    </script>
-    <?php
+
+
+$d = getDbInstance();
+$d->where('church_id', $_SESSION['church']);
+foreach ($d->get('financial_year') as $row) {
+    $years[] = array("value" => $row['id'], "text" => $row['year']);
 }
-$income = mysql_query("SELECT source_name,church_id FROM income_sources WHERE church_id=" . $_SESSION['church']);
-if (mysql_num_rows($income) == 0) {
-    ?>
-    <script>
-        alert('Hello!\n You need to add income for your church\n You will be redirected to income page ...');
-        window.location.href = 'income.php';
-    </script>
-    <?php
-}
-}
-include_once('includes/header.php');
+$jsonYears = json_encode($years);
 ?>
-<body>
+<?php include_once './includes/header.php'; ?>
 
-        <div id="wrapper">
+<?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true) :
+     include_once './sidenav.php';
+    ?>
 
-            <!-- Navigation -->
-            <?php if (isset($_SESSION['user']) && $_SESSION['user'] == true ) : ?>
-                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="">B&E Tracker</a>
-                    </div>
-                    <!-- /.navbar-header -->
-
-                    <ul class="nav navbar-top-links navbar-right">
-                        <!-- /.dropdown -->
-
-                        <!-- /.dropdown -->
-						<li> <a id="notification-icon" name="button" onclick="myFunction()" class="dropbtn"><span id="notification-count"><?php if($count>0) { echo $count; } ?></span><i class="fa fa-envelope fa-fw"></i></a>
-			<div id="notification-latest"></div>
-			</li>
-
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-user -->
-                        </li>
-                        <!-- /.dropdown -->
-                    </ul>
-                    <!-- /.navbar-top-links -->
-
-                    <div class="navbar-default sidebar" role="navigation">
-                        <div class="sidebar-nav navbar-collapse">
-                            <ul class="nav" id="side-menu">
-                                <li>
-                                    <a href="home.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                                </li>
-
-                                <li <?php echo (CURRENT_PAGE =="balance.php" || CURRENT_PAGE=="balance.php") ? 'class="active"' : '' ; ?>>
-                                    <a href="bills.php"><i class="glyphicon glyphicon-registration-mark fa-fw"></i> Bills<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="bills.php"><i class="fa fa-list fa-fw"></i>List all</a>
-                                        </li>
-                                    <li>
-                                        <a href="addbill.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
-                                    </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                   <a href="expenses.php"> <i class="glyphicon glyphicon-apple"></i> Expenses</a>
-                                </li>
-                                 <li>
-                                   <a href="budget.php"> <i class="glyphicon glyphicon-usd"></i> Budget</a>
-                                </li>
-
-                                <li>
-                                       <a href="income.php"> <i class="glyphicon glyphicon-usd"></i> Income</a>
-
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.sidebar-collapse -->
-                    </div>
-                    <!-- /.navbar-static-side -->
-                </nav>
-            <?php endif; ?>
-
-           <div id="page-wrapper">
+<?php endif; ?>
+<div id="page-wrapper">
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Budget</h1>
+
+        <div class="col-lg-6">
+            <h1 class="page-header">Actual Income</h1>
+        </div>
+        <div class="col-lg-6" style="">
+            <div class="page-action-links text-right">
+                <a href="">
+                    <button data-toggle="modal" data-target="#add_new_record_modal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add new </button>
+                </a>
+            </div>
         </div>
     </div>
+    <?php require_once 'includes/flash_messages.php'; ?>
+    <div id="alert_message"></div>
+    <div class="well text-center filter-form">
+        <form class="form form-inline" action="">
+            <label for="input_search">Search</label>
+            <input type="text" style="height:30px" class="form-control" title="search by name" data-toggle="tooltip" id="input_search" name="search_string" value="<?php echo $search_string; ?>">
+            <label for ="input_order">Order By</label>
+            <select name="filter_col"  title="order by name,user" data-toggle="tooltip" class="form-control">
 
-                      <div class="col-lg-4">
-                    <div  class=" animate "><a onclick="return confirm('Sure to Add?')" style="margin: 20px" data-toggle="tooltip" title="click to add new financial year" href="new_year.php" class="btn btn-success w3-round-large"  ><span class="glyphicon glyphicon-plus-sign"></span> New Year</a></div>
+                <?php
+                foreach ($filter_options as $option) {
+                    ($filter_col === $option) ? $selected = "selected" : $selected = "";
+                    echo ' <option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
+                }
+                ?>
 
-                    <div  class=" animate "><a onclick="return confirm('Sure to Print?')" style="margin-left: 20px" data-toggle="tooltip" title="click to print budget to pdf" href="printBudgetPdf.php" class="btn btn-success w3-round-large"  ><span class="glyphicon glyphicon-print"></span> Print Budget</a></div>
-                </div>
-                <div class=" search">
-                    <form class="frm">
+            </select>
 
-                        <div  class="sidebyside">
-                            <label> Year: </label>
-                            <?php
-                            $c_id = $_SESSION['church'];
-                            $f_query = mysql_query("Select id, year from financial_year WHERE church_id = $c_id order by year DESC");
+            <select name="order_by" title="order asc or desc" data-toggle="tooltip" class="form-control" id="input_order">
 
-                            echo "<select title=\" Choose Financial Year\" data-toggle=\"tooltip\" style=\" height: 30px;\" class=\" w3-round-large\" name=\"year\" id=\"fyear\" value\"echo $fyear\">";
-                            echo "<option value=''>Select</option>";
-                            while ($row = mysql_fetch_array($f_query)) {
-                                echo "<option value='" . $row['id'] . "'>" . $row['year'] . "</option>";
-                            } echo "</select>";
-                            ?>
-                        </div>
+                <option value="Asc" <?php
+                if ($order_by == 'Asc') {
+                    echo "selected";
+                }
+                ?> >Asc</option>
+                <option value="Desc" <?php
+                if ($order_by == 'Desc') {
+                    echo "selected";
+                }
+                ?>>Desc</option>
+            </select>
+            <input type="submit" value="Go" class="btn btn-primary">
 
-                        <div style="padding-top: 20px;"class="sidebyside ">
-                            <button  type="button" style="height: 40px;"  name="filter" id="filter" data-toggle="tooltip" title="Click to Search" class="btn btn-info  glyphicon glyphicon-eye-open w3-round-xxlarge"> View </button>
-                        </div>
-                    </form>
-                </div>
+        </form>
+    </div>
+
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr> <th class="header">#</th>
+                <th>Income Source</th>
+                <th>Amount</th>
+                <th>Date Added</th>
+                <th>Financial Year</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="income_data">
+            <?php foreach ($income as $row) : ?>
+                <tr>
+                    <td><?php echo $row['id']; ?></td>
+                    <td data-name="source_name" class="source_name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['source_name'] ?></td>
+                    <td data-name="amount" class="amount" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['amount']); ?></td>
+                    <td data-name="date_added" id="date_added" class="date_added" data-original-title="Select option" data-value="0" data-type="date"  data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date_added']) ?></td>
+
+                    <td data-name="financial_year_id" id="year" class="year" data-original-title="Select Year" data-value="0" data-type="select"  data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['year']) ?></td>
+
+                    <td>	<a href=""  class="btn btn-danger delete_income delete_btn" name="delete_income" id="<?php echo $row['id'] ?>" style="margin-right: 8px;"><span class="glyphicon glyphicon-trash"></span></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+   
+   
+    
+</div>
 
 
-                <hr />
 
-                <div class=" animate row">
-                    <div class="col-md-12">
+<!-- // Modal -->
+
+<!--    Pagination links-->
+<div class="text-center">
+
+    <?php
+    if (!empty($_GET)) {
+        //we must unset $_GET[page] if previously built by http_build_query function
+        unset($_GET['page']);
+        //to keep the query sting parameters intact while navigating to next/prev page,
+        $http_query = "?" . http_build_query($_GET);
+    } else {
+        $http_query = "?";
+    }
+//Show pagination links
+    if ($total_pages > 1) {
+        echo '<ul class="pagination text-center">';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            ($page == $i) ? $li_class = ' class="active"' : $li_class = "";
+            echo '<li' . $li_class . '><a href="actual_income.php' . $http_query . '&page=' . $i . '">' . $i . '</a></li>';
+        }
+        echo '</ul></div>';
+    }
+    ?>
+</div>
 
 
-                        <div class="record_content"></div>
+<!--    Pagination links end-->
 
-                        <div class="records_content"></div>
-                    </div>
-                </div>
-           </div>
+</div> 
 
-    <script src="assets/js/modal3.js"></script>
-    <script src="assets/js/budget_expenses_ajax.js"></script>
-    <script src="assets/js/budget_income_ajax.js"></script>
-     <script type="text/javascript" src="js/script.js"></script>
+
+
+<script type="text/javascript">
+<?php echo "var years = $jsonYears; \n"; ?>
+    $(document).ready(function () {
+        $('#income_data').editable({
+            container: 'body',
+            selector: 'td.year',
+            url: "ajax/income/update_actual_income.php",
+            title: 'Year',
+            type: "POST",
+            dataType: 'json',
+            source: function () {
+                return years;
+            },
+            success: function ()
+            {
+                window.location.reload();
+            }
+        });
+
+        $('#income_data').editable({
+            container: 'body',
+            selector: 'td.source_name',
+            url: "ajax/income/update_actual_income.php",
+            title: 'Source Name',
+            type: "POST",
+//dataType: 'json',
+            validate: function (value) {
+                if ($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            },
+            success: function ()
+            {
+                window.location.reload();
+            }
+        });
+
+        $('#income_data').editable({
+            container: 'body',
+            selector: 'td.amount',
+            url: "ajax/income/update_actual_income.php",
+            title: 'Amount',
+            type: "POST",
+//dataType: 'json',
+            validate: function (value) {
+                if ($.trim(value) == '')
+                {
+                    return 'This field is required';
+                }
+            },
+            success: function ()
+            {
+                window.location.reload();
+            }
+        });
+
+        $(document).on('click', '.delete_income', function () {
+            var id = $(this).attr("id");
+            if (confirm("Are you sure you want to remove this?"))
+            {
+                $.ajax({
+                    url: "ajax/income/delete_actual_income.php",
+                    method: "POST",
+                    data: {id: id},
+                    success: function () {
+//                        window.location.reload();
+                    }
+                });
+                setInterval(function () {
+                    $('#alert_message').html('');
+                }, 500);
+            }
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#income_form").validate({
+            rules: {
+                year: {
+                    required: true,
+                    minlength: 3
+                },
+                source_name: {
+                    required: true,
+                    minlength: 3
+                },
+                amount: {
+                    required: true,
+                    minlength: 1
+                }
+            }
+        });
+    });
+</script>
+
+
+<script src="assets/js/modal.js"></script>
 <?php include_once('includes/footer.php'); ?>

@@ -68,31 +68,7 @@ include_once('includes/header.php');
         
 
             <div class="row">
-                <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="glyphicon glyphicon-briefcase fa-5x"></i>
-                                </div>
-
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"> Budget</div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <a href="budget.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Go to Budget&nbsp;</span>
-                                <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div data-toggle="tooltip" title="Click the link to go to income page" class="col-md-3 col-lg-3">
+                 <div data-toggle="tooltip" title="Click the link to go to income page" class="col-md-3 col-lg-4">
                     <div class="panel panel-darkBlue">
                         <div class="panel-heading">
                             <div class="row">
@@ -116,30 +92,33 @@ include_once('includes/header.php');
                         </a>
                     </div>
                 </div>
-                <div data-toggle="tooltip" title="Click the link to go to bills page" class="col-md-3 col-lg-3">
-                    <div class="panel panel-paleGreen">
+                <div data-toggle="tooltip" title="Click the link to go to bills page" class="col-md-3 col-lg-4">
+                    <div class="panel panel-yellow">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="glyphicon glyphicon-registration-mark fa-5x"></i>
-                                </div>
 
+                                <div class="col-xs-3">
+                                    <i class="glyphicon glyphicon-bitcoin fa-5x"></i>
+                                </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"> Bills</div>
                                 </div>
-
+                                </a>
                             </div>
                         </div>
                         <a href="bills.php">
                             <div class="panel-footer">
-                                <span class="pull-left">Manage Bills&nbsp; </span>
+                                <span class="pull-left">Go to Bills&nbsp;</span>
                                 <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div data-toggle="tooltip" title="Click the link to go to income-expense report page" class="col-md-3 col-lg-3">
+
+               
+                   <div data-toggle="tooltip" title="Click the link to go to income-expense report page" class="col-md-3 col-lg-4">
                     <div class="panel panel-purple">
                         <div class="panel-heading">
                             <div class="row">
@@ -161,36 +140,59 @@ include_once('includes/header.php');
                         </a>
                     </div>
                 </div>
-
-
+                
+                
             </div>
             <div class="row">
-
-                <div data-toggle="tooltip" title="Click the link to go to balance page" class="col-md-3 col-lg-3">
-                    <div class="panel panel-yellow">
+                <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-4">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
-
                                 <div class="col-xs-3">
-                                    <i class="glyphicon glyphicon-bitcoin fa-5x"></i>
+                                    <i class="glyphicon glyphicon-briefcase fa-4x"></i>
                                 </div>
+
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"> Balance</div>
+                                    <div class="huge"> Estimated Income</div>
                                 </div>
-                                </a>
+
                             </div>
                         </div>
-                        <a href="balances.php">
+                        <a href="estimated_income.php">
                             <div class="panel-footer">
-                                <span class="pull-left">Go to Balance&nbsp;</span>
+                                <span class="pull-left">Go to Estimated Income &nbsp;</span>
                                 <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div data-toggle="tooltip" title="Click the link to go to profile page" class="col-md-3 col-lg-3">
+                
+                <div data-toggle="tooltip" title="Click the link to go to budget page" class="col-md-3 col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="glyphicon glyphicon-briefcase fa-4x"></i>
+                                </div>
+
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"> Estimated Expenses</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <a href="estimated_expenses.php">
+                            <div class="panel-footer">
+                                <span class="pull-left">Go to Estimated Expenses&nbsp;</span>
+                                <span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div data-toggle="tooltip" title="Click the link to go to profile page" class="col-md-3 col-lg-4">
                     <div class="panel panel-bloodRed">
                         <div class="panel-heading">
                             <div class="row">

@@ -112,13 +112,11 @@ $status = true;
            if ($status)
     {
         $_SESSION['info'] = "Record deleted successfully!";
-        header('location: ../../bills.php');
-        exit;
+        
     }
     if(!$status)
     {
     	$_SESSION['failure'] ="Unable to delete record!";
-    	header('location: ../../bills.php');
-        exit;
+    	
     }
 }    

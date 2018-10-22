@@ -18,18 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db->where("user_type", "treasurer");
         $row = $db->get('users');
         if ($db->count >= 1) {
-            $_SESSION['user_logged_in'] = TRUE;
+            $_SESSION['user_logged_in'] = $row[0]['id'];
             $_SESSION['user_type'] = $row[0]['user_type'];
             if ($row[0]['status'] == 'Pending') {
                 $_SESSION['login_failure'] = "Account incative! check your email/contact admin";
                 header('Location:login.php');
                 exit;
             } else {
-
-                $_SESSION['user_logged_in'];
+                $db = getDbInstance();
                 $db->where("user_id", $_SESSION['user_logged_in']);
-                $row = $db->get('church');
-                $_SESSION['church'] = $row[0]['id'];
+                $row1 = $db->get('church');
+                $_SESSION['church'] = $row1[0]['id'];
                 if ($remember) {
                     setcookie('username', $username, time() + (86400 * 90), "/");
                     setcookie('password', $passwd, time() + (86400 * 90), "/");
@@ -49,20 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db = getDbInstance();
         $db->where("user_name", $username);
         $db->where("passwd", $passwd);
-        $db->where("user_type", ["super", "auditor", "admin","union_auditor"], 'IN');
+        $db->where("user_type", ["super", "auditor", "admin", "union_auditor"], 'IN');
         $row = $db->get('users');
         if ($db->count >= 1) {
-             $_SESSION['user_logged_in'] = $row[0]['id'];
+            $_SESSION['user_logged_in'] = $row[0]['id'];
             $_SESSION['user_type'] = $row[0]['user_type'];
-          
+
             if ($row[0]['user_type'] == 'auditor') {
-                  $db = getDbInstance();
+                $db = getDbInstance();
                 $db->where("user_id", $_SESSION['user_logged_in']);
                 $row = $db->get('conference');
                 $_SESSION['conference'] = $row[0]['id'];
             }
             if ($row[0]['user_type'] == 'union_auditor') {
-                  $db = getDbInstance();
+                $db = getDbInstance();
                 $db->where("user_id", $_SESSION['user_logged_in']);
                 $row = $db->get('union_mission');
                 $_SESSION['union_mission'] = $row[0]['id'];

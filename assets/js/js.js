@@ -3,7 +3,7 @@ $(document).ready(function() {
 		var year_id = $(this).val();
 		if(year_id != "") {
 			$.ajax({
-				url:"get-category.php",
+				url:"get_category.php",
 				data:{y_id:year_id},
 				type:'POST',
 				success:function(response) {

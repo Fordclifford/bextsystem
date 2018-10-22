@@ -15,4 +15,16 @@ require_once '../../includes/auth_validate.php';
         echo 'income_not_exist'; 
     }
     
+  $sumincome = mysql_query("SELECT sum(amount) as sum_income from estimated_income WHERE church_id=" . $_SESSION['church']);
+  $row = mysql_fetch_assoc($sumincome); 
+$incomesum = $row['sum_income'];
+
+$sumexpenses= mysql_query("SELECT sum(amount) as sum_expenses from estimated_expenses WHERE church_id=" . $_SESSION['church']);
+  $row = mysql_fetch_assoc($sumexpenses); 
+$expensesum = $row['sum_expenses'];
+
+    if ($incomesum < $expensesum ) {
+        echo 'income_less'; 
+    }
+    
 }

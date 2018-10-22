@@ -23,6 +23,28 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl','$http', function ($scope,
               
           });
         };
+        $scope.totalactualincome = function() {
+                 $http({
+              
+              method: 'GET',
+              url: 'includes/api/income.php'
+              
+          }).then(function (response) {
+              
+              // on success
+          //if(isNaN(response.data)){
+             growl.info(response.data, {title: 'Total Income'});
+         
+         
+          }, function (response) {
+//              alert(response.data,response.status);
+              
+              // on error
+              console.log(response.data,response.status);
+              
+          });
+        };
+        
         $scope.income = function() {
                  $http({
               
@@ -44,6 +66,7 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl','$http', function ($scope,
               
           });
         };
+        
         $scope.budget = function() {
                  $http({
               
@@ -54,10 +77,13 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl','$http', function ($scope,
               
               // on success
               if(response.data =='expenses_not_exist'){
-             growl.warning('Hello! You need to add estimated expenses for your church', {title: 'Warning!'});
+             growl.danger('Hello! You need to add estimated expenses for your church', {title: 'Alert!'});
          }
           if(response.data =='income_not_exist'){
-             growl.warning('Hello! You need to add estimated income for your church', {title: 'Warning!'});
+             growl.danger('Hello! You need to add estimated income for your church', {title: 'Alert!'});
+         }
+         if(response.data =='income_less'){
+             growl.danger('Hello! Your estimated income is less than the expenses!!', {title: 'Alert!'});
          }
           }, function (response) {
 //              alert(response.data,response.status);
@@ -70,5 +96,7 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl','$http', function ($scope,
         
        $scope.fYear();
        $scope.budget();
+      
+       $scope.income();
 //        $scope.showAll();
     }]);

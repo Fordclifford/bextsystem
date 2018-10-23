@@ -66,6 +66,7 @@ require_once 'includes/auth_validate.php';
 </div>
 
 <?php include_once('includes/footer.php'); ?>
+<script src="includes/js/notif.js" type="text/javascript"></script>
  <script type="text/javascript" >
 
 

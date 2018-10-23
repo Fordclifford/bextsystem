@@ -14,9 +14,14 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
                 // on success
                 //if(isNaN(response.data)){
                 var string = response.data,
-                        expr = /expensesum/;  // no quotes here
+                        expr = /expensesumokay/;  // no quotes here
                if( expr.test(string)){
-                growl.info(response.data.slice(10), {title: 'Total Estimate Expenses'});
+                growl.info(response.data.slice(14), {title: 'Total Estimate Expenses'});
+               }
+                 var string = response.data,
+                        expr = /expensesumzero/;  // no quotes here
+               if( expr.test(string)){
+                growl.warning(response.data.slice(14), {title: 'No estimate expenses this year!'});
                }
 
             }, function (response) {
@@ -38,7 +43,7 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
                 var string = response.data,
                         expr = /lessby/;  // no quotes here
                if( expr.test(string)){
-                growl.info(response.data.slice(6), {title: 'Estimate Income is Less by'});
+                growl.error(response.data.slice(6), {title: 'Estimate Income is Less by'});
                }
                
                 var string = response.data,
@@ -55,7 +60,7 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
             });
         };
         
-           $scope.totalactualincome = function () {
+           $scope.totalestimateincome = function () {
             $http({
 
                 method: 'GET',
@@ -64,14 +69,17 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
             }).then(function (response) {
 
                 var string = response.data,
-                        expr = /estimateincome/;  // no quotes here
+                        expr = /estimateincomeokay/;  // no quotes here
                if( expr.test(string)){
-                growl.info(response.data.slice(14), {title: 'Total Estimate Income'});
+                growl.info(response.data.slice(18), {title: 'Total Estimate Income'});
+               }
+                  var string = response.data,
+                        expr = /estimateincomezero/;  // no quotes here
+               if( expr.test(string)){
+                growl.warning(response.data.slice(18), {title: 'No estimate income this year'});
                }
             }, function (response) {
-//              alert(response.data,response.status);
-
-                // on error
+//            
                 console.log(response.data, response.status);
 
             });
@@ -82,7 +90,7 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
 
 
           
-             $scope.totalactualincome();
+              $scope.totalestimateincome();
              $scope.totalExpense();
           $scope.difference();
 //        $scope.showAll();

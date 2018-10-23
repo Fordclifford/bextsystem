@@ -14,10 +14,16 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
                 // on success
                 //if(isNaN(response.data)){
                 var string = response.data,
-                        expr = /sumbill/;  // no quotes here
+                        expr = /sumbillokay/;  // no quotes here
                if( expr.test(string)){
-                growl.info(response.data.slice(7), {title: 'Total Bills'});
+                growl.info(response.data.slice(11), {title: 'Total Bills'});
                }
+               var string = response.data,
+                        expr = /sumbillzero/;  // no quotes here
+               if( expr.test(string)){
+                growl.warning(response.data.slice(11), {title: 'No Bills paid!'});
+               }
+              
 
             }, function (response) {
 //              alert(response.data,response.status);
@@ -56,7 +62,7 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
             });
         };
         
-           $scope.totalactualincome = function () {
+          $scope.totalactualincome = function () {
             $http({
 
                 method: 'GET',
@@ -65,9 +71,14 @@ notifyApp.controller('notifyCtrl', ['$scope', 'growl', '$http', function ($scope
             }).then(function (response) {
 
                 var string = response.data,
-                        expr = /sumincome/;  // no quotes here
+                        expr = /sumincomeokay/;  // no quotes here
                if( expr.test(string)){
-                growl.info(response.data.slice(9), {title: 'Total Income'});
+                growl.info(response.data.slice(13), {title: 'Total Income'});
+               }
+                var string = response.data,
+                        expr = /sumincomezero/;  // no quotes here
+               if( expr.test(string)){
+                growl.error(response.data.slice(13), {title: 'OOPS! Your church has no income'});
                }
             }, function (response) {
 //              alert(response.data,response.status);

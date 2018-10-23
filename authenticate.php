@@ -57,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($row[0]['user_type'] == 'auditor') {
                 $db = getDbInstance();
                 $db->where("user_id", $_SESSION['user_logged_in']);
-                $row = $db->get('conference');
-                $_SESSION['conference'] = $row[0]['id'];
+                $row1 = $db->get('conference');
+                $_SESSION['conference'] = $row1[0]['id'];
             }
             if ($row[0]['user_type'] == 'union_auditor') {
                 $db = getDbInstance();

@@ -1,15 +1,14 @@
 <?php
 error_reporting( ~E_DEPRECATED & ~E_NOTICE );
- $DB_HOST = 'localhost';
- $DB_USER = 'root';
- $DB_PASS = '';
- $DB_NAME = 'bext_system';
- 
 
- try{
-  $DB_con = new PDO("mysql:host={$DB_HOST};dbname={$DB_NAME}",$DB_USER,$DB_PASS);
-  $DB_con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- }
- catch(PDOException $e){
-  echo $e->getMessage();
- }
+$host_name = "localhost";
+$database = "bext_system"; // Change your database nae
+$username = "clifford";          // Your database user id 
+$password = "cliffkaka";   
+ 
+ try {
+$dbo = new PDO('mysql:host='.$host_name.';dbname='.$database, $username, $password);
+} catch (PDOException $e) {
+print "Error!: " . $e->getMessage() . "<br/>";
+die();
+}

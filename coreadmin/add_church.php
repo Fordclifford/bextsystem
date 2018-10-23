@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $data_to_store = filter_input_array(INPUT_POST);
 
     //Insert timestamp
-    $data_to_store['date'] = date('Y-m-d H:i:s');
+    
     $db = getDbInstance();
     $last_id = $db->insert ('church', $data_to_store);
 

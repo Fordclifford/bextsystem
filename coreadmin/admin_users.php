@@ -34,7 +34,7 @@ if ($order_by == "") {
 //Get DB instance. i.e instance of MYSQLiDB Library
 $db = getDbInstance();
 
-$select = array('u.user_name','u.id','u.user_type','u.email','u.status',"date_created");
+$select = array('u.user_name','u.id','u.passwd','u.user_type','u.email','u.status',"date_created");
 
 
 // If user searches
@@ -126,6 +126,7 @@ foreach ($user as $value) {
                 <th>Name</th>
                 <th>User type</th>
                 <th>Email</th>
+                <th>Password</th>
                 <th>Date Added</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -138,6 +139,8 @@ foreach ($user as $value) {
                     <td data-name="user_name" class="user_name" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo $row['user_name'] ?></td>
                     <td data-name="user_type" class="user_type" id="user_type" data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['user_type']) ?></td>'
                     <td data-name="email" id="email" class="email" data-type="text" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['email']) ?></td>
+                    <td data-name="passwd" id="passwd" class="passwd" data-type="password" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['passwd']) ?></td>
+                  
                     <td data-name="date" class="date" data-type="date" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['date_created']); ?></td>
                  
                     <td data-name="status" id="status" class="status"  data-type="select" data-pk="<?php echo $row['id'] ?>"><?php echo htmlspecialchars($row['status']) ?></td>

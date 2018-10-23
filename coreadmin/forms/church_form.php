@@ -26,7 +26,7 @@ $jsonConferences = json_encode($conferences);
         <div class="col-md-4 inputGroupContainer">
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-                <select  style="height:40px" id="conference" name="conference_id" placeholder="Conference" class="form-control"  autocomplete="off"></select>
+                <select  style="height:40px" id="conference" name="conf_id" placeholder="Conference" class="form-control"  autocomplete="off"></select>
             </div>
         </div>
     </div>

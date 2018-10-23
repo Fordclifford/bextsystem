@@ -169,8 +169,8 @@ $jsonYears = json_encode($years);
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-cog"></i></span>
                                     <input type="text" list="expenses" name="expense_name" style="background:url('assets/image/image_arrow.PNG')no-repeat right;height:40px" id="expense_name" placeholder="Click for options or type a value " class="form-control w3-round-large"  autocomplete="off">
                                       <datalist id="expenses">
-                                        <option value="Repairs and Painting Church Building">
-                                        <option value="Fuel">
+                                        <option value="Repairs and Painting Church Building">Repairs and Painting Church Building</option>
+                                <option value="Fuel">Fuel</option>
                                         <option value="Janitor and Supplies">Janitor and Supplies</option>
                                         <option value="Insurance on Building and Furnishings">Insurance on Building and Furnishings</option>
                                         <option value="Sabbath School Supplies">Sabbath School Supplies</option>

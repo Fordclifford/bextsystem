@@ -11,7 +11,7 @@ if($_SESSION['user_type']== 'auditor'){
    $db->where("user_id",$_SESSION['user_logged_in']);
    $row = $db->get('conference');
    $db = getDbInstance();
-   $db->where("conference_id",$row[0]['id']);
+   $db->where("conf_id",$row[0]['id']);
    $numChurches = $db->getValue ("church", "count(*)");
   }
 $numConf = $db->getValue ("conference", "count(*)");

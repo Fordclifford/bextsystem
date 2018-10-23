@@ -3,11 +3,8 @@ ob_start();
 session_start();
 require_once 'config.php';
 
-// if session is not set this will redirect to login page
-if (!isset($_SESSION['user'])) {
-    header("Location: index.php");
-    exit;
-}
+require_once './includes/auth_validate.php';
+
 // select loggedin users detail
 $error = false;
 
@@ -49,8 +46,8 @@ if (isset($_POST['btn-year'])) {
             $query_insert = mysql_query("INSERT INTO financial_year(year,church_id) VALUES ('$year','$church_id')");
             if ($query_insert) {
                 $errTyp = "success";
-                $errMSG = "Successfully added..redirecting....";
-                header("refresh:5; budget.php");
+                $errMSG = "Successfully added..";
+               
             } else {
                 exit(mysql_error());
                 $errMSG = "Unknown Error Occured!, Try again later...";
@@ -76,22 +73,24 @@ if (isset($_POST['btn-year'])) {
     $r_count = mysql_fetch_array($q_result);
      $id = $r_count['id'];
      $source ="".$max." Balance Carried Forward";
-     $bal_q =mysql_query("INSERT INTO income_sources(source_name,amount,financial_year,church_id) VALUES ('$source','$bal','$id','$church_id')");
-      if (!$bal_q){
+     $bal_q =mysql_query("INSERT INTO actual_income(source_name,amount,financial_year_id,church_id) VALUES ('$source','$bal','$id','$church_id')");
+     $bal_q =mysql_query("Update actual_income set balance =$bal WHERE source_name ='$source' AND church_id='$church_id' ");
+     
+     if (!$bal_q){
          exit(mysql_error());
       }
       $update_query = mysql_query("UPDATE financial_year F
-    SET total_income =
-    (SELECT SUM(amount) FROM income_sources
-    WHERE church_id = '$church_id' AND financial_year = $id)
-    WHERE church_id = '$church_id' AND id = $id");
+    SET total_actual_income =
+    (SELECT SUM(amount) FROM actual_income
+    WHERE church_id = '$church_id' AND financial_year_id = $id)
+    WHERE id = $id");
     if (!$update_query) {
-        die("error1!");
+        die( exit(mysql_error($conn)));
         $errMSG = "Sorry Data Could Not Updated !";
         exit(mysql_error($conn));
     }
 
-    $sumincome_query = mysql_query("SELECT total_income AS Income from financial_year  WHERE church_id = $church_id AND id =$id ");
+    $sumincome_query = mysql_query("SELECT total_actual_income AS Income from financial_year  WHERE  id =$id ");
     $sumbills_query = mysql_query("SELECT total_bills AS Bills from financial_year  WHERE church_id = $church_id AND id =$id ");
     $incomerow = mysql_fetch_assoc($sumincome_query);
     $sum_income = $incomerow['Income'];
@@ -101,19 +100,17 @@ if (isset($_POST['btn-year'])) {
     $balance = $sum_income - $sum_bill;
 
     $bal_query = mysql_query("UPDATE financial_year
-    SET balance = '$balance' WHERE church_id = $church_id AND id = $id");
+    SET balance = '$balance' WHERE id = $id");
 
     if (!$bal_query) {
         die("error3!");
         exit(mysql_error($conn));
     }
-
-     ?>
-      <script>
-       alert("New Year \n Balance will be carried forward!")
-        </script>
-        <?php
+    
+   $_SESSION['info']="New Year \n Balance will be carried forward!";
+     
     }
+
  if ($max > $year) {
      AddYear();
     }
@@ -137,14 +134,13 @@ include_once('includes/header.php');
             <h1 class="page-header">New Financial Year</h1>
         </div>
     </div>
+                <?php require_once 'includes/flash_messages.php'; ?>
 
 
-                <div style="margin: 20px" class ="row">
-                    <div class="col-lg-3"><a href="budget.php" class="btn btn-success w3-round-large " >&laquo; Back  </a></div>
-                </div>
 
-                <div class="login_form_div w3-round-large" >
-                    <form method="post" class="animate" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+
+                <div  >
+                    <form class="well form-horizontal" method="post" class="animate" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
 
 
                         <?php
@@ -161,7 +157,7 @@ include_once('includes/header.php');
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-yen"></span></span>
-                                <input style="height:40px" type="number" title="type year" data-toggle="tooltip" name="year" class="form-control w3-round-large" placeholder="Enter Year" value="<?php echo $year; ?>" maxlength="40" />
+                                <input style="height:40px" type="number" title="type year" name="year" class="form-control w3-round-large" placeholder="Enter Year" value="<?php echo $year; ?>" maxlength="40" />
                             </div>
                             <span class="text-danger"><?php echo $yearError; ?></span>
                         </div>

@@ -21,6 +21,24 @@ success:function(data){
 
 $('#user_data').editable({
 container: 'body',
+selector: 'td.passwd',
+url: "update_user.php",
+title: 'Update Password',
+type: "POST",
+validate: function(value){
+ if($.trim(value) == '')
+ {
+  return 'This field is required';
+ }
+},
+success:function(data){
+  $('#alert_message').html('<div class="alert alert-dismissible alert-success">'+data+'<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+
+}
+});
+
+$('#user_data').editable({
+container: 'body',
 selector: 'td.user_type',
 url: "update_user.php",
 title: 'User Type',

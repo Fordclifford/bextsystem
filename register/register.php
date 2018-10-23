@@ -84,7 +84,7 @@ if ($result[0]["count"] > 0) {
         $stmt->execute();
         $result = $stmt->fetchAll();
 if ($result[0]["count"] > 0) {
-             echo "exists";
+             echo "user already registered";
             exit();
         }else{
         
@@ -112,7 +112,7 @@ if ($result[0]["count"] > 0) {
             $stmt->execute();
             $result = $stmt->fetchAll();
 
-            $sql = "INSERT INTO `church` (`name`, `conference_id`,`mobile`,`union_id`,`user_id`) VALUES " . "( :name, :conf, :mobile, :union, :user_id)";
+            $sql = "INSERT INTO `church` (`name`, `conf_id`,`mobile`,`union_id`,`user_id`) VALUES " . "( :name, :conf, :mobile, :union, :user_id)";
             $stmt = $DB->prepare($sql);
             $stmt->bindValue(":name", $name);
             $stmt->bindValue(":mobile", $mobile);

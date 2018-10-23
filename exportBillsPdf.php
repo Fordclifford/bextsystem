@@ -82,6 +82,6 @@ require_once 'includes/auth_validate.php';
                             }
                         }
                         </script>
-                        
+                        <script src="includes/js/bill.js" type="text/javascript"></script>
 
 

@@ -5,9 +5,19 @@ require_once '../../config.php';
  if ($_SESSION['user_type'] == 'treasurer') {
 // if session is not set this will redirect to login page
 require_once '../../includes/auth_validate.php';
-
- $sumexpense = mysql_query("SELECT sum(amount) as sum_expense from estimated_expenses WHERE church_id=" . $_SESSION['church']);
+ $year = date("Y");
+ $sumexpense = mysql_query("SELECT total_estimated_expenses as sum_expense from financial_year WHERE year='$year' AND church_id=" . $_SESSION['church']);
  $row = mysql_fetch_assoc($sumexpense); 
-echo 'expensesum'.$row['sum_expense'];
-   
+
+
+  if ($row['sum_expense']>0)
+ {
+     echo 'expensesumokay'.$row['sum_expense'];
+ }
+
+ if ($row['sum_expense']==0)
+ {
+     echo 'expensesumzero'.$row['sum_expense'];
+ }
+ 
 }

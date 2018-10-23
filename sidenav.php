@@ -142,10 +142,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="balance.php"> <i class="glyphicon glyphicon-btc"></i> Balance</a>
-
-                    </li>
+                    
 
                 </ul>
             </div>

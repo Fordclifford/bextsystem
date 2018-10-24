@@ -17,6 +17,7 @@ $error = false;
     $church_id = $_SESSION['church'];
     $year = $_POST['financial_year_id'];
     $data_to_store['church_id']=$_SESSION['church'];
+    $data_to_store['balance']=$_POST['amount'];
     $last_id = $db->insert ('actual_income', $data_to_store);
     
      $update_query = mysql_query("UPDATE financial_year F
